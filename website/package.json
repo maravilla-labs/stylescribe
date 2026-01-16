@@ -1,8 +1,8 @@
 {
-  "name": "@maravilla-labs/stylescribe",
+  "name": "@maravilla-labs/stylescribe-website",
   "version": "1.0.0",
   "private": true,
-  "description": "A design system built with Stylescribe",
+  "description": "Stylescribe documentation website",
   "scripts": {
     "dev": "stylescribe dev --source ./sass --build-target ./build",
     "build": "stylescribe build --source ./sass --output ./dist",
@@ -11,6 +11,6 @@
     "tokens:export": "stylescribe tokens export -i ./tokens/design-tokens.json -f css -o ./tokens/variables.css"
   },
   "dependencies": {
-    "stylescribe": "^0.3.2"
+    "@maravilla-labs/stylescribe": "^0.3.2"
   }
 }
