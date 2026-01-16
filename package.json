@@ -4,6 +4,9 @@
   "description": "stylescribe is an open-source style guide building tool with design token support",
   "type": "module",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=20.0.0"
   },
