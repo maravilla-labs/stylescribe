@@ -619,7 +619,7 @@ tokens/
 
 Stylescribe extends W3C Design Tokens with **46 programmable functions** that transform your tokens at build time. No runtime JavaScript required - values are computed and output as standard CSS.
 
-### Killer Features
+### Highlights
 
 **Fluid Typography** - Generate responsive `clamp()` values automatically:
 ```json
