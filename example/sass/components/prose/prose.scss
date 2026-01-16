@@ -1,0 +1,310 @@
+/**
+ * @title Prose
+ * @description Typography styles for long-form content like articles, documentation, and
+ *   markdown. Applies consistent styling to headings, paragraphs, lists, code, and more.
+ * @navtitle Prose
+ * @group Typography
+ * @order 1
+ * @variations default, sm, lg
+ * @elements (nested HTML elements - h1-h6, p, a, ul, ol, blockquote, pre, code, img, hr)
+ * @examples
+ * - title: Default Prose
+ *   description: Standard prose styling for articles
+ *   code: |
+ *     <div class="ds-prose">
+ *       <h2>Getting Started</h2>
+ *       <p>This is a paragraph with some <a href="#">linked text</a> and more content that wraps to multiple lines to demonstrate line height and spacing.</p>
+ *       <h3>Installation</h3>
+ *       <p>Run the following command to install:</p>
+ *       <pre><code>npm install stylescribe</code></pre>
+ *       <p>Then import it into your project.</p>
+ *     </div>
+ * - title: With Lists
+ *   description: Prose with ordered and unordered lists
+ *   code: |
+ *     <div class="ds-prose">
+ *       <h3>Key Features</h3>
+ *       <ul>
+ *         <li>Token-driven design system</li>
+ *         <li>Automatic documentation generation</li>
+ *         <li>Dark mode support</li>
+ *       </ul>
+ *       <h3>Steps to Follow</h3>
+ *       <ol>
+ *         <li>Install the package</li>
+ *         <li>Configure your tokens</li>
+ *         <li>Build your components</li>
+ *       </ol>
+ *     </div>
+ * - title: With Blockquote
+ *   description: Prose with blockquote styling
+ *   code: |
+ *     <div class="ds-prose">
+ *       <p>As the documentation states:</p>
+ *       <blockquote>
+ *         Design tokens are the visual design atoms of the design system. They are named entities that store visual design attributes.
+ *       </blockquote>
+ *       <p>This approach ensures consistency across the entire system.</p>
+ *     </div>
+ * - title: With Code Blocks
+ *   description: Inline code and code blocks
+ *   code: |
+ *     <div class="ds-prose">
+ *       <p>Use the <code>npm run build</code> command to compile your styles.</p>
+ *       <pre><code>// Example configuration
+ * export default {
+ *   source: './sass',
+ *   output: './build'
+ * }</code></pre>
+ *     </div>
+ * - title: Small Prose
+ *   description: Compact typography for sidebars or notes
+ *   code: |
+ *     <div class="ds-prose ds-prose--sm">
+ *       <h3>Quick Note</h3>
+ *       <p>This is smaller prose text suitable for sidebars, captions, or supplementary content.</p>
+ *       <ul>
+ *         <li>Compact spacing</li>
+ *         <li>Smaller font size</li>
+ *       </ul>
+ *     </div>
+ * - title: Large Prose
+ *   description: Larger typography for featured content
+ *   code: |
+ *     <div class="ds-prose ds-prose--lg">
+ *       <h2>Featured Content</h2>
+ *       <p>This larger prose style is ideal for hero sections, featured articles, or any content that needs extra visual prominence.</p>
+ *     </div>
+ */
+
+@layer components {
+  .ds-prose {
+    /* ===== Component Tokens ===== */
+    --prose-font: var(--font-family-base);
+    --prose-font-heading: var(--font-family-heading);
+    --prose-font-mono: var(--font-family-mono);
+    --prose-text: var(--color-semantic-text);
+    --prose-text-muted: var(--color-semantic-text-muted);
+    --prose-heading-color: var(--color-semantic-text);
+    --prose-link-color: var(--color-primary-500);
+    --prose-link-hover: var(--color-primary-600);
+    --prose-font-size: var(--font-size-base);
+    --prose-line-height: var(--font-lineHeight-relaxed);
+    --prose-heading-weight: var(--font-weight-semibold);
+    --prose-code-bg: var(--color-neutral-100);
+    --prose-pre-bg: var(--color-neutral-900);
+    --prose-pre-text: var(--color-neutral-100);
+    --prose-blockquote-border: var(--color-primary-500);
+    --prose-blockquote-bg: var(--color-neutral-100);
+    --prose-hr-color: var(--color-semantic-border);
+
+    /* ===== Base Styles ===== */
+    font-family: var(--prose-font);
+    font-size: var(--prose-font-size);
+    line-height: var(--prose-line-height);
+    color: var(--prose-text);
+
+    /* ===== Headings ===== */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: var(--spacing-scale-xl);
+      margin-bottom: var(--spacing-scale-md);
+      font-family: var(--prose-font-heading);
+      font-weight: var(--prose-heading-weight);
+      line-height: var(--font-lineHeight-tight);
+      color: var(--prose-heading-color);
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    h1 {
+      font-size: var(--font-size-3xl);
+    }
+
+    h2 {
+      font-size: var(--font-size-2xl);
+    }
+
+    h3 {
+      font-size: var(--font-size-xl);
+    }
+
+    h4 {
+      font-size: var(--font-size-lg);
+    }
+
+    h5,
+    h6 {
+      font-size: var(--font-size-base);
+    }
+
+    /* ===== Paragraphs ===== */
+    p {
+      margin: 0 0 var(--spacing-scale-md);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    /* ===== Links ===== */
+    a {
+      color: var(--prose-link-color);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+
+      &:hover {
+        color: var(--prose-link-hover);
+      }
+    }
+
+    /* ===== Lists ===== */
+    ul,
+    ol {
+      margin: 0 0 var(--spacing-scale-md);
+      padding-left: var(--spacing-scale-lg);
+
+      li {
+        margin-bottom: var(--spacing-scale-xs);
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    /* ===== Blockquotes ===== */
+    blockquote {
+      margin: var(--spacing-scale-lg) 0;
+      padding: var(--spacing-scale-md) var(--spacing-scale-lg);
+      border-left: 4px solid var(--prose-blockquote-border);
+      background: var(--prose-blockquote-bg);
+      font-style: italic;
+      color: var(--prose-text-muted);
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    /* ===== Code ===== */
+    pre,
+    code {
+      font-family: var(--prose-font-mono);
+      font-size: 0.9em;
+    }
+
+    code {
+      padding: 2px 6px;
+      background: var(--prose-code-bg);
+      border-radius: var(--border-radius-sm);
+    }
+
+    pre {
+      margin: var(--spacing-scale-md) 0;
+      padding: var(--spacing-scale-md);
+      background: var(--prose-pre-bg);
+      border-radius: var(--border-radius-md);
+      overflow-x: auto;
+
+      code {
+        padding: 0;
+        background: none;
+        color: var(--prose-pre-text);
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    /* ===== Images ===== */
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--border-radius-md);
+      margin: var(--spacing-scale-md) 0;
+    }
+
+    /* ===== Horizontal Rule ===== */
+    hr {
+      margin: var(--spacing-scale-xl) 0;
+      border: none;
+      border-top: 1px solid var(--prose-hr-color);
+    }
+
+    /* ===== Tables ===== */
+    table {
+      width: 100%;
+      margin: var(--spacing-scale-md) 0;
+      border-collapse: collapse;
+
+      th,
+      td {
+        padding: var(--spacing-scale-sm) var(--spacing-scale-md);
+        text-align: left;
+        border-bottom: 1px solid var(--prose-hr-color);
+      }
+
+      th {
+        font-weight: var(--prose-heading-weight);
+        background: var(--prose-code-bg);
+      }
+    }
+  }
+
+  /* ===== Size Variations ===== */
+
+  .ds-prose--sm {
+    --prose-font-size: var(--font-size-sm);
+
+    h1 {
+      font-size: var(--font-size-2xl);
+    }
+
+    h2 {
+      font-size: var(--font-size-xl);
+    }
+
+    h3 {
+      font-size: var(--font-size-lg);
+    }
+
+    h4,
+    h5,
+    h6 {
+      font-size: var(--font-size-base);
+    }
+  }
+
+  .ds-prose--lg {
+    --prose-font-size: var(--font-size-lg);
+
+    h1 {
+      font-size: var(--font-size-4xl);
+    }
+
+    h2 {
+      font-size: var(--font-size-3xl);
+    }
+
+    h3 {
+      font-size: var(--font-size-2xl);
+    }
+
+    h4 {
+      font-size: var(--font-size-xl);
+    }
+
+    h5,
+    h6 {
+      font-size: var(--font-size-lg);
+    }
+  }
+}

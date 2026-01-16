@@ -1,0 +1,129 @@
+/**
+ * @title Base Styles
+ * @description Global reset and base typography styles that apply design tokens
+ *   to the document. Include this before component styles.
+ * @navtitle Base
+ * @group Foundation
+ * @order 0
+ */
+
+/* Layer order declaration */
+@layer reset, base, components, utilities;
+
+@layer reset {
+  /* Box sizing reset */
+  :where(*, *::before, *::after) {
+    box-sizing: border-box;
+  }
+
+  /* Remove default margin/padding */
+  :where(html, body) {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Headings reset */
+  :where(h1, h2, h3, h4, h5, h6) {
+    margin-top: 0;
+  }
+
+  /* Paragraph reset */
+  :where(p) {
+    margin-top: 0;
+  }
+
+  /* Images reset */
+  :where(img) {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+@layer base {
+  /**
+   * @tokens Base
+   * @description Base typography and color tokens
+   */
+  :root {
+    --base-code-font-size: 0.875em;
+    --base-code-padding-y: 0.125em;
+    --base-code-padding-x: 0.25em;
+  }
+
+  /* Base document styles using design tokens */
+  html {
+    font-family: var(--sol-font-family-base);
+    font-size: var(--sol-font-size-base);
+    line-height: var(--sol-font-lineHeight-normal);
+    color: var(--sol-color-semantic-text);
+    background-color: var(--sol-color-semantic-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Body inherits from html */
+  body {
+    min-height: 100vh;
+  }
+
+  /* Headings */
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--sol-font-family-heading);
+    font-weight: var(--sol-font-weight-semibold);
+    line-height: var(--sol-font-lineHeight-tight);
+    margin-bottom: var(--sol-spacing-scale-sm);
+  }
+
+  /* Paragraphs */
+  :where(p) {
+    margin-bottom: var(--sol-spacing-scale-md);
+  }
+
+  /* Links */
+  :where(a) {
+    color: var(--sol-color-primary-500);
+    text-decoration: none;
+    transition: color var(--sol-transition-duration-fast);
+  }
+
+  a:hover {
+    color: var(--sol-color-primary-600);
+    text-decoration: underline;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--sol-color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* Code */
+  :where(code, pre) {
+    font-family: var(--sol-font-family-mono);
+  }
+
+  :where(code) {
+    font-size: var(--base-code-font-size);
+    padding: var(--base-code-padding-y) var(--base-code-padding-x);
+    background-color: var(--sol-color-neutral-100);
+    border-radius: var(--sol-border-radius-sm);
+  }
+
+  :where(pre) {
+    padding: var(--sol-spacing-scale-md);
+    background-color: var(--sol-color-neutral-100);
+    border-radius: var(--sol-border-radius-md);
+    overflow-x: auto;
+  }
+
+  pre code {
+    padding: 0;
+    background: none;
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--sol-color-primary-500);
+    outline-offset: 2px;
+  }
+}

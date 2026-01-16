@@ -1,0 +1,323 @@
+/**
+ * @title Appbar
+ * @description Top navigation bar with brand, search, actions, and user profile.
+ *   Combines existing components for a cohesive header experience.
+ * @navtitle Appbar
+ * @group Navigation
+ * @order 1
+ * @dependencies button, avatar, search, icon
+ * @variations default, bordered, elevated
+ * @additional_variations sticky, transparent
+ * @elements
+ * - name: brand
+ *   html: <div class="{{class}}"></div>
+ * - name: logo
+ *   html: <span class="{{class}} ds-icon ds-icon--logo"></span>
+ * - name: title
+ *   html: <span class="{{class}}">App Title</span>
+ * - name: search
+ *   html: <div class="{{class}}"></div>
+ * - name: actions
+ *   html: <div class="{{class}}"></div>
+ * - name: user
+ *   html: <div class="{{class}}"></div>
+ * - name: name
+ *   html: <span class="{{class}}">User Name</span>
+ * - name: tabs
+ *   html: <div class="{{class}}"></div>
+ * @examples
+ * - title: Default Appbar
+ *   description: Standard appbar with brand, search, actions, and user
+ *   code: |
+ *     <header class="ds-appbar">
+ *       <div class="ds-appbar__brand">
+ *         <svg class="ds-appbar__logo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+ *         <span class="ds-appbar__title">News Feed</span>
+ *       </div>
+ *       <div class="ds-appbar__search">
+ *         <div class="ds-search">
+ *           <svg class="ds-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *           <input class="ds-search__input" type="search" placeholder="Search articles...">
+ *         </div>
+ *       </div>
+ *       <div class="ds-appbar__actions">
+ *         <button class="ds-btn ds-btn--ghost" aria-label="Settings">
+ *           <svg class="ds-btn__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+ *         </button>
+ *         <button class="ds-btn ds-btn--primary">
+ *           <svg class="ds-btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+ *           <span class="ds-btn__label">New Article</span>
+ *         </button>
+ *       </div>
+ *       <div class="ds-appbar__user">
+ *         <div class="ds-avatar ds-avatar--sm">
+ *           <img class="ds-avatar__image" src="https://i.pravatar.cc/32" alt="User">
+ *         </div>
+ *         <span class="ds-appbar__name">demo@solut...</span>
+ *       </div>
+ *     </header>
+ * - title: Appbar with Tabs
+ *   description: Appbar with integrated tab navigation below
+ *   code: |
+ *     <header class="ds-appbar ds-appbar--with-tabs">
+ *       <div class="ds-appbar__main">
+ *         <div class="ds-appbar__brand">
+ *           <svg class="ds-appbar__logo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+ *           <span class="ds-appbar__title">News Feed</span>
+ *         </div>
+ *         <div class="ds-appbar__search">
+ *           <div class="ds-search">
+ *             <svg class="ds-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *             <input class="ds-search__input" type="search" placeholder="Search articles...">
+ *           </div>
+ *         </div>
+ *         <div class="ds-appbar__actions">
+ *           <button class="ds-btn ds-btn--primary ds-btn--sm">
+ *             <svg class="ds-btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+ *             <span class="ds-btn__label">New Article</span>
+ *           </button>
+ *         </div>
+ *         <div class="ds-appbar__user">
+ *           <div class="ds-avatar ds-avatar--sm">
+ *             <span class="ds-avatar__initials">JD</span>
+ *           </div>
+ *           <span class="ds-appbar__name">john@demo.com</span>
+ *         </div>
+ *       </div>
+ *       <div class="ds-appbar__tabs">
+ *         <div class="ds-tabs">
+ *           <div class="ds-tabs__list" role="tablist">
+ *             <button class="ds-tabs__item" role="tab">
+ *               <span class="ds-tabs__label">All</span>
+ *             </button>
+ *             <button class="ds-tabs__item ds-tabs__item--active" role="tab">
+ *               <span class="ds-tabs__indicator"></span>
+ *               <span class="ds-tabs__label">Technology</span>
+ *             </button>
+ *             <button class="ds-tabs__item" role="tab">
+ *               <span class="ds-tabs__label">Science</span>
+ *             </button>
+ *           </div>
+ *         </div>
+ *       </div>
+ *     </header>
+ * - title: Bordered Appbar
+ *   description: Appbar with bottom border
+ *   code: |
+ *     <header class="ds-appbar ds-appbar--bordered">
+ *       <div class="ds-appbar__brand">
+ *         <svg class="ds-appbar__logo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+ *         <span class="ds-appbar__title">Dashboard</span>
+ *       </div>
+ *       <div class="ds-appbar__actions">
+ *         <button class="ds-btn ds-btn--outline">Login</button>
+ *       </div>
+ *     </header>
+ * - title: Elevated Appbar
+ *   description: Appbar with shadow for depth
+ *   code: |
+ *     <header class="ds-appbar ds-appbar--elevated">
+ *       <div class="ds-appbar__brand">
+ *         <svg class="ds-appbar__logo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+ *         <span class="ds-appbar__title">Documentation</span>
+ *       </div>
+ *       <div class="ds-appbar__search">
+ *         <div class="ds-search ds-search--outlined">
+ *           <svg class="ds-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *           <input class="ds-search__input" type="search" placeholder="Search docs...">
+ *         </div>
+ *       </div>
+ *       <div class="ds-appbar__user">
+ *         <div class="ds-avatar ds-avatar--sm">
+ *           <img class="ds-avatar__image" src="https://i.pravatar.cc/32?u=2" alt="User">
+ *         </div>
+ *       </div>
+ *     </header>
+ * - title: Sticky Appbar
+ *   description: Fixed to top of viewport on scroll
+ *   code: |
+ *     <header class="ds-appbar ds-appbar--sticky ds-appbar--bordered">
+ *       <div class="ds-appbar__brand">
+ *         <svg class="ds-appbar__logo" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+ *         <span class="ds-appbar__title">App Name</span>
+ *       </div>
+ *       <div class="ds-appbar__actions">
+ *         <button class="ds-btn ds-btn--ghost" aria-label="Notifications">
+ *           <svg class="ds-btn__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+ *         </button>
+ *         <div class="ds-avatar ds-avatar--sm">
+ *           <span class="ds-avatar__initials">ME</span>
+ *         </div>
+ *       </div>
+ *     </header>
+ */
+
+@layer components {
+  .ds-appbar {
+    /* ===== Component Tokens ===== */
+    --appbar-bg: var(--color-semantic-surface);
+    --appbar-text: var(--color-semantic-text);
+    --appbar-text-muted: var(--color-semantic-text-muted);
+    --appbar-border: var(--color-semantic-border);
+    --appbar-height: 56px;
+    --appbar-padding-x: var(--spacing-scale-lg);
+    --appbar-padding-y: var(--spacing-scale-sm);
+    --appbar-gap: var(--spacing-scale-lg);
+    --appbar-shadow: none;
+    --appbar-z: var(--z-index-sticky);
+
+    --appbar-logo-size: 24px;
+    --appbar-logo-color: var(--color-primary-500);
+    --appbar-title-size: var(--font-size-lg);
+    --appbar-title-weight: var(--font-weight-semibold);
+    --appbar-name-size: var(--font-size-sm);
+
+    /* ===== Base Styles ===== */
+    display: flex;
+    flex-direction: column;
+    background: var(--appbar-bg);
+    color: var(--appbar-text);
+    font-family: var(--font-family-base);
+    box-shadow: var(--appbar-shadow);
+
+    /* ===== Main row wrapper (default layout) ===== */
+    /* When no __main wrapper is used, the appbar itself acts as the flex row */
+    &:not(:has(.ds-appbar__main)) {
+      flex-direction: row;
+      align-items: center;
+      min-height: var(--appbar-height);
+      padding: var(--appbar-padding-y) var(--appbar-padding-x);
+      gap: var(--appbar-gap);
+    }
+
+    /* ===== Elements ===== */
+    &__main {
+      display: flex;
+      align-items: center;
+      min-height: var(--appbar-height);
+      padding: var(--appbar-padding-y) var(--appbar-padding-x);
+      gap: var(--appbar-gap);
+    }
+
+    &__brand {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-scale-sm);
+      flex-shrink: 0;
+    }
+
+    &__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--appbar-logo-size);
+      height: var(--appbar-logo-size);
+      color: var(--appbar-logo-color);
+      flex-shrink: 0;
+
+      svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__title {
+      font-family: var(--font-family-heading);
+      font-size: var(--appbar-title-size);
+      font-weight: var(--appbar-title-weight);
+      color: var(--appbar-text);
+      white-space: nowrap;
+    }
+
+    &__search {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      max-width: 400px;
+      margin: 0 auto;
+
+      .ds-search {
+        width: 100%;
+      }
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-scale-sm);
+      flex-shrink: 0;
+    }
+
+    &__user {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-scale-sm);
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    &__name {
+      font-size: var(--appbar-name-size);
+      color: var(--appbar-text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 120px;
+    }
+
+    &__tabs {
+      padding: 0 var(--appbar-padding-x);
+
+      .ds-tabs__list {
+        border-bottom: none;
+      }
+    }
+  }
+
+  /* ===== Variations (token overrides only) ===== */
+
+  .ds-appbar--bordered {
+    border-bottom: 1px solid var(--appbar-border);
+  }
+
+  .ds-appbar--elevated {
+    --appbar-shadow: var(--shadow-md);
+  }
+
+  .ds-appbar--sticky {
+    position: sticky;
+    top: 0;
+    z-index: var(--appbar-z);
+  }
+
+  .ds-appbar--transparent {
+    --appbar-bg: transparent;
+  }
+
+  .ds-appbar--with-tabs {
+    border-bottom: 1px solid var(--appbar-border);
+
+    .ds-appbar__tabs {
+      .ds-tabs {
+        --tabs-border: transparent;
+      }
+    }
+  }
+
+  /* ===== Responsive adjustments ===== */
+  @container (max-width: 640px) {
+    .ds-appbar {
+      --appbar-padding-x: var(--spacing-scale-md);
+      --appbar-gap: var(--spacing-scale-md);
+    }
+
+    .ds-appbar__search {
+      display: none;
+    }
+
+    .ds-appbar__name {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "$meta": {
+    "name": "chat-bubble",
+    "description": "Design tokens for the Chat Bubble component"
+  },
+  "chat-bubble": {
+    "background": {
+      "default": {
+        "$value": "{color.neutral.100}",
+        "$type": "color",
+        "$description": "Default bubble background color"
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "{color.text}",
+        "$type": "color",
+        "$description": "Default bubble text color"
+      }
+    },
+    "border-radius": {
+      "default": {
+        "$value": "{border.radius.lg}",
+        "$type": "dimension",
+        "$description": "Bubble corner radius"
+      },
+      "tail": {
+        "$value": "{border.radius.sm}",
+        "$type": "dimension",
+        "$description": "Smaller radius for bubble tail corner"
+      }
+    },
+    "spacing": {
+      "default": {
+        "$value": "{spacing.sm}",
+        "$type": "dimension",
+        "$description": "Default spacing between messages"
+      },
+      "compact": {
+        "$value": "2px",
+        "$type": "dimension",
+        "$description": "Reduced spacing for compact mode"
+      }
+    },
+    "code": {
+      "background": {
+        "$value": "alpha({color.neutral.900}, 0.1)",
+        "$type": "color",
+        "$description": "Inline code background color"
+      }
+    },
+    "actions": {
+      "opacity": {
+        "$value": "0",
+        "$type": "number",
+        "$description": "Default opacity for action buttons"
+      },
+      "opacity-hover": {
+        "$value": "1",
+        "$type": "number",
+        "$description": "Action buttons opacity on hover"
+      }
+    },
+    "user": {
+      "$description": "User message bubble tokens",
+      "background": {
+        "$value": "linear-gradient(135deg, {color.primary.500} 0%, {color.primary.600} 100%)",
+        "$type": "color",
+        "$description": "User message gradient background"
+      },
+      "text": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "User message text color"
+      }
+    },
+    "assistant": {
+      "$description": "Assistant message bubble tokens",
+      "background": {
+        "$value": "{color.neutral.100}",
+        "$type": "color",
+        "$description": "Assistant message background"
+      },
+      "text": {
+        "$value": "{color.text}",
+        "$type": "color",
+        "$description": "Assistant message text color"
+      }
+    }
+  }
+}

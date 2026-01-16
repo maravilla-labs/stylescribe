@@ -1,0 +1,153 @@
+/**
+ * @title Avatar
+ * @description User profile image or initials placeholder. Base component
+ *   used by chat components for user representation.
+ * @navtitle Avatar
+ * @group Identity
+ * @order 1
+ * @verified true
+ * @variations circle, rounded
+ * @additional_variations xs, sm, md, lg, xl
+ * @elements image, initials, status
+ * @examples
+ * - title: Complete Avatar
+ *   description: Avatar with all available elements
+ *   code: |
+ *     <div class="ds-avatar ds-avatar--md">
+ *       <img class="ds-avatar__image" src="https://i.pravatar.cc/48" alt="User avatar">
+ *       <span class="ds-avatar__initials" style="display: none;">JD</span>
+ *       <span class="ds-avatar__status ds-avatar__status--online"></span>
+ *     </div>
+ * - title: Image Avatar
+ *   description: Avatar with profile image
+ *   code: |
+ *     <div class="ds-avatar ds-avatar--md">
+ *       <img class="ds-avatar__image" src="https://i.pravatar.cc/48" alt="User avatar">
+ *     </div>
+ * - title: Initials Avatar
+ *   description: Avatar with user initials
+ *   code: |
+ *     <div class="ds-avatar ds-avatar--md">
+ *       <span class="ds-avatar__initials">JD</span>
+ *     </div>
+ * - title: AI Avatar
+ *   description: Avatar for AI assistant
+ *   code: |
+ *     <div class="ds-avatar ds-avatar--md ds-avatar--ai">
+ *       <span class="ds-avatar__initials">AI</span>
+ *     </div>
+ * - title: With Status
+ *   description: Avatar showing online status
+ *   code: |
+ *     <div class="ds-avatar ds-avatar--md">
+ *       <span class="ds-avatar__initials">JD</span>
+ *       <span class="ds-avatar__status ds-avatar__status--online"></span>
+ *     </div>
+ * - title: Size Variants
+ *   description: Different avatar sizes
+ *   code: |
+ *     <div class="ds-avatar ds-avatar--xs"><span class="ds-avatar__initials">XS</span></div>
+ *     <div class="ds-avatar ds-avatar--sm"><span class="ds-avatar__initials">SM</span></div>
+ *     <div class="ds-avatar ds-avatar--md"><span class="ds-avatar__initials">MD</span></div>
+ *     <div class="ds-avatar ds-avatar--lg"><span class="ds-avatar__initials">LG</span></div>
+ */
+
+@layer components {
+  .ds-avatar {
+    /* Internal token defaults */
+    --avatar-size: 40px;
+    --avatar-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --avatar-text: #ffffff;
+    --avatar-radius: 50%;
+    --avatar-status-color: var(--color-neutral-500);
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: var(--avatar-radius);
+    background: var(--avatar-bg);
+    color: var(--avatar-text);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--avatar-size);
+    overflow: hidden;
+    flex-shrink: 0;
+
+    /* Elements */
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &__initials {
+      font-size: 0.4em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    &__status {
+      --status-color: var(--avatar-status-color);
+
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 25%;
+      height: 25%;
+      min-width: 8px;
+      min-height: 8px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      background-color: var(--status-color);
+
+      &--online {
+        --status-color: var(--color-success-base);
+      }
+
+      &--offline {
+        --status-color: var(--color-neutral-500);
+      }
+
+      &--busy {
+        --status-color: var(--color-danger-base);
+      }
+
+      &--away {
+        --status-color: var(--color-warning-base);
+      }
+    }
+  }
+
+  /* Variants only set tokens */
+
+  .ds-avatar--ai {
+    --avatar-bg: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+
+  .ds-avatar--rounded {
+    --avatar-radius: var(--border-radius-lg);
+  }
+
+  /* Size variants */
+  .ds-avatar--xs {
+    --avatar-size: 24px;
+  }
+
+  .ds-avatar--sm {
+    --avatar-size: 32px;
+  }
+
+  .ds-avatar--md {
+    --avatar-size: 40px;
+  }
+
+  .ds-avatar--lg {
+    --avatar-size: 56px;
+  }
+
+  .ds-avatar--xl {
+    --avatar-size: 80px;
+  }
+}

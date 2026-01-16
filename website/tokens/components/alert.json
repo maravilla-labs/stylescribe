@@ -1,0 +1,138 @@
+{
+  "$meta": {
+    "name": "alert",
+    "description": "Design tokens for the Alert component"
+  },
+  "alert": {
+    "background": {
+      "default": {
+        "$value": "{color.neutral.100}",
+        "$type": "color",
+        "$description": "Default alert background color"
+      }
+    },
+    "border": {
+      "default": {
+        "$value": "{color.neutral.200}",
+        "$type": "color",
+        "$description": "Default alert border/accent color"
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "{color.text}",
+        "$type": "color",
+        "$description": "Default alert text color"
+      }
+    },
+    "close": {
+      "opacity": {
+        "$value": "0.6",
+        "$type": "number",
+        "$description": "Close button default opacity"
+      },
+      "opacity-hover": {
+        "$value": "1",
+        "$type": "number",
+        "$description": "Close button opacity on hover"
+      },
+      "hover-bg": {
+        "$value": "alpha({color.neutral.900}, 0.1)",
+        "$type": "color",
+        "$description": "Close button background on hover"
+      }
+    },
+    "info": {
+      "$description": "Info alert variant tokens",
+      "background": {
+        "$value": "tint(#339af0, 90%)",
+        "$type": "color",
+        "$description": "Info alert background color"
+      },
+      "border": {
+        "$value": "#339af0",
+        "$type": "color",
+        "$description": "Info alert accent border color"
+      },
+      "text": {
+        "$value": "shade(#339af0, 30%)",
+        "$type": "color",
+        "$description": "Info alert text color"
+      },
+      "close-hover-bg": {
+        "$value": "alpha(#339af0, 0.1)",
+        "$type": "color",
+        "$description": "Info alert close button hover background"
+      }
+    },
+    "success": {
+      "$description": "Success alert variant tokens",
+      "background": {
+        "$value": "tint({color.success.base}, 90%)",
+        "$type": "color",
+        "$description": "Success alert background color"
+      },
+      "border": {
+        "$value": "{color.success.base}",
+        "$type": "color",
+        "$description": "Success alert accent border color"
+      },
+      "text": {
+        "$value": "shade({color.success.base}, 20%)",
+        "$type": "color",
+        "$description": "Success alert text color"
+      },
+      "close-hover-bg": {
+        "$value": "alpha({color.success.base}, 0.1)",
+        "$type": "color",
+        "$description": "Success alert close button hover background"
+      }
+    },
+    "warning": {
+      "$description": "Warning alert variant tokens",
+      "background": {
+        "$value": "tint({color.warning.base}, 90%)",
+        "$type": "color",
+        "$description": "Warning alert background color"
+      },
+      "border": {
+        "$value": "{color.warning.base}",
+        "$type": "color",
+        "$description": "Warning alert accent border color"
+      },
+      "text": {
+        "$value": "shade({color.warning.base}, 20%)",
+        "$type": "color",
+        "$description": "Warning alert text color"
+      },
+      "close-hover-bg": {
+        "$value": "alpha({color.warning.base}, 0.1)",
+        "$type": "color",
+        "$description": "Warning alert close button hover background"
+      }
+    },
+    "error": {
+      "$description": "Error alert variant tokens",
+      "background": {
+        "$value": "tint({color.danger.base}, 90%)",
+        "$type": "color",
+        "$description": "Error alert background color"
+      },
+      "border": {
+        "$value": "{color.danger.base}",
+        "$type": "color",
+        "$description": "Error alert accent border color"
+      },
+      "text": {
+        "$value": "shade({color.danger.base}, 20%)",
+        "$type": "color",
+        "$description": "Error alert text color"
+      },
+      "close-hover-bg": {
+        "$value": "alpha({color.danger.base}, 0.1)",
+        "$type": "color",
+        "$description": "Error alert close button hover background"
+      }
+    }
+  }
+}

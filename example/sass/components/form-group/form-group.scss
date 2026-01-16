@@ -1,0 +1,271 @@
+/**
+ * @title Form Group
+ * @description Container for grouping related form fields with optional header and description.
+ * @group Forms
+ * @order 9
+ * @dependencies form-field, icon
+ * @variations default, bordered, compact
+ * @elements
+ * - name: header
+ *   html: <div class="{{class}}"></div>
+ * - name: icon
+ *   html: <span class="{{class}} ds-icon ds-icon--settings"></span>
+ * - name: title
+ *   html: <span class="{{class}}">Form Group Title</span>
+ * - name: description
+ *   html: <p class="{{class}}">Description text</p>
+ * - name: content
+ *   html: <div class="{{class}}"></div>
+ * - name: row
+ *   html: <div class="{{class}}"></div>
+ * - name: actions
+ *   html: <div class="{{class}}"></div>
+ * @examples
+ * - title: Basic Form Group
+ *   description: Simple group with title and fields
+ *   code: |
+ *     <fieldset class="ds-form-group">
+ *       <div class="ds-form-group__header">
+ *         <span class="ds-form-group__title">Personal Information</span>
+ *       </div>
+ *       <div class="ds-form-group__content">
+ *         <div class="ds-form-field">
+ *           <label class="ds-form-field__label ds-label">
+ *             <span class="ds-label__text">First Name</span>
+ *           </label>
+ *           <div class="ds-form-field__control">
+ *             <div class="ds-input">
+ *               <input class="ds-input__field" type="text" placeholder="John">
+ *             </div>
+ *           </div>
+ *         </div>
+ *         <div class="ds-form-field">
+ *           <label class="ds-form-field__label ds-label">
+ *             <span class="ds-label__text">Last Name</span>
+ *           </label>
+ *           <div class="ds-form-field__control">
+ *             <div class="ds-input">
+ *               <input class="ds-input__field" type="text" placeholder="Doe">
+ *             </div>
+ *           </div>
+ *         </div>
+ *       </div>
+ *     </fieldset>
+ * - title: Form Group with Icon Header
+ *   description: Primary colored header with icon (like CMS screenshot)
+ *   code: |
+ *     <fieldset class="ds-form-group">
+ *       <div class="ds-form-group__header">
+ *         <span class="ds-form-group__icon">
+ *           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+ *         </span>
+ *         <span class="ds-form-group__title">Hero Section</span>
+ *       </div>
+ *       <div class="ds-form-group__content">
+ *         <div class="ds-form-field">
+ *           <label class="ds-form-field__label ds-label ds-label--primary">
+ *             <span class="ds-label__icon">
+ *               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+ *             </span>
+ *             <span class="ds-label__text">Hero Title</span>
+ *           </label>
+ *           <div class="ds-form-field__control">
+ *             <div class="ds-input">
+ *               <input class="ds-input__field" type="text" value="1 Week. 1 Problem. Solved.">
+ *             </div>
+ *           </div>
+ *         </div>
+ *       </div>
+ *     </fieldset>
+ * - title: Form Group with Description
+ *   description: Header with additional context
+ *   code: |
+ *     <fieldset class="ds-form-group">
+ *       <div class="ds-form-group__header">
+ *         <span class="ds-form-group__title">SEO Settings</span>
+ *         <p class="ds-form-group__description">Optimize your page for search engines</p>
+ *       </div>
+ *       <div class="ds-form-group__content">
+ *         <div class="ds-form-field">
+ *           <label class="ds-form-field__label ds-label">
+ *             <span class="ds-label__text">Meta Title</span>
+ *           </label>
+ *           <div class="ds-form-field__control">
+ *             <div class="ds-input">
+ *               <input class="ds-input__field" type="text" placeholder="Page title for SEO">
+ *             </div>
+ *           </div>
+ *         </div>
+ *       </div>
+ *     </fieldset>
+ * - title: Form Group with Row Layout
+ *   description: Side-by-side fields in a row
+ *   code: |
+ *     <fieldset class="ds-form-group">
+ *       <div class="ds-form-group__header">
+ *         <span class="ds-form-group__title">Address</span>
+ *       </div>
+ *       <div class="ds-form-group__content">
+ *         <div class="ds-form-group__row">
+ *           <div class="ds-form-field">
+ *             <label class="ds-form-field__label ds-label">
+ *               <span class="ds-label__text">City</span>
+ *             </label>
+ *             <div class="ds-form-field__control">
+ *               <div class="ds-input">
+ *                 <input class="ds-input__field" type="text" placeholder="City">
+ *               </div>
+ *             </div>
+ *           </div>
+ *           <div class="ds-form-field">
+ *             <label class="ds-form-field__label ds-label">
+ *               <span class="ds-label__text">Zip Code</span>
+ *             </label>
+ *             <div class="ds-form-field__control">
+ *               <div class="ds-input">
+ *                 <input class="ds-input__field" type="text" placeholder="12345">
+ *               </div>
+ *             </div>
+ *           </div>
+ *         </div>
+ *       </div>
+ *     </fieldset>
+ * - title: Bordered Form Group
+ *   description: Group with visible border
+ *   code: |
+ *     <fieldset class="ds-form-group ds-form-group--bordered">
+ *       <div class="ds-form-group__header">
+ *         <span class="ds-form-group__title">Account Settings</span>
+ *       </div>
+ *       <div class="ds-form-group__content">
+ *         <div class="ds-form-field">
+ *           <label class="ds-form-field__label ds-label">
+ *             <span class="ds-label__text">Email</span>
+ *           </label>
+ *           <div class="ds-form-field__control">
+ *             <div class="ds-input">
+ *               <input class="ds-input__field" type="email" placeholder="you@example.com">
+ *             </div>
+ *           </div>
+ *         </div>
+ *       </div>
+ *     </fieldset>
+ * - title: Compact Form Group
+ *   description: Reduced spacing for dense layouts
+ *   code: |
+ *     <fieldset class="ds-form-group ds-form-group--compact">
+ *       <div class="ds-form-group__header">
+ *         <span class="ds-form-group__title">Quick Settings</span>
+ *       </div>
+ *       <div class="ds-form-group__content">
+ *         <div class="ds-form-field">
+ *           <label class="ds-form-field__label ds-label">
+ *             <span class="ds-label__text">Name</span>
+ *           </label>
+ *           <div class="ds-form-field__control">
+ *             <div class="ds-input ds-input--sm">
+ *               <input class="ds-input__field" type="text">
+ *             </div>
+ *           </div>
+ *         </div>
+ *       </div>
+ *     </fieldset>
+ */
+
+@layer components {
+  .ds-form-group {
+    /* ===== Component Tokens ===== */
+    --form-group-gap: var(--spacing-scale-md);
+    --form-group-padding: 0;
+    --form-group-bg: transparent;
+    --form-group-border: var(--color-semantic-border);
+    --form-group-radius: var(--border-radius-lg);
+    --form-group-header-color: var(--color-primary-500);
+    --form-group-title-size: var(--font-size-base);
+    --form-group-title-weight: var(--font-weight-semibold);
+    --form-group-description-color: var(--color-semantic-text-muted);
+    --form-group-description-size: var(--font-size-sm);
+
+    /* ===== Base Styles ===== */
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-group-gap);
+    padding: var(--form-group-padding);
+    background: var(--form-group-bg);
+    border: none;
+    margin: 0;
+    font-family: var(--font-family-base);
+
+    /* ===== Elements ===== */
+    &__header {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-scale-xs);
+      color: var(--form-group-header-color);
+    }
+
+    &__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      svg {
+        display: block;
+      }
+    }
+
+    &__title {
+      font-family: var(--font-family-heading);
+      font-size: var(--form-group-title-size);
+      font-weight: var(--form-group-title-weight);
+      color: var(--form-group-header-color);
+    }
+
+    &__description {
+      width: 100%;
+      margin: 0;
+      font-size: var(--form-group-description-size);
+      color: var(--form-group-description-color);
+      line-height: 1.4;
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--form-group-gap);
+    }
+
+    &__row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--form-group-gap);
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-scale-sm);
+      padding-top: var(--spacing-scale-sm);
+    }
+
+    /* ===== Variations (token overrides only) ===== */
+
+    /* Bordered variant */
+    &--bordered {
+      --form-group-padding: var(--spacing-scale-lg);
+      border: 1px solid var(--form-group-border);
+      border-radius: var(--form-group-radius);
+    }
+
+    /* Compact variant */
+    &--compact {
+      --form-group-gap: var(--spacing-scale-sm);
+
+      &.ds-form-group--bordered {
+        --form-group-padding: var(--spacing-scale-md);
+      }
+    }
+  }
+}

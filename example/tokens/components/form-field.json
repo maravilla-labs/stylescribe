@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "form-field",
+    "description": "Design tokens for the Form-field component"
+  },
+  "form-field": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Form-field background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Form-field text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Form-field padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Form-field border radius"
+    }
+  }
+}

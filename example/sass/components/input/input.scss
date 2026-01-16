@@ -1,0 +1,247 @@
+/**
+ * @title Input
+ * @description Text input field with light tinted background, prepend/append slots for icons and buttons.
+ * @group Forms
+ * @order 2
+ * @dependencies icon
+ * @variations default, error, success, disabled, sm, lg
+ * @elements
+ * - name: field
+ *   html: <input class="{{class}}" type="text" placeholder="Enter text...">
+ * - name: prepend
+ *   html: <span class="{{class}}"></span>
+ * - name: append
+ *   html: <span class="{{class}}"></span>
+ * - name: icon
+ *   html: <span class="{{class}} ds-icon ds-icon--person"></span>
+ * @examples
+ * - title: Default Input
+ *   description: Basic text input with light background
+ *   code: |
+ *     <div class="ds-input">
+ *       <input class="ds-input__field" type="text" placeholder="Enter your name...">
+ *     </div>
+ * - title: Input with Value
+ *   description: Input showing entered text
+ *   code: |
+ *     <div class="ds-input">
+ *       <input class="ds-input__field" type="text" value="John Doe">
+ *     </div>
+ * - title: Input with Prepend Icon
+ *   description: Leading icon for context
+ *   code: |
+ *     <div class="ds-input ds-input--has-prepend">
+ *       <span class="ds-input__prepend">
+ *         <svg class="ds-input__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+ *       </span>
+ *       <input class="ds-input__field" type="text" placeholder="Username">
+ *     </div>
+ * - title: Input with Append Icon
+ *   description: Trailing icon for actions
+ *   code: |
+ *     <div class="ds-input ds-input--has-append">
+ *       <input class="ds-input__field" type="email" placeholder="Email address">
+ *       <span class="ds-input__append">
+ *         <svg class="ds-input__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+ *       </span>
+ *     </div>
+ * - title: Input with Both Prepend and Append
+ *   description: Icons on both sides
+ *   code: |
+ *     <div class="ds-input ds-input--has-prepend ds-input--has-append">
+ *       <span class="ds-input__prepend">
+ *         <svg class="ds-input__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+ *       </span>
+ *       <input class="ds-input__field" type="password" placeholder="Password">
+ *       <span class="ds-input__append">
+ *         <svg class="ds-input__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+ *       </span>
+ *     </div>
+ * - title: Error State
+ *   description: Input with validation error
+ *   code: |
+ *     <div class="ds-input ds-input--error">
+ *       <input class="ds-input__field" type="email" value="invalid-email" aria-invalid="true">
+ *     </div>
+ * - title: Success State
+ *   description: Input with validation success
+ *   code: |
+ *     <div class="ds-input ds-input--success ds-input--has-append">
+ *       <input class="ds-input__field" type="email" value="valid@email.com">
+ *       <span class="ds-input__append">
+ *         <svg class="ds-input__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-success-base)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+ *       </span>
+ *     </div>
+ * - title: Disabled Input
+ *   description: Non-interactive input
+ *   code: |
+ *     <div class="ds-input ds-input--disabled">
+ *       <input class="ds-input__field" type="text" value="Cannot edit" disabled>
+ *     </div>
+ * - title: Small Input
+ *   description: Compact size variant
+ *   code: |
+ *     <div class="ds-input ds-input--sm">
+ *       <input class="ds-input__field" type="text" placeholder="Small input">
+ *     </div>
+ * - title: Large Input
+ *   description: Prominent size variant
+ *   code: |
+ *     <div class="ds-input ds-input--lg">
+ *       <input class="ds-input__field" type="text" placeholder="Large input">
+ *     </div>
+ */
+
+@layer components {
+  .ds-input {
+    /* ===== Component Tokens ===== */
+    --input-height: 40px;
+    --input-bg: var(--color-semantic-form-bg);
+    --input-bg-focus: var(--color-semantic-form-bg-focus);
+    --input-border: var(--color-semantic-form-border);
+    --input-border-focus: var(--color-semantic-form-border-focus);
+    --input-border-error: var(--color-danger-base);
+    --input-border-success: var(--color-success-base);
+    --input-text: var(--color-semantic-form-text);
+    --input-placeholder: var(--color-semantic-form-placeholder);
+    --input-icon-color: var(--color-semantic-text-muted);
+    --input-radius: var(--border-radius-md);
+    --input-padding-x: var(--spacing-scale-md);
+    --input-font-size: var(--font-size-base);
+    --input-shadow-focus: 0 0 0 3px var(--color-overlay-brand);
+
+    /* ===== Base Styles ===== */
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    height: var(--input-height);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--input-radius);
+    transition:
+      background var(--transition-duration-fast),
+      border-color var(--transition-duration-fast),
+      box-shadow var(--transition-duration-fast);
+
+    &:focus-within {
+      background: var(--input-bg-focus);
+      border-color: var(--input-border-focus);
+      box-shadow: var(--input-shadow-focus);
+    }
+
+    /* ===== Elements ===== */
+    &__field {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      padding: 0 var(--input-padding-x);
+      font-family: var(--font-family-base);
+      font-size: var(--input-font-size);
+      color: var(--input-text);
+      background: transparent;
+      border: none;
+      outline: none;
+
+      &::placeholder {
+        color: var(--input-placeholder);
+      }
+
+      /* Remove native styles */
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &[type="number"] {
+        -moz-appearance: textfield;
+      }
+    }
+
+    &__prepend,
+    &__append {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      height: 100%;
+      padding: 0 var(--spacing-scale-sm);
+      color: var(--input-icon-color);
+    }
+
+    &__prepend {
+      padding-left: var(--input-padding-x);
+      padding-right: 0;
+    }
+
+    &__append {
+      padding-right: var(--input-padding-x);
+      padding-left: 0;
+    }
+
+    &__icon {
+      display: block;
+      flex-shrink: 0;
+    }
+
+    /* ===== Variations (token overrides only) ===== */
+
+    /* Has prepend - adjust field padding */
+    &--has-prepend {
+      .ds-input__field {
+        padding-left: var(--spacing-scale-xs);
+      }
+    }
+
+    /* Has append - adjust field padding */
+    &--has-append {
+      .ds-input__field {
+        padding-right: var(--spacing-scale-xs);
+      }
+    }
+
+    /* Error state */
+    &--error {
+      --input-border: var(--input-border-error);
+      --input-shadow-focus: 0 0 0 3px var(--color-danger-light);
+
+      &:focus-within {
+        border-color: var(--input-border-error);
+      }
+    }
+
+    /* Success state */
+    &--success {
+      --input-border: var(--input-border-success);
+      --input-shadow-focus: 0 0 0 3px var(--color-success-light);
+
+      &:focus-within {
+        border-color: var(--input-border-success);
+      }
+    }
+
+    /* Disabled state */
+    &--disabled {
+      --input-bg: var(--color-semantic-form-bg-disabled);
+      --input-text: var(--color-semantic-text-muted);
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Size: Small */
+    &--sm {
+      --input-height: 32px;
+      --input-padding-x: var(--spacing-scale-sm);
+      --input-font-size: var(--font-size-sm);
+    }
+
+    /* Size: Large */
+    &--lg {
+      --input-height: 48px;
+      --input-padding-x: var(--spacing-scale-lg);
+      --input-font-size: var(--font-size-lg);
+    }
+  }
+}

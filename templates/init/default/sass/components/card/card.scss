@@ -1,0 +1,177 @@
+/**
+ * @title Card
+ * @description Flexible container for grouping related content with optional
+ *   header, body, and footer sections. Demonstrates fluid spacing that
+ *   adapts to viewport size using CSS clamp().
+ * @navtitle Card
+ * @group Containment
+ * @order 1
+ * @draft true
+ * @dependencies button
+ * @variations bordered, elevated, interactive
+ * @additional_variations compact, fluid
+ * @elements header, media, body, title, subtitle, footer, actions
+ * @examples
+ * - title: Complete Card
+ *   description: Card with all available elements
+ *   code: |
+ *     <div class="ds-card">
+ *       <div class="ds-card__header">Card Header</div>
+ *       <div class="ds-card__media" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+ *       <div class="ds-card__body">
+ *         <h3 class="ds-card__title">Card Title</h3>
+ *         <p class="ds-card__subtitle">Card subtitle or description text</p>
+ *       </div>
+ *       <div class="ds-card__footer">
+ *         <div class="ds-card__actions">
+ *           <button class="ds-btn ds-btn--primary ds-btn--sm">Action</button>
+ *         </div>
+ *       </div>
+ *     </div>
+ * - title: Basic Card
+ *   description: Simple card with body content
+ *   code: |
+ *     <div class="ds-card">
+ *       <div class="ds-card__body">
+ *         <h3 class="ds-card__title">Card Title</h3>
+ *         <p class="ds-card__subtitle">Card subtitle or description text</p>
+ *       </div>
+ *     </div>
+ * - title: Card with Media
+ *   description: Featured card with gradient media area
+ *   code: |
+ *     <div class="ds-card ds-card--elevated">
+ *       <div class="ds-card__media" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+ *       <div class="ds-card__body">
+ *         <h3 class="ds-card__title">Featured Content</h3>
+ *         <p class="ds-card__subtitle">With beautiful gradient media</p>
+ *       </div>
+ *     </div>
+ * - title: Interactive Card
+ *   description: Card with hover effect and actions
+ *   code: |
+ *     <div class="ds-card ds-card--interactive">
+ *       <div class="ds-card__body">
+ *         <h3 class="ds-card__title">Clickable Card</h3>
+ *         <p class="ds-card__subtitle">Hover to see the effect</p>
+ *       </div>
+ *       <div class="ds-card__actions">
+ *         <button class="ds-btn ds-btn--primary ds-btn--sm">Action</button>
+ *       </div>
+ *     </div>
+ */
+
+@layer components {
+  .ds-card {
+    /* Internal token defaults */
+    --card-bg: var(--color-surface);
+    --card-border: var(--color-border);
+    --card-border-width: var(--border-width-thin);
+    --card-radius: var(--border-radius-lg);
+    --card-shadow: none;
+    --card-shadow-hover: var(--card-shadow);
+    --card-translate-y: 0;
+    --card-translate-y-hover: var(--card-translate-y);
+    --card-cursor: default;
+
+    --card-body-padding: var(--spacing-md);
+    --card-media-height: 160px;
+
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border: var(--card-border-width) solid var(--card-border);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    cursor: var(--card-cursor);
+    transform: translateY(var(--card-translate-y));
+
+    transition:
+      box-shadow var(--transition-base),
+      transform var(--transition-base);
+
+    &:hover {
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(var(--card-translate-y-hover));
+    }
+
+    /* Elements */
+    &__header {
+      padding: var(--spacing-md);
+      border-bottom: var(--border-width-thin) solid var(--card-border);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    &__media {
+      width: 100%;
+      height: var(--card-media-height);
+      background-color: var(--color-neutral-100);
+      background-size: cover;
+      background-position: center;
+    }
+
+    &__body {
+      padding: var(--card-body-padding);
+      flex: 1;
+    }
+
+    &__title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      margin: 0 0 var(--spacing-xs) 0;
+      color: var(--color-text);
+    }
+
+    &__subtitle {
+      color: var(--color-text-muted);
+      margin: 0;
+      line-height: var(--line-height-normal);
+    }
+
+    &__footer {
+      padding: var(--spacing-md);
+      border-top: var(--border-width-thin) solid var(--card-border);
+      background-color: var(--color-neutral-50);
+    }
+
+    &__actions {
+      display: flex;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      padding-top: 0;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+    }
+  }
+
+  /* Variants only set tokens */
+
+  .ds-card--bordered {
+    --card-border-width: var(--border-width-medium);
+  }
+
+  .ds-card--elevated {
+    --card-border: transparent;
+    --card-shadow: var(--shadow-md);
+    --card-shadow-hover: var(--shadow-lg);
+  }
+
+  .ds-card--interactive {
+    --card-cursor: pointer;
+    --card-translate-y-hover: -4px;
+    --card-shadow-hover: var(--shadow-lg);
+  }
+
+  .ds-card--compact {
+    --card-body-padding: var(--spacing-sm);
+    --card-media-height: 100px;
+  }
+
+  .ds-card--fluid {
+    --card-body-padding: var(--spacing-fluid-md);
+  }
+}

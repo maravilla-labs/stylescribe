@@ -1,0 +1,1157 @@
+{
+  "$meta": {
+    "name": "Stylescribe Kitchen Sink",
+    "description": "Comprehensive example demonstrating ALL 46 programmable token functions",
+    "version": "2.0.0",
+    "themes": [
+      {
+        "name": "dark",
+        "file": "./dark.json",
+        "mode": "dark"
+      }
+    ]
+  },
+
+  "color": {
+    "$description": "Color tokens demonstrating all 15 color functions + 8 accessibility functions",
+
+    "brand": {
+      "$value": "#0d6efd",
+      "$type": "color",
+      "$description": "Base brand color - all primary shades derive from this"
+    },
+
+    "primary": {
+      "$description": "Full color scale using tint() and shade()",
+      "50": {
+        "$value": "tint({color.brand}, 95%)",
+        "$type": "color",
+        "$description": "Lightest primary - tint(brand, 95%)"
+      },
+      "100": {
+        "$value": "tint({color.brand}, 80%)",
+        "$type": "color",
+        "$description": "Very light primary"
+      },
+      "200": {
+        "$value": "tint({color.brand}, 60%)",
+        "$type": "color",
+        "$description": "Light primary"
+      },
+      "300": {
+        "$value": "tint({color.brand}, 40%)",
+        "$type": "color",
+        "$description": "Lighter primary"
+      },
+      "400": {
+        "$value": "tint({color.brand}, 20%)",
+        "$type": "color",
+        "$description": "Light-medium primary"
+      },
+      "500": {
+        "$value": "{color.brand}",
+        "$type": "color",
+        "$description": "Base primary color"
+      },
+      "600": {
+        "$value": "shade({color.brand}, 20%)",
+        "$type": "color",
+        "$description": "Medium-dark primary"
+      },
+      "700": {
+        "$value": "shade({color.brand}, 40%)",
+        "$type": "color",
+        "$description": "Dark primary"
+      },
+      "800": {
+        "$value": "shade({color.brand}, 60%)",
+        "$type": "color",
+        "$description": "Darker primary"
+      },
+      "900": {
+        "$value": "shade({color.brand}, 80%)",
+        "$type": "color",
+        "$description": "Darkest primary"
+      }
+    },
+
+    "accent": {
+      "$description": "Accent colors using complement(), mix(), hueRotate()",
+      "complement": {
+        "$value": "complement({color.brand})",
+        "$type": "color",
+        "$description": "Complementary color (180° hue rotation)"
+      },
+      "triadic": {
+        "$value": "hueRotate({color.brand}, 120)",
+        "$type": "color",
+        "$description": "Triadic color (120° hue rotation)"
+      },
+      "analogous": {
+        "$value": "hueRotate({color.brand}, 30)",
+        "$type": "color",
+        "$description": "Analogous color (30° hue rotation)"
+      },
+      "mixed": {
+        "$value": "mix({color.brand}, #ff6b6b, 0.5)",
+        "$type": "color",
+        "$description": "50/50 blend with coral using OKLCH interpolation"
+      },
+      "mixed-warm": {
+        "$value": "mix({color.brand}, #ffc107, 0.3)",
+        "$type": "color",
+        "$description": "30% blend toward warm yellow"
+      }
+    },
+
+    "adjusted": {
+      "$description": "Colors modified with saturate(), desaturate(), lighten(), darken()",
+      "saturated": {
+        "$value": "saturate({color.brand}, 30%)",
+        "$type": "color",
+        "$description": "More vibrant (+30% saturation)"
+      },
+      "desaturated": {
+        "$value": "desaturate({color.brand}, 50%)",
+        "$type": "color",
+        "$description": "Muted (-50% saturation)"
+      },
+      "lightened": {
+        "$value": "lighten({color.brand}, 20%)",
+        "$type": "color",
+        "$description": "Lightened by 20% (OKLCH lightness)"
+      },
+      "darkened": {
+        "$value": "darken({color.brand}, 20%)",
+        "$type": "color",
+        "$description": "Darkened by 20% (OKLCH lightness)"
+      },
+      "grayscale": {
+        "$value": "grayscale({color.brand})",
+        "$type": "color",
+        "$description": "Grayscale version (0% saturation)"
+      }
+    },
+
+    "secondary": {
+      "base": {
+        "$value": "#6c757d",
+        "$type": "color",
+        "$description": "Base secondary color"
+      },
+      "light": {
+        "$value": "tint({color.secondary.base}, 40%)",
+        "$type": "color",
+        "$description": "Light secondary"
+      },
+      "dark": {
+        "$value": "shade({color.secondary.base}, 30%)",
+        "$type": "color",
+        "$description": "Dark secondary"
+      }
+    },
+
+    "success": {
+      "base": {
+        "$value": "#198754",
+        "$type": "color",
+        "$description": "Success state color"
+      },
+      "light": {
+        "$value": "tint({color.success.base}, 80%)",
+        "$type": "color",
+        "$description": "Light success background"
+      },
+      "dark": {
+        "$value": "shade({color.success.base}, 30%)",
+        "$type": "color",
+        "$description": "Dark success"
+      },
+      "on-success": {
+        "$value": "accessibleText({color.success.base})",
+        "$type": "color",
+        "$description": "Accessible text on success background"
+      }
+    },
+
+    "warning": {
+      "base": {
+        "$value": "#ffc107",
+        "$type": "color",
+        "$description": "Warning state color"
+      },
+      "light": {
+        "$value": "tint({color.warning.base}, 80%)",
+        "$type": "color",
+        "$description": "Light warning background"
+      },
+      "dark": {
+        "$value": "shade({color.warning.base}, 30%)",
+        "$type": "color",
+        "$description": "Dark warning"
+      },
+      "text": {
+        "$value": "accessibleText({color.warning.base})",
+        "$type": "color",
+        "$description": "Accessible text on warning - auto-selects black/white"
+      }
+    },
+
+    "danger": {
+      "base": {
+        "$value": "#dc3545",
+        "$type": "color",
+        "$description": "Danger/error state color"
+      },
+      "light": {
+        "$value": "tint({color.danger.base}, 80%)",
+        "$type": "color",
+        "$description": "Light danger background"
+      },
+      "dark": {
+        "$value": "shade({color.danger.base}, 30%)",
+        "$type": "color",
+        "$description": "Dark danger"
+      }
+    },
+
+    "info": {
+      "base": {
+        "$value": "#0dcaf0",
+        "$type": "color",
+        "$description": "Informational state color"
+      },
+      "light": {
+        "$value": "tint({color.info.base}, 80%)",
+        "$type": "color",
+        "$description": "Light info background"
+      },
+      "dark": {
+        "$value": "shade({color.info.base}, 30%)",
+        "$type": "color",
+        "$description": "Dark info"
+      }
+    },
+
+    "neutral": {
+      "50": { "$value": "#f8f9fa", "$type": "color", "$description": "Lightest neutral" },
+      "100": { "$value": "#f1f3f5", "$type": "color" },
+      "200": { "$value": "#e9ecef", "$type": "color" },
+      "300": { "$value": "#dee2e6", "$type": "color" },
+      "400": { "$value": "#ced4da", "$type": "color" },
+      "500": { "$value": "#adb5bd", "$type": "color" },
+      "600": { "$value": "#6c757d", "$type": "color" },
+      "700": { "$value": "#495057", "$type": "color" },
+      "800": { "$value": "#343a40", "$type": "color" },
+      "900": { "$value": "#212529", "$type": "color", "$description": "Darkest neutral" }
+    },
+
+    "black": { "$value": "#000000", "$type": "color", "$description": "Pure black" },
+    "white": { "$value": "#ffffff", "$type": "color", "$description": "Pure white" },
+
+    "semantic": {
+      "$description": "Semantic colors using token references",
+      "background": {
+        "$value": "{color.neutral.50}",
+        "$type": "color",
+        "$description": "Page background"
+      },
+      "surface": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Card/surface background"
+      },
+      "border": {
+        "$value": "{color.neutral.300}",
+        "$type": "color",
+        "$description": "Default border color"
+      },
+      "text": {
+        "$value": "{color.neutral.900}",
+        "$type": "color",
+        "$description": "Default text color"
+      },
+      "text-muted": {
+        "$value": "{color.neutral.600}",
+        "$type": "color",
+        "$description": "Muted text color"
+      },
+      "form-bg": {
+        "$value": "{color.primary.50}",
+        "$type": "color",
+        "$description": "Form field background"
+      },
+      "form-bg-focus": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Form field background on focus"
+      },
+      "form-border": {
+        "$value": "transparent",
+        "$type": "color",
+        "$description": "Form field border"
+      },
+      "form-border-focus": {
+        "$value": "{color.primary.500}",
+        "$type": "color",
+        "$description": "Form field border on focus"
+      },
+      "form-text": {
+        "$value": "{color.semantic.text}",
+        "$type": "color",
+        "$description": "Form field text color"
+      },
+      "form-placeholder": {
+        "$value": "{color.semantic.text-muted}",
+        "$type": "color",
+        "$description": "Form field placeholder color"
+      },
+      "form-bg-disabled": {
+        "$value": "{color.neutral.200}",
+        "$type": "color",
+        "$description": "Form field background when disabled"
+      }
+    },
+
+    "overlay": {
+      "$description": "Overlay colors using alpha()",
+      "light": {
+        "$value": "alpha({color.neutral.900}, 0.1)",
+        "$type": "color",
+        "$description": "Light overlay - alpha(color, 0.1)"
+      },
+      "medium": {
+        "$value": "alpha({color.neutral.900}, 0.5)",
+        "$type": "color",
+        "$description": "Medium overlay - alpha(color, 0.5)"
+      },
+      "dark": {
+        "$value": "alpha({color.neutral.900}, 0.8)",
+        "$type": "color",
+        "$description": "Dark overlay - alpha(color, 0.8)"
+      },
+      "brand": {
+        "$value": "alpha({color.brand}, 0.15)",
+        "$type": "color",
+        "$description": "Brand tinted overlay"
+      }
+    },
+
+    "accessibility": {
+      "$description": "Accessibility function demos - WCAG compliance",
+      "on-primary": {
+        "$value": "accessibleText({color.primary.500})",
+        "$type": "color",
+        "$description": "Auto-selects white/black for primary bg"
+      },
+      "on-primary-light": {
+        "$value": "accessibleText({color.primary.100})",
+        "$type": "color",
+        "$description": "Auto-selects white/black for light primary bg"
+      },
+      "link-safe": {
+        "$value": "ensureContrast({color.brand}, {color.neutral.50}, 4.5)",
+        "$type": "color",
+        "$description": "Ensures 4.5:1 contrast for WCAG AA links"
+      },
+      "link-safe-large": {
+        "$value": "ensureContrast({color.brand}, {color.neutral.50}, 3)",
+        "$type": "color",
+        "$description": "Ensures 3:1 contrast for WCAG AA large text"
+      }
+    },
+
+    "dark-mode-preview": {
+      "$description": "Dark mode transformation preview using darkMode()",
+      "background-dark": {
+        "$value": "darkMode(#ffffff)",
+        "$type": "color",
+        "$description": "White inverted for dark mode"
+      },
+      "text-dark": {
+        "$value": "darkMode(#212529)",
+        "$type": "color",
+        "$description": "Dark text inverted for dark mode"
+      },
+      "primary-dark": {
+        "$value": "darkMode({color.brand})",
+        "$type": "color",
+        "$description": "Brand color adjusted for dark mode"
+      }
+    }
+  },
+
+  "spacing": {
+    "$description": "Spacing tokens demonstrating multiply(), divide(), add(), subtract(), and fluid functions",
+
+    "base": {
+      "$value": "1rem",
+      "$type": "dimension",
+      "$description": "Base spacing unit (16px) - all others derive from this"
+    },
+
+    "scale": {
+      "$description": "Spacing scale using multiply()",
+      "3xs": {
+        "$value": "multiply({spacing.base}, 0.125)",
+        "$type": "dimension",
+        "$description": "Tiny spacing (2px) - multiply(base, 0.125)"
+      },
+      "2xs": {
+        "$value": "multiply({spacing.base}, 0.25)",
+        "$type": "dimension",
+        "$description": "Extra extra small (4px)"
+      },
+      "xs": {
+        "$value": "multiply({spacing.base}, 0.5)",
+        "$type": "dimension",
+        "$description": "Extra small (8px)"
+      },
+      "sm": {
+        "$value": "multiply({spacing.base}, 0.75)",
+        "$type": "dimension",
+        "$description": "Small (12px)"
+      },
+      "md": {
+        "$value": "{spacing.base}",
+        "$type": "dimension",
+        "$description": "Medium (16px)"
+      },
+      "lg": {
+        "$value": "multiply({spacing.base}, 1.5)",
+        "$type": "dimension",
+        "$description": "Large (24px)"
+      },
+      "xl": {
+        "$value": "multiply({spacing.base}, 2)",
+        "$type": "dimension",
+        "$description": "Extra large (32px)"
+      },
+      "2xl": {
+        "$value": "multiply({spacing.base}, 3)",
+        "$type": "dimension",
+        "$description": "2x extra large (48px)"
+      },
+      "3xl": {
+        "$value": "multiply({spacing.base}, 4)",
+        "$type": "dimension",
+        "$description": "3x extra large (64px)"
+      },
+      "4xl": {
+        "$value": "multiply({spacing.base}, 6)",
+        "$type": "dimension",
+        "$description": "4x extra large (96px)"
+      }
+    },
+
+    "fluid": {
+      "$description": "Fluid spacing using fluidSpace() - generates CSS clamp()",
+      "sm": {
+        "$value": "fluidSpace(0.5rem, 1rem)",
+        "$type": "dimension",
+        "$description": "Fluid 8-16px"
+      },
+      "md": {
+        "$value": "fluidSpace(1rem, 2rem)",
+        "$type": "dimension",
+        "$description": "Fluid 16-32px"
+      },
+      "lg": {
+        "$value": "fluidSpace(2rem, 4rem)",
+        "$type": "dimension",
+        "$description": "Fluid 32-64px"
+      },
+      "xl": {
+        "$value": "fluidSpace(3rem, 6rem)",
+        "$type": "dimension",
+        "$description": "Fluid 48-96px"
+      }
+    },
+
+    "math-demos": {
+      "$description": "Math function demonstrations",
+      "divided": {
+        "$value": "divide(2rem, 2)",
+        "$type": "dimension",
+        "$description": "divide(2rem, 2) = 1rem"
+      },
+      "added": {
+        "$value": "add(1rem, 0.5rem)",
+        "$type": "dimension",
+        "$description": "add(1rem, 0.5rem) = 1.5rem"
+      },
+      "subtracted": {
+        "$value": "subtract(2rem, 0.5rem)",
+        "$type": "dimension",
+        "$description": "subtract(2rem, 0.5rem) = 1.5rem"
+      },
+      "rounded": {
+        "$value": "round(1.234rem, 2)",
+        "$type": "dimension",
+        "$description": "round(1.234rem, 2) = 1.23rem"
+      },
+      "percent-50": {
+        "$value": "percent(2rem, 50%)",
+        "$type": "dimension",
+        "$description": "percent(2rem, 50%) = 1rem"
+      },
+      "converted-to-px": {
+        "$value": "convert(1.5rem, px)",
+        "$type": "dimension",
+        "$description": "convert(1.5rem, px) = 24px"
+      },
+      "converted-to-rem": {
+        "$value": "convert(24px, rem)",
+        "$type": "dimension",
+        "$description": "convert(24px, rem) = 1.5rem"
+      },
+      "clamped": {
+        "$value": "clamp(0.5rem, 1rem, 2rem)",
+        "$type": "dimension",
+        "$description": "clamp(min, preferred, max)"
+      },
+      "abs-negative": {
+        "$value": "abs(-1rem)",
+        "$type": "dimension",
+        "$description": "abs(-1rem) = 1rem"
+      },
+      "negated": {
+        "$value": "negate(1rem)",
+        "$type": "dimension",
+        "$description": "negate(1rem) = -1rem"
+      }
+    }
+  },
+
+  "font": {
+    "$description": "Typography tokens with fluidType(), modularScale(), and typography functions",
+
+    "family": {
+      "base": {
+        "$value": "'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "$type": "fontFamily",
+        "$description": "Base font family for body text"
+      },
+      "mono": {
+        "$value": "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace",
+        "$type": "fontFamily",
+        "$description": "Monospace font family"
+      },
+      "heading": {
+        "$value": "'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "$type": "fontFamily",
+        "$description": "Heading font family for titles and headers"
+      }
+    },
+
+    "size": {
+      "$description": "Fluid type scale using fluidType() - generates CSS clamp() for responsive typography",
+      "xs": {
+        "$value": "fluidType(0.75rem, 0.8125rem)",
+        "$type": "dimension",
+        "$description": "Extra small - fluid 12-13px"
+      },
+      "sm": {
+        "$value": "fluidType(0.8125rem, 0.875rem)",
+        "$type": "dimension",
+        "$description": "Small - fluid 13-14px"
+      },
+      "base": {
+        "$value": "fluidType(0.875rem, 1rem)",
+        "$type": "dimension",
+        "$description": "Base - fluid 14-16px"
+      },
+      "lg": {
+        "$value": "fluidType(1rem, 1.125rem)",
+        "$type": "dimension",
+        "$description": "Large - fluid 16-18px"
+      },
+      "xl": {
+        "$value": "fluidType(1.125rem, 1.25rem)",
+        "$type": "dimension",
+        "$description": "XL - fluid 18-20px"
+      },
+      "2xl": {
+        "$value": "fluidType(1.25rem, 1.5rem)",
+        "$type": "dimension",
+        "$description": "2XL - fluid 20-24px"
+      },
+      "3xl": {
+        "$value": "fluidType(1.5rem, 1.875rem)",
+        "$type": "dimension",
+        "$description": "3XL - fluid 24-30px"
+      },
+      "4xl": {
+        "$value": "fluidType(1.875rem, 2.25rem)",
+        "$type": "dimension",
+        "$description": "4XL - fluid 30-36px"
+      },
+      "5xl": {
+        "$value": "fluidType(2.25rem, 3rem)",
+        "$type": "dimension",
+        "$description": "5XL - fluid 36-48px"
+      },
+      "6xl": {
+        "$value": "fluidType(3rem, 4rem)",
+        "$type": "dimension",
+        "$description": "6XL - fluid 48-64px (hero text)"
+      }
+    },
+
+    "modular": {
+      "$description": "Modular scale using modularScale() with named ratios",
+      "base": {
+        "$value": "1rem",
+        "$type": "dimension",
+        "$description": "Base size for modular scale"
+      },
+      "sm": {
+        "$value": "modularScale(1rem, -1, majorThird)",
+        "$type": "dimension",
+        "$description": "One step down on major third (1.25) scale"
+      },
+      "lg": {
+        "$value": "modularScale(1rem, 1, majorThird)",
+        "$type": "dimension",
+        "$description": "One step up = 1.25rem"
+      },
+      "xl": {
+        "$value": "modularScale(1rem, 2, majorThird)",
+        "$type": "dimension",
+        "$description": "Two steps up = 1.5625rem"
+      },
+      "2xl": {
+        "$value": "modularScale(1rem, 3, majorThird)",
+        "$type": "dimension",
+        "$description": "Three steps up"
+      },
+      "golden-lg": {
+        "$value": "modularScale(1rem, 1, goldenRatio)",
+        "$type": "dimension",
+        "$description": "Golden ratio scale (1.618)"
+      },
+      "fourth-lg": {
+        "$value": "modularScale(1rem, 1, perfectFourth)",
+        "$type": "dimension",
+        "$description": "Perfect fourth scale (1.333)"
+      }
+    },
+
+    "weight": {
+      "light": { "$value": "300", "$type": "fontWeight" },
+      "normal": { "$value": "400", "$type": "fontWeight" },
+      "medium": { "$value": "500", "$type": "fontWeight" },
+      "semibold": { "$value": "600", "$type": "fontWeight" },
+      "bold": { "$value": "700", "$type": "fontWeight" }
+    },
+
+    "lineHeight": {
+      "tight": {
+        "$value": "1.25",
+        "$type": "number",
+        "$description": "Tight line height for headings"
+      },
+      "normal": {
+        "$value": "1.5",
+        "$type": "number",
+        "$description": "Normal line height for body text"
+      },
+      "relaxed": {
+        "$value": "1.75",
+        "$type": "number",
+        "$description": "Relaxed for improved readability"
+      }
+    },
+
+    "letterSpacing": {
+      "tight": {
+        "$value": "-0.025em",
+        "$type": "dimension",
+        "$description": "Tight letter spacing for headings"
+      },
+      "normal": {
+        "$value": "0",
+        "$type": "dimension",
+        "$description": "Normal letter spacing"
+      },
+      "wide": {
+        "$value": "0.025em",
+        "$type": "dimension",
+        "$description": "Wide letter spacing"
+      },
+      "wider": {
+        "$value": "0.05em",
+        "$type": "dimension",
+        "$description": "Wider letter spacing for small caps"
+      }
+    }
+  },
+
+  "border": {
+    "width": {
+      "thin": { "$value": "1px", "$type": "dimension" },
+      "medium": { "$value": "2px", "$type": "dimension" },
+      "thick": { "$value": "4px", "$type": "dimension" }
+    },
+    "radius": {
+      "none": { "$value": "0", "$type": "dimension" },
+      "sm": { "$value": "0.25rem", "$type": "dimension" },
+      "md": { "$value": "0.375rem", "$type": "dimension" },
+      "lg": { "$value": "0.5rem", "$type": "dimension" },
+      "xl": { "$value": "0.75rem", "$type": "dimension" },
+      "2xl": { "$value": "1rem", "$type": "dimension" },
+      "full": { "$value": "9999px", "$type": "dimension" }
+    }
+  },
+
+  "shadow": {
+    "$description": "Shadow tokens using W3C DTCG format - supports color references and functions",
+
+    "sm": {
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "1px",
+        "blur": "2px",
+        "spread": "0px",
+        "color": "alpha({color.black}, 0.05)"
+      },
+      "$type": "shadow",
+      "$description": "Small shadow using alpha() function"
+    },
+
+    "md": {
+      "$value": [
+        {
+          "offsetX": "0px",
+          "offsetY": "4px",
+          "blur": "6px",
+          "spread": "-1px",
+          "color": "alpha({color.black}, 0.1)"
+        },
+        {
+          "offsetX": "0px",
+          "offsetY": "2px",
+          "blur": "4px",
+          "spread": "-2px",
+          "color": "alpha({color.black}, 0.1)"
+        }
+      ],
+      "$type": "shadow",
+      "$description": "Medium layered shadow"
+    },
+
+    "lg": {
+      "$value": [
+        {
+          "offsetX": "0px",
+          "offsetY": "10px",
+          "blur": "15px",
+          "spread": "-3px",
+          "color": "alpha({color.black}, 0.1)"
+        },
+        {
+          "offsetX": "0px",
+          "offsetY": "4px",
+          "blur": "6px",
+          "spread": "-4px",
+          "color": "alpha({color.black}, 0.1)"
+        }
+      ],
+      "$type": "shadow",
+      "$description": "Large layered shadow"
+    },
+
+    "xl": {
+      "$value": [
+        {
+          "offsetX": "0px",
+          "offsetY": "20px",
+          "blur": "25px",
+          "spread": "-5px",
+          "color": "alpha({color.black}, 0.1)"
+        },
+        {
+          "offsetX": "0px",
+          "offsetY": "8px",
+          "blur": "10px",
+          "spread": "-6px",
+          "color": "alpha({color.black}, 0.1)"
+        }
+      ],
+      "$type": "shadow",
+      "$description": "Extra large layered shadow"
+    },
+
+    "2xl": {
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "25px",
+        "blur": "50px",
+        "spread": "-12px",
+        "color": "alpha({color.black}, 0.25)"
+      },
+      "$type": "shadow",
+      "$description": "Dramatic shadow with 25% opacity"
+    },
+
+    "brand": {
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "4px",
+        "blur": "14px",
+        "spread": "0px",
+        "color": "alpha({color.brand}, 0.4)"
+      },
+      "$type": "shadow",
+      "$description": "Brand colored shadow using alpha() with brand color reference"
+    },
+
+    "inset": {
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "4px",
+        "spread": "0px",
+        "color": "alpha({color.black}, 0.06)",
+        "inset": true
+      },
+      "$type": "shadow",
+      "$description": "Inset shadow for pressed states"
+    }
+  },
+
+  "transition": {
+    "duration": {
+      "fast": { "$value": "150ms", "$type": "duration" },
+      "base": { "$value": "200ms", "$type": "duration" },
+      "slow": { "$value": "300ms", "$type": "duration" },
+      "slower": { "$value": "500ms", "$type": "duration" }
+    },
+    "easing": {
+      "ease": { "$value": "ease", "$type": "cubicBezier" },
+      "ease-in": { "$value": "ease-in", "$type": "cubicBezier" },
+      "ease-out": { "$value": "ease-out", "$type": "cubicBezier" },
+      "ease-in-out": { "$value": "ease-in-out", "$type": "cubicBezier" }
+    }
+  },
+
+  "breakpoint": {
+    "$description": "Responsive breakpoints for container queries and media queries",
+    "sm": { "$value": "640px", "$type": "dimension" },
+    "md": { "$value": "768px", "$type": "dimension" },
+    "lg": { "$value": "1024px", "$type": "dimension" },
+    "xl": { "$value": "1280px", "$type": "dimension" },
+    "2xl": { "$value": "1536px", "$type": "dimension" }
+  },
+
+  "z-index": {
+    "dropdown": { "$value": "1000", "$type": "number" },
+    "sticky": { "$value": "1020", "$type": "number" },
+    "fixed": { "$value": "1030", "$type": "number" },
+    "modal-backdrop": { "$value": "1040", "$type": "number" },
+    "modal": { "$value": "1050", "$type": "number" },
+    "popover": { "$value": "1060", "$type": "number" },
+    "tooltip": { "$value": "1070", "$type": "number" }
+  },
+
+  "gradient": {
+    "$description": "Gradient tokens using W3C DTCG format - supports color references",
+
+    "brand": {
+      "$value": {
+        "type": "linear",
+        "angle": "135deg",
+        "colorStops": [
+          { "color": "{color.primary.400}", "position": 0 },
+          { "color": "{color.primary.600}", "position": 1 }
+        ]
+      },
+      "$type": "gradient",
+      "$description": "Brand gradient using primary colors"
+    },
+
+    "hero": {
+      "$value": {
+        "type": "linear",
+        "angle": "135deg",
+        "colorStops": [
+          { "color": "#667eea", "position": 0 },
+          { "color": "#764ba2", "position": 1 }
+        ]
+      },
+      "$type": "gradient",
+      "$description": "Hero section gradient"
+    },
+
+    "sunset": {
+      "$value": {
+        "type": "linear",
+        "angle": "90deg",
+        "colorStops": [
+          { "color": "#f093fb", "position": 0 },
+          { "color": "#f5576c", "position": 1 }
+        ]
+      },
+      "$type": "gradient",
+      "$description": "Warm sunset gradient"
+    },
+
+    "ocean": {
+      "$value": {
+        "type": "linear",
+        "angle": "180deg",
+        "colorStops": [
+          { "color": "#4facfe", "position": 0 },
+          { "color": "#00f2fe", "position": 1 }
+        ]
+      },
+      "$type": "gradient",
+      "$description": "Cool ocean gradient"
+    },
+
+    "radial-glow": {
+      "$value": {
+        "type": "radial",
+        "shape": "circle",
+        "colorStops": [
+          { "color": "{color.primary.300}", "position": 0 },
+          { "color": "transparent", "position": 1 }
+        ]
+      },
+      "$type": "gradient",
+      "$description": "Radial glow effect using primary color"
+    }
+  },
+
+  "assets": {
+    "$description": "Design system assets - icons, images, and other files",
+
+    "icons": {
+      "$description": "SVG icons - sources are swappable between packages",
+
+      "actions": {
+        "$description": "Action icons for user interactions",
+        "delete": {
+          "$value": "~bootstrap-icons/icons/trash.svg",
+          "$type": "asset",
+          "$description": "Delete/remove action (alt: ~lucide-static/icons/trash.svg)"
+        },
+        "edit": {
+          "$value": "~bootstrap-icons/icons/pencil.svg",
+          "$type": "asset",
+          "$description": "Edit/modify action"
+        },
+        "add": {
+          "$value": "~lucide-static/icons/plus.svg",
+          "$type": "asset",
+          "$description": "Add/create action"
+        },
+        "save": {
+          "$value": "~bootstrap-icons/icons/check-lg.svg",
+          "$type": "asset",
+          "$description": "Save/confirm action"
+        },
+        "cancel": {
+          "$value": "~lucide-static/icons/x.svg",
+          "$type": "asset",
+          "$description": "Cancel/close action"
+        },
+        "search": {
+          "$value": "~bootstrap-icons/icons/search.svg",
+          "$type": "asset",
+          "$description": "Search action"
+        },
+        "settings": {
+          "$value": "~lucide-static/icons/settings.svg",
+          "$type": "asset",
+          "$description": "Settings/preferences"
+        },
+        "more": {
+          "$value": "~bootstrap-icons/icons/three-dots-vertical.svg",
+          "$type": "asset",
+          "$description": "More options menu"
+        }
+      },
+
+      "navigation": {
+        "$description": "Navigation and directional icons",
+        "home": {
+          "$value": "~lucide-static/icons/house.svg",
+          "$type": "asset",
+          "$description": "Home/dashboard"
+        },
+        "back": {
+          "$value": "~bootstrap-icons/icons/arrow-left.svg",
+          "$type": "asset",
+          "$description": "Back navigation"
+        },
+        "forward": {
+          "$value": "~bootstrap-icons/icons/arrow-right.svg",
+          "$type": "asset",
+          "$description": "Forward navigation"
+        },
+        "up": {
+          "$value": "~bootstrap-icons/icons/arrow-up.svg",
+          "$type": "asset",
+          "$description": "Up navigation"
+        },
+        "down": {
+          "$value": "~bootstrap-icons/icons/arrow-down.svg",
+          "$type": "asset",
+          "$description": "Down navigation"
+        },
+        "menu": {
+          "$value": "~bootstrap-icons/icons/list.svg",
+          "$type": "asset",
+          "$description": "Menu/hamburger icon"
+        },
+        "external": {
+          "$value": "~lucide-static/icons/external-link.svg",
+          "$type": "asset",
+          "$description": "External link indicator"
+        }
+      },
+
+      "status": {
+        "$description": "Status and feedback icons",
+        "success": {
+          "$value": "~bootstrap-icons/icons/check-circle.svg",
+          "$type": "asset",
+          "$description": "Success/complete status"
+        },
+        "warning": {
+          "$value": "~bootstrap-icons/icons/exclamation-triangle.svg",
+          "$type": "asset",
+          "$description": "Warning status"
+        },
+        "error": {
+          "$value": "~bootstrap-icons/icons/x-circle.svg",
+          "$type": "asset",
+          "$description": "Error/danger status"
+        },
+        "info": {
+          "$value": "~bootstrap-icons/icons/info-circle.svg",
+          "$type": "asset",
+          "$description": "Information status"
+        },
+        "loading": {
+          "$value": "~lucide-static/icons/loader-circle.svg",
+          "$type": "asset",
+          "$description": "Loading/spinner"
+        }
+      },
+
+      "media": {
+        "$description": "Media and file type icons",
+        "image": {
+          "$value": "~lucide-static/icons/image.svg",
+          "$type": "asset",
+          "$description": "Image file"
+        },
+        "document": {
+          "$value": "~lucide-static/icons/file-text.svg",
+          "$type": "asset",
+          "$description": "Document file"
+        },
+        "folder": {
+          "$value": "~bootstrap-icons/icons/folder.svg",
+          "$type": "asset",
+          "$description": "Folder"
+        },
+        "download": {
+          "$value": "~bootstrap-icons/icons/download.svg",
+          "$type": "asset",
+          "$description": "Download action"
+        },
+        "upload": {
+          "$value": "~bootstrap-icons/icons/upload.svg",
+          "$type": "asset",
+          "$description": "Upload action"
+        }
+      },
+
+      "social": {
+        "$description": "Social and communication icons",
+        "user": {
+          "$value": "~lucide-static/icons/user.svg",
+          "$type": "asset",
+          "$description": "User/profile"
+        },
+        "users": {
+          "$value": "~lucide-static/icons/users.svg",
+          "$type": "asset",
+          "$description": "Multiple users/team"
+        },
+        "mail": {
+          "$value": "~bootstrap-icons/icons/envelope.svg",
+          "$type": "asset",
+          "$description": "Email/message"
+        },
+        "chat": {
+          "$value": "~bootstrap-icons/icons/chat.svg",
+          "$type": "asset",
+          "$description": "Chat/conversation"
+        },
+        "share": {
+          "$value": "~lucide-static/icons/share-2.svg",
+          "$type": "asset",
+          "$description": "Share action"
+        }
+      },
+
+      "auth": {
+        "$description": "Authentication and security icons",
+        "lock": {
+          "$value": "~lucide-static/icons/lock.svg",
+          "$type": "asset",
+          "$description": "Password/locked state"
+        },
+        "unlock": {
+          "$value": "~lucide-static/icons/lock-open.svg",
+          "$type": "asset",
+          "$description": "Unlocked state"
+        },
+        "key": {
+          "$value": "~lucide-static/icons/key.svg",
+          "$type": "asset",
+          "$description": "API key or password"
+        },
+        "eye": {
+          "$value": "~lucide-static/icons/eye.svg",
+          "$type": "asset",
+          "$description": "Show password"
+        },
+        "eye-off": {
+          "$value": "~lucide-static/icons/eye-off.svg",
+          "$type": "asset",
+          "$description": "Hide password"
+        },
+        "shield": {
+          "$value": "~lucide-static/icons/shield.svg",
+          "$type": "asset",
+          "$description": "Security/protection"
+        },
+        "shield-check": {
+          "$value": "~lucide-static/icons/shield-check.svg",
+          "$type": "asset",
+          "$description": "Verified/secure"
+        },
+        "fingerprint": {
+          "$value": "~lucide-static/icons/fingerprint.svg",
+          "$type": "asset",
+          "$description": "Biometric authentication"
+        },
+        "log-in": {
+          "$value": "~lucide-static/icons/log-in.svg",
+          "$type": "asset",
+          "$description": "Sign in action"
+        },
+        "log-out": {
+          "$value": "~lucide-static/icons/log-out.svg",
+          "$type": "asset",
+          "$description": "Sign out action"
+        }
+      }
+    }
+  }
+}

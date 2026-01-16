@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{page.title}} - UI Block</title>
+        {{#if branding.favicon}}
+        <link rel="icon" href="/static/{{branding.favicon}}">
+        {{/if}}
+        <link rel="stylesheet" href="../css/stylescribe.css">
+        {{#if themeOptions}}
+        <link rel="stylesheet" href="../css/themes.css">
+        {{/if}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+        {{#if externalCssIncludes}}
+        <style>
+            {{#each externalCssIncludes}}
+            @import url('{{{this}}}');
+            {{/each}}
+        </style>
+        {{/if}}
+
+        {{#each headIncludes}}
+        <link rel="stylesheet" href="/{{this}}">
+        {{/each}}
+
+        <script src="../js/theme-init.js"></script>
+    </head>
+    <body hx-boost="true"
+          hx-target="#stylescribe-wrapper"
+          hx-select="#stylescribe-wrapper"
+          hx-swap="outerHTML show:window:top"
+          class="min-h-screen bg-gray-50 dark:bg-slate-900"
+          data-basepath="{{basePath}}"
+          data-page-type="block">
+        <div id="stylescribe-wrapper">
+        <!-- Navigation -->
+        {{> navigation basePath=basePath branding=branding navigation=navigation groups=groups activeNav=activeNav}}
+
+        <div class="main-content flex min-h-[calc(100vh-64px)]">
+            <!-- Sidebar: UI Blocks -->
+            <aside class="hidden lg:block w-60 shrink-0 border-r border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+                <nav class="sidebar-nav max-h-[calc(100vh-64px)] overflow-y-auto">
+                    <div class="sidebar-section-title">UI Blocks</div>
+                    {{#each blockGroups as |groupBlocks groupName|}}
+                    <div class="sidebar-group">
+                        <button class="sidebar-group-toggle" data-group="{{groupName}}">
+                            <span>{{groupName}}</span>
+                            <svg class="sidebar-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul class="sidebar-group-content">
+                            {{#each groupBlocks}}
+                            <li>
+                                {{#if (eq this.path ../../currentPath)}}
+                                <span class="sidebar-link sidebar-link--active">
+                                    {{this.title}}
+                                </span>
+                                {{else}}
+                                <a href="./{{this.name}}.html" class="sidebar-link">
+                                    {{this.title}}
+                                </a>
+                                {{/if}}
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{/each}}
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 min-w-0 flex justify-center py-8 px-4 md:px-8">
+                <div class="max-w-4xl w-full">
+                    <!-- Header Section -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-6 mb-6 shadow-sm">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="px-2 py-1 text-xs font-medium bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded">UI Block</span>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">{{page.group}}</span>
+                                </div>
+                                <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">{{page.title}}</h1>
+                                <p class="text-gray-600 dark:text-gray-300 text-lg">{{{page.description}}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dependencies (Components Used) -->
+                    {{#if page.dependencies}}
+                    <div class="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-6 mb-6 shadow-sm">
+                        <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Components Used</h2>
+                        <div class="flex flex-wrap gap-2">
+                            {{#each page.dependencies}}
+                            <a href="../components/{{this}}.html" class="inline-flex items-center gap-1 px-3 py-1.5 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors text-sm">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                                </svg>
+                                {{this}}
+                            </a>
+                            {{/each}}
+                        </div>
+                    </div>
+                    {{/if}}
+
+                    <!-- Preview Section -->
+                    <div id="preview" class="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 mb-6 shadow-sm overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200 dark:border-slate-700 flex justify-between items-center">
+                            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Preview</h2>
+                        </div>
+
+                        <!-- Block Preview (iframe for CSS isolation) -->
+                        <div class="p-6 bg-gray-50 dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700">
+                            <div class="preview-container bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+                                <iframe
+                                    class="block-preview-iframe w-full border-0"
+                                    src="./{{page.name}}-preview.html"
+                                    title="Block Preview: {{page.title}}">
+                                </iframe>
+                            </div>
+                        </div>
+
+                        <!-- Code -->
+                        <div class="border-t border-gray-200 dark:border-slate-700">
+                            <div class="flex justify-between items-center px-6 py-3 bg-gray-50 dark:bg-slate-900">
+                                <span class="font-medium text-gray-700 dark:text-gray-300">HTML Code</span>
+                                <button class="btn-sm border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 transition-colors" onclick="var code=document.getElementById('block-code').textContent;navigator.clipboard.writeText(code).then(function(){var b=event.target;var t=b.innerText;b.innerText='Copied!';setTimeout(function(){b.innerText=t;},1500);});">Copy</button>
+                            </div>
+                            <div class="code-container rounded-none border-0">
+                                <pre id="block-code"><code class="language-html">{{page.html}}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Variations -->
+                    {{#if page.variations}}
+                    <div id="variations" class="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 mb-6 shadow-sm overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200 dark:border-slate-700">
+                            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Variations</h2>
+                        </div>
+                        {{#each page.variations}}
+                        <div class="p-6 {{#unless @last}}border-b border-gray-200 dark:border-slate-700{{/unless}}">
+                            <h3 class="font-semibold text-gray-900 dark:text-white mb-1">{{this.title}}</h3>
+                            {{#if this.description}}
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">{{this.description}}</p>
+                            {{/if}}
+                        </div>
+                        {{/each}}
+                    </div>
+                    {{/if}}
+
+                    {{#if page.css}}
+                    <!-- Custom CSS -->
+                    <div id="css" class="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 shadow-sm overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200 dark:border-slate-700">
+                            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Custom Styles</h2>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Additional CSS specific to this UI Block</p>
+                        </div>
+                        <div class="code-container rounded-none border-0">
+                            <pre><code class="language-css">{{page.css}}</code></pre>
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
+            </main>
+
+            <!-- Table of Contents -->
+            <aside class="hidden xl:block w-56 shrink-0 border-l border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+                <nav class="toc-nav sticky top-16 max-h-[calc(100vh-64px)] overflow-y-auto p-4">
+                    <h4 class="toc-title">On this page</h4>
+                    <ul class="toc-list">
+                        {{#if page.dependencies}}
+                        <li class="toc-item toc-item--h2">
+                            <a href="#" class="toc-link">Components Used</a>
+                        </li>
+                        {{/if}}
+                        <li class="toc-item toc-item--h2">
+                            <a href="#preview" class="toc-link">Preview</a>
+                        </li>
+                        {{#if page.variations}}
+                        <li class="toc-item toc-item--h2">
+                            <a href="#variations" class="toc-link">Variations</a>
+                        </li>
+                        {{/if}}
+                        {{#if page.css}}
+                        <li class="toc-item toc-item--h2">
+                            <a href="#css" class="toc-link">Custom Styles</a>
+                        </li>
+                        {{/if}}
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+        </div>
+
+        <!-- Alpine.js (with defer for proper initialization) -->
+        <script defer src="../js/alpine.min.js"></script>
+        <!-- htmx for SPA navigation -->
+        <script src="../js/htmx.min.js"></script>
+        <script src="../js/htmx-init.js"></script>
+        <!-- Alpine components -->
+        <script src="../js/alpine-components.js"></script>
+        <!-- Core functionality -->
+        <script src="../js/init-registry.js"></script>
+        <script src="{{basePath}}js/page-init.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+        <script src="https://unpkg.com/lunr/lunr.js"></script>
+        <script src="../js/search.js"></script>
+        <script src="../js/navigation.js"></script>
+        <script>
+            // Global copy function (available via onclick)
+            function copyCode() {
+                var code = document.getElementById('block-code').textContent;
+                navigator.clipboard.writeText(code).then(function() {
+                    var btn = document.querySelector('[onclick="copyCode()"]');
+                    if (btn) {
+                        var originalText = btn.innerText;
+                        btn.innerText = 'Copied!';
+                        setTimeout(function() { btn.innerText = originalText; }, 1500);
+                    }
+                });
+            }
+
+            // Block page initialization with proper cleanup
+            (function() {
+                var messageHandler = null;
+
+                function initBlockPage() {
+                    // Clean up previous handler to prevent duplicates
+                    if (messageHandler) {
+                        window.removeEventListener('message', messageHandler);
+                    }
+
+                    // Create new message handler for iframe height
+                    messageHandler = function(event) {
+                        if (event.data && event.data.type === 'previewHeight') {
+                            document.querySelectorAll('.block-preview-iframe').forEach(function(iframe) {
+                                if (iframe.contentWindow === event.source) {
+                                    iframe.style.height = event.data.height + 'px';
+                                }
+                            });
+                        }
+                    };
+
+                    window.addEventListener('message', messageHandler);
+
+                    // Re-highlight code
+                    if (typeof Prism !== 'undefined') {
+                        Prism.highlightAll();
+                    }
+                }
+
+                function cleanupBlockPage() {
+                    if (messageHandler) {
+                        window.removeEventListener('message', messageHandler);
+                        messageHandler = null;
+                    }
+                }
+
+                // Register with init system for SPA navigation
+                if (window.stylescribeInit) {
+                    window.stylescribeInit.register('block', initBlockPage, cleanupBlockPage);
+                }
+
+                // Run on initial page load
+                initBlockPage();
+            })();
+        </script>
+    </body>
+</html>

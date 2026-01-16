@@ -1,0 +1,222 @@
+/**
+ * @title Checkbox
+ * @description Custom styled checkbox with label. Uses hidden native input for accessibility.
+ * @group Forms
+ * @order 5
+ * @dependencies icon
+ * @variations default, error, disabled, sm, lg, indeterminate
+ * @elements
+ * - name: input
+ *   html: <input class="{{class}}" type="checkbox">
+ * - name: box
+ *   html: <span class="{{class}}"></span>
+ * - name: check
+ *   html: <span class="{{class}} ds-icon ds-icon--check"></span>
+ * - name: label
+ *   html: <span class="{{class}}">Checkbox label</span>
+ * @examples
+ * - title: Default Checkbox
+ *   description: Basic checkbox with label
+ *   code: |
+ *     <label class="ds-checkbox">
+ *       <input class="ds-checkbox__input" type="checkbox">
+ *       <span class="ds-checkbox__box">
+ *         <svg class="ds-checkbox__check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+ *       </span>
+ *       <span class="ds-checkbox__label">Accept terms and conditions</span>
+ *     </label>
+ * - title: Checked Checkbox
+ *   description: Checkbox in checked state
+ *   code: |
+ *     <label class="ds-checkbox">
+ *       <input class="ds-checkbox__input" type="checkbox" checked>
+ *       <span class="ds-checkbox__box">
+ *         <svg class="ds-checkbox__check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+ *       </span>
+ *       <span class="ds-checkbox__label">I agree to the privacy policy</span>
+ *     </label>
+ * - title: Indeterminate Checkbox
+ *   description: Partially selected state
+ *   code: |
+ *     <label class="ds-checkbox ds-checkbox--indeterminate">
+ *       <input class="ds-checkbox__input" type="checkbox">
+ *       <span class="ds-checkbox__box">
+ *         <svg class="ds-checkbox__check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+ *       </span>
+ *       <span class="ds-checkbox__label">Select all items</span>
+ *     </label>
+ * - title: Error State
+ *   description: Checkbox with validation error
+ *   code: |
+ *     <label class="ds-checkbox ds-checkbox--error">
+ *       <input class="ds-checkbox__input" type="checkbox" aria-invalid="true">
+ *       <span class="ds-checkbox__box">
+ *         <svg class="ds-checkbox__check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+ *       </span>
+ *       <span class="ds-checkbox__label">You must accept the terms</span>
+ *     </label>
+ * - title: Disabled Checkbox
+ *   description: Non-interactive checkbox
+ *   code: |
+ *     <label class="ds-checkbox ds-checkbox--disabled">
+ *       <input class="ds-checkbox__input" type="checkbox" disabled>
+ *       <span class="ds-checkbox__box">
+ *         <svg class="ds-checkbox__check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+ *       </span>
+ *       <span class="ds-checkbox__label">Cannot change this option</span>
+ *     </label>
+ * - title: Disabled Checked
+ *   description: Disabled checkbox in checked state
+ *   code: |
+ *     <label class="ds-checkbox ds-checkbox--disabled">
+ *       <input class="ds-checkbox__input" type="checkbox" checked disabled>
+ *       <span class="ds-checkbox__box">
+ *         <svg class="ds-checkbox__check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+ *       </span>
+ *       <span class="ds-checkbox__label">Locked selection</span>
+ *     </label>
+ * - title: Small Checkbox
+ *   description: Compact size variant
+ *   code: |
+ *     <label class="ds-checkbox ds-checkbox--sm">
+ *       <input class="ds-checkbox__input" type="checkbox">
+ *       <span class="ds-checkbox__box">
+ *         <svg class="ds-checkbox__check" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+ *       </span>
+ *       <span class="ds-checkbox__label">Small option</span>
+ *     </label>
+ * - title: Large Checkbox
+ *   description: Larger size variant
+ *   code: |
+ *     <label class="ds-checkbox ds-checkbox--lg">
+ *       <input class="ds-checkbox__input" type="checkbox">
+ *       <span class="ds-checkbox__box">
+ *         <svg class="ds-checkbox__check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+ *       </span>
+ *       <span class="ds-checkbox__label">Large option with more prominence</span>
+ *     </label>
+ */
+
+@layer components {
+  .ds-checkbox {
+    /* ===== Component Tokens ===== */
+    --checkbox-size: 18px;
+    --checkbox-bg: var(--color-semantic-surface);
+    --checkbox-border: var(--color-semantic-border);
+    --checkbox-border-checked: var(--color-primary-500);
+    --checkbox-bg-checked: var(--color-primary-500);
+    --checkbox-check-color: #ffffff;
+    --checkbox-radius: var(--border-radius-sm);
+    --checkbox-gap: var(--spacing-scale-sm);
+    --checkbox-font-size: var(--font-size-base);
+    --checkbox-label-color: var(--color-semantic-text);
+
+    /* ===== Base Styles ===== */
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--checkbox-gap);
+    font-family: var(--font-family-base);
+    font-size: var(--checkbox-font-size);
+    color: var(--checkbox-label-color);
+    cursor: pointer;
+    user-select: none;
+
+    /* ===== Elements ===== */
+    &__input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+
+      /* Focus state on box */
+      &:focus-visible ~ .ds-checkbox__box {
+        outline: 2px solid var(--color-primary-500);
+        outline-offset: 2px;
+      }
+
+      /* Checked state */
+      &:checked ~ .ds-checkbox__box {
+        background: var(--checkbox-bg-checked);
+        border-color: var(--checkbox-border-checked);
+
+        .ds-checkbox__check {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+
+    &__box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: var(--checkbox-size);
+      height: var(--checkbox-size);
+      background: var(--checkbox-bg);
+      border: 2px solid var(--checkbox-border);
+      border-radius: var(--checkbox-radius);
+      transition:
+        background var(--transition-duration-fast),
+        border-color var(--transition-duration-fast);
+    }
+
+    &__check {
+      color: var(--checkbox-check-color);
+      opacity: 0;
+      transform: scale(0.5);
+      transition:
+        opacity var(--transition-duration-fast),
+        transform var(--transition-duration-fast);
+    }
+
+    &__label {
+      padding-top: 1px;
+      line-height: var(--checkbox-size);
+    }
+
+    /* ===== Variations (token overrides only) ===== */
+
+    /* Indeterminate state */
+    &--indeterminate {
+      .ds-checkbox__box {
+        background: var(--checkbox-bg-checked);
+        border-color: var(--checkbox-border-checked);
+      }
+
+      .ds-checkbox__check {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Error state */
+    &--error {
+      --checkbox-border: var(--color-danger-base);
+      --checkbox-border-checked: var(--color-danger-base);
+      --checkbox-bg-checked: var(--color-danger-base);
+    }
+
+    /* Disabled state */
+    &--disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Size: Small */
+    &--sm {
+      --checkbox-size: 14px;
+      --checkbox-gap: var(--spacing-scale-xs);
+      --checkbox-font-size: var(--font-size-sm);
+    }
+
+    /* Size: Large */
+    &--lg {
+      --checkbox-size: 22px;
+      --checkbox-gap: var(--spacing-scale-md);
+      --checkbox-font-size: var(--font-size-lg);
+    }
+  }
+}

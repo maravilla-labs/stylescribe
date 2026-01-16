@@ -1,0 +1,145 @@
+/**
+ * @title Badge
+ * @description Small status indicators and labels for highlighting information.
+ * @navtitle Badge
+ * @group Feedback
+ * @order 2
+ * @verified true
+ * @dependencies indicator
+ * @variations primary, secondary, success, warning, error
+ * @additional_variations pill, outline, dot
+ * @elements
+ * - name: label
+ *   html: <span class="{{class}}">Badge</span>
+ * @examples
+ * - title: Status Badges
+ *   description: Semantic color variants
+ *   code: |
+ *     <span class="ds-badge ds-badge--success">Active</span>
+ *     <span class="ds-badge ds-badge--warning">Pending</span>
+ *     <span class="ds-badge ds-badge--error">Failed</span>
+ * - title: Pill Badges
+ *   description: Rounded pill shape
+ *   code: |
+ *     <span class="ds-badge ds-badge--primary ds-badge--pill">New</span>
+ *     <span class="ds-badge ds-badge--secondary ds-badge--pill">12</span>
+ * - title: With Dot Indicator
+ *   description: Animated status dot using indicator component
+ *   code: |
+ *     <span class="ds-badge ds-badge--dot">
+ *       <span class="ds-indicator ds-indicator--success ds-indicator--pulse"></span>
+ *       <span class="ds-badge__label">Online</span>
+ *     </span>
+ *     <span class="ds-badge ds-badge--dot">
+ *       <span class="ds-indicator ds-indicator--danger"></span>
+ *       <span class="ds-badge__label">Offline</span>
+ *     </span>
+ * - title: Outline Badges
+ *   description: Subtle outlined style
+ *   code: |
+ *     <span class="ds-badge ds-badge--primary ds-badge--outline">Draft</span>
+ *     <span class="ds-badge ds-badge--success ds-badge--outline">Published</span>
+ */
+
+@layer components {
+  .ds-badge {
+    /* Internal token defaults */
+    --badge-bg: var(--color-neutral-100);
+    --badge-text: var(--color-semantic-text);
+    --badge-border: transparent;
+    --badge-radius: var(--border-radius-sm);
+    --badge-padding-y: 0.25em;
+    --badge-padding-x: 0.6em;
+    --badge-font-size: var(--font-size-xs);
+    --badge-font-weight: var(--font-weight-semibold);
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-scale-xs);
+    padding: var(--badge-padding-y) var(--badge-padding-x);
+    font-family: var(--font-family-base);
+    font-size: var(--badge-font-size);
+    font-weight: var(--badge-font-weight);
+    line-height: 1.2;
+    border-radius: var(--badge-radius);
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: var(--badge-bg);
+    color: var(--badge-text);
+    border: 1px solid var(--badge-border);
+
+    /* Elements */
+    &__label {
+      display: inline-block;
+    }
+  }
+
+  /* Variants only set tokens */
+
+  .ds-badge--primary {
+    --badge-bg: var(--color-primary-500);
+    --badge-text: #ffffff;
+  }
+
+  .ds-badge--secondary {
+    --badge-bg: var(--color-secondary-base);
+    --badge-text: #ffffff;
+  }
+
+  .ds-badge--success {
+    --badge-bg: var(--color-success-base);
+    --badge-text: #ffffff;
+  }
+
+  .ds-badge--warning {
+    --badge-bg: var(--color-warning-base);
+    --badge-text: var(--color-neutral-900);
+  }
+
+  .ds-badge--error {
+    --badge-bg: var(--color-danger-base);
+    --badge-text: #ffffff;
+  }
+
+  /* Modifier: Pill */
+  .ds-badge--pill {
+    --badge-radius: 9999px;
+    --badge-padding-x: 0.75em;
+  }
+
+  /* Modifier: Outline */
+  .ds-badge--outline {
+    --badge-bg: transparent;
+    --badge-border: currentColor;
+
+    &.ds-badge--primary {
+      --badge-text: var(--color-primary-500);
+    }
+
+    &.ds-badge--secondary {
+      --badge-text: var(--color-secondary-base);
+    }
+
+    &.ds-badge--success {
+      --badge-text: var(--color-success-base);
+    }
+
+    &.ds-badge--warning {
+      --badge-text: #d39e00;
+    }
+
+    &.ds-badge--error {
+      --badge-text: var(--color-danger-base);
+    }
+  }
+
+  /* Modifier: Dot (status indicator style) */
+  .ds-badge--dot {
+    --badge-bg: transparent;
+    --badge-padding-y: 0;
+    --badge-padding-x: 0;
+    --badge-font-size: var(--font-size-sm);
+    --badge-font-weight: var(--font-weight-medium);
+    --badge-text: var(--color-semantic-text);
+  }
+}

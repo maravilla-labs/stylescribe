@@ -1,0 +1,222 @@
+/**
+ * @title Search
+ * @description Search input field with icon, clear button, and optional keyboard shortcut hint.
+ * @navtitle Search
+ * @group Forms
+ * @order 1
+ * @dependencies spinner, icon
+ * @variations default, outlined, filled
+ * @additional_variations sm, lg
+ * @elements
+ * - name: icon
+ *   html: <span class="{{class}} ds-icon ds-icon--search"></span>
+ * - name: input
+ *   html: <input class="{{class}}" type="search" placeholder="Search...">
+ * - name: clear
+ *   html: <button class="{{class}} ds-icon ds-icon--cancel"></button>
+ * - name: shortcut
+ *   html: <kbd class="{{class}}">⌘K</kbd>
+ * @examples
+ * - title: Default Search
+ *   description: Standard search input with icon
+ *   code: |
+ *     <div class="ds-search">
+ *       <svg class="ds-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *       <input class="ds-search__input" type="search" placeholder="Search articles...">
+ *     </div>
+ * - title: Search with Clear Button
+ *   description: Includes a clear button when there's input
+ *   code: |
+ *     <div class="ds-search">
+ *       <svg class="ds-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *       <input class="ds-search__input" type="search" placeholder="Search..." value="AI Machine">
+ *       <button class="ds-search__clear" aria-label="Clear search">
+ *         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+ *       </button>
+ *     </div>
+ * - title: Search with Shortcut
+ *   description: Shows keyboard shortcut hint
+ *   code: |
+ *     <div class="ds-search">
+ *       <svg class="ds-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *       <input class="ds-search__input" type="search" placeholder="Search...">
+ *       <kbd class="ds-search__shortcut">Cmd+K</kbd>
+ *     </div>
+ * - title: Outlined Search
+ *   description: Bordered variant for lighter backgrounds
+ *   code: |
+ *     <div class="ds-search ds-search--outlined">
+ *       <svg class="ds-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *       <input class="ds-search__input" type="search" placeholder="Search...">
+ *     </div>
+ * - title: Small Search
+ *   description: Compact variant for tight spaces
+ *   code: |
+ *     <div class="ds-search ds-search--sm">
+ *       <svg class="ds-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *       <input class="ds-search__input" type="search" placeholder="Search...">
+ *     </div>
+ * - title: Large Search
+ *   description: Prominent variant for hero sections
+ *   code: |
+ *     <div class="ds-search ds-search--lg">
+ *       <svg class="ds-search__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *       <input class="ds-search__input" type="search" placeholder="Search articles...">
+ *     </div>
+ * - title: Loading State
+ *   description: Shows spinner during search
+ *   code: |
+ *     <div class="ds-search ds-search--loading">
+ *       <svg class="ds-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *       <input class="ds-search__input" type="search" placeholder="Search..." value="Searching...">
+ *       <span class="ds-spinner ds-spinner--sm ds-spinner--primary"></span>
+ *     </div>
+ */
+
+@layer components {
+  .ds-search {
+    /* ===== Component Tokens ===== */
+    --search-bg: var(--color-neutral-100);
+    --search-bg-focus: var(--color-semantic-surface);
+    --search-border: transparent;
+    --search-border-focus: var(--color-primary-500);
+    --search-text: var(--color-semantic-text);
+    --search-placeholder: var(--color-semantic-text-muted);
+    --search-icon-color: var(--color-semantic-text-muted);
+    --search-radius: var(--border-radius-lg);
+    --search-padding-x: var(--spacing-scale-md);
+    --search-padding-y: var(--spacing-scale-sm);
+    --search-height: 40px;
+    --search-font-size: var(--font-size-base);
+    --search-shadow-focus: 0 0 0 3px var(--color-overlay-brand);
+
+    /* ===== Base Styles ===== */
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-scale-sm);
+    width: 100%;
+    max-width: 320px;
+    height: var(--search-height);
+    padding: 0 var(--search-padding-x);
+    background: var(--search-bg);
+    border: 1px solid var(--search-border);
+    border-radius: var(--search-radius);
+    transition:
+      background var(--transition-duration-fast),
+      border-color var(--transition-duration-fast),
+      box-shadow var(--transition-duration-fast);
+
+    &:focus-within {
+      background: var(--search-bg-focus);
+      border-color: var(--search-border-focus);
+      box-shadow: var(--search-shadow-focus);
+    }
+
+    /* ===== Elements ===== */
+    &__icon {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      color: var(--search-icon-color);
+
+      svg {
+        display: block;
+      }
+    }
+
+    &__input {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      padding: 0;
+      font-family: var(--font-family-base);
+      font-size: var(--search-font-size);
+      color: var(--search-text);
+      background: transparent;
+      border: none;
+      outline: none;
+
+      &::placeholder {
+        color: var(--search-placeholder);
+      }
+
+      /* Hide native clear button */
+      &::-webkit-search-cancel-button {
+        display: none;
+      }
+    }
+
+    &__clear {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      color: var(--search-icon-color);
+      background: transparent;
+      border: none;
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      transition: background var(--transition-duration-fast);
+
+      &:hover {
+        background: var(--color-neutral-200);
+      }
+
+      svg {
+        display: block;
+      }
+    }
+
+    &__shortcut {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      padding: 2px 6px;
+      font-family: var(--font-family-mono);
+      font-size: var(--font-size-xs);
+      color: var(--search-placeholder);
+      background: var(--color-neutral-200);
+      border-radius: var(--border-radius-sm);
+    }
+  }
+
+  /* ===== Variations (token overrides only) ===== */
+
+  .ds-search--outlined {
+    --search-bg: transparent;
+    --search-bg-focus: transparent;
+    --search-border: var(--color-semantic-border);
+  }
+
+  .ds-search--filled {
+    --search-bg: var(--color-neutral-200);
+    --search-bg-focus: var(--color-neutral-100);
+  }
+
+  /* Size: Small */
+  .ds-search--sm {
+    --search-height: 32px;
+    --search-padding-x: var(--spacing-scale-sm);
+    --search-font-size: var(--font-size-sm);
+    max-width: 240px;
+    gap: var(--spacing-scale-xs);
+  }
+
+  /* Size: Large */
+  .ds-search--lg {
+    --search-height: 48px;
+    --search-padding-x: var(--spacing-scale-lg);
+    --search-font-size: var(--font-size-lg);
+    max-width: 400px;
+  }
+
+  /* Loading state */
+  .ds-search--loading {
+    .ds-search__clear {
+      display: none;
+    }
+  }
+}

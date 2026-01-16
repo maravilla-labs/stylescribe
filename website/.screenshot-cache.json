@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "items": {
+    "component:alert": {
+      "hash": "afabb7e21b279d0d",
+      "generated": "2026-01-16T13:53:00.734Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/component-alert.png"
+    },
+    "component:card": {
+      "hash": "cfe952376fe8346e",
+      "generated": "2026-01-16T13:53:00.738Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/component-card.png"
+    },
+    "component:chat-bubble": {
+      "hash": "349c2181270f0b36",
+      "generated": "2026-01-16T13:53:00.738Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/component-chat-bubble.png"
+    },
+    "component:avatar": {
+      "hash": "9cf355a025d00385",
+      "generated": "2026-01-16T13:53:01.561Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/component-avatar.png"
+    },
+    "component:badge": {
+      "hash": "4a4da1765fed25b2",
+      "generated": "2026-01-16T13:53:01.665Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/component-badge.png"
+    },
+    "component:chat-input": {
+      "hash": "25e2ab5bf03ace90",
+      "generated": "2026-01-16T13:53:01.665Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/component-chat-input.png"
+    },
+    "component:button": {
+      "hash": "6d5528a0a80109a8",
+      "generated": "2026-01-16T13:53:01.665Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/component-button.png"
+    },
+    "component:chat-window": {
+      "hash": "ea3b2609519daf3d",
+      "generated": "2026-01-16T13:53:02.517Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/component-chat-window.png"
+    },
+    "component:progress": {
+      "hash": "a6710fc72c8a5de0",
+      "generated": "2026-01-16T13:53:02.592Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/component-progress.png"
+    },
+    "doc:changelog": {
+      "hash": "b4357384f8e2c7e2",
+      "generated": "2026-01-16T13:53:02.840Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-changelog.png"
+    },
+    "doc:documentation-getting-started": {
+      "hash": "0a43afdc364973ae",
+      "generated": "2026-01-16T13:53:02.840Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-getting-started.png"
+    },
+    "doc:documentation-guides-blocks": {
+      "hash": "9a52993bac8dac42",
+      "generated": "2026-01-16T13:53:03.627Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-guides-blocks.png"
+    },
+    "doc:documentation-guides-components": {
+      "hash": "707fb628e8b82f28",
+      "generated": "2026-01-16T13:53:03.751Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-guides-components.png"
+    },
+    "doc:documentation-guides-mcp-integration": {
+      "hash": "e058402ea4ee5a27",
+      "generated": "2026-01-16T13:53:04.005Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-guides-mcp-integration.png"
+    },
+    "doc:documentation-guides": {
+      "hash": "86194acc1aaf2eac",
+      "generated": "2026-01-16T13:53:04.006Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-guides.png"
+    },
+    "doc:documentation-guides-pages": {
+      "hash": "6995df95948a0514",
+      "generated": "2026-01-16T13:53:04.760Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-guides-pages.png"
+    },
+    "doc:documentation-guides-templates": {
+      "hash": "3dc7dbca4bd504f2",
+      "generated": "2026-01-16T13:53:04.955Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-guides-templates.png"
+    },
+    "doc:documentation": {
+      "hash": "492ea53c1fda6367",
+      "generated": "2026-01-16T13:53:05.121Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation.png"
+    },
+    "doc:documentation-reference-annotations": {
+      "hash": "c757dcc9315aca86",
+      "generated": "2026-01-16T13:53:05.179Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-reference-annotations.png"
+    },
+    "doc:documentation-reference-cli-commands": {
+      "hash": "f5421a9f0990d179",
+      "generated": "2026-01-16T13:53:05.894Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-reference-cli-commands.png"
+    },
+    "doc:documentation-reference-configuration": {
+      "hash": "24d237309bebd8cb",
+      "generated": "2026-01-16T13:53:06.086Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-reference-configuration.png"
+    },
+    "doc:documentation-reference-design-tokens": {
+      "hash": "30beedfca844be55",
+      "generated": "2026-01-16T13:53:06.338Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-reference-design-tokens.png"
+    },
+    "doc:documentation-reference-icons": {
+      "hash": "25cde26096bd4ab2",
+      "generated": "2026-01-16T13:53:06.338Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-reference-icons.png"
+    },
+    "doc:documentation-reference": {
+      "hash": "080a0a9c46c1d6ca",
+      "generated": "2026-01-16T13:53:07.061Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-reference.png"
+    },
+    "doc:documentation-tutorials-icon-component": {
+      "hash": "e9bef359f504224c",
+      "generated": "2026-01-16T13:53:07.289Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-tutorials-icon-component.png"
+    },
+    "doc:documentation-tutorials": {
+      "hash": "70f3557037dd8251",
+      "generated": "2026-01-16T13:53:07.729Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-tutorials.png"
+    },
+    "doc:index": {
+      "hash": "cb7c3f465cdc595b",
+      "generated": "2026-01-16T13:53:07.730Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-index.png"
+    },
+    "doc:roadmap": {
+      "hash": "db79bba01ac1f79c",
+      "generated": "2026-01-16T13:53:08.227Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-roadmap.png"
+    },
+    "doc:tokens": {
+      "hash": "dd192ca698072943",
+      "generated": "2026-01-16T13:53:08.694Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-tokens.png"
+    },
+    "doc:documentation-guides-tokens": {
+      "hash": "b09f461e460bb211",
+      "generated": "2026-01-16T13:53:17.731Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/website/static/screenshots/page-documentation-guides-tokens.png"
+    }
+  }
+}

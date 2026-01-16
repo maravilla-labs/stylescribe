@@ -1,0 +1,380 @@
+/**
+ * @title Header
+ * @description Site-wide navigation header with logo, search, action buttons, and user avatar. Supports sticky positioning and multiple color schemes.
+ * @navtitle Header
+ * @group Navigation
+ * @order 1
+ * @dependencies avatar, button, search, icon
+ * @variations default, transparent, dark, sticky
+ * @elements
+ * - name: container
+ *   html: <div class="{{class}}"></div>
+ * - name: brand
+ *   html: <div class="{{class}}"></div>
+ * - name: logo
+ *   html: <span class="{{class}}">Logo</span>
+ * - name: nav
+ *   html: <nav class="{{class}}"></nav>
+ * - name: nav-item
+ *   html: <a class="{{class}}" href="#">Nav Item</a>
+ * - name: search
+ *   html: <div class="{{class}}"></div>
+ * - name: actions
+ *   html: <div class="{{class}}"></div>
+ * - name: user
+ *   html: <div class="{{class}}"></div>
+ * - name: menu-toggle
+ *   html: <button class="{{class}}" aria-label="Menu"><span class="ds-icon ds-icon--menu"></span></button>
+ * @examples
+ * - title: Default Header
+ *   description: Standard site header with navigation
+ *   code: |
+ *     <header class="ds-header">
+ *       <div class="ds-header__container">
+ *         <div class="ds-header__brand">
+ *           <span class="ds-header__logo">News Feed</span>
+ *         </div>
+ *         <nav class="ds-header__nav">
+ *           <a class="ds-header__nav-item ds-header__nav-item--active" href="#">Home</a>
+ *           <a class="ds-header__nav-item" href="#">Features</a>
+ *           <a class="ds-header__nav-item" href="#">Pricing</a>
+ *         </nav>
+ *         <div class="ds-header__actions">
+ *           <button class="ds-btn ds-btn--primary">Get Started</button>
+ *         </div>
+ *       </div>
+ *     </header>
+ * - title: Header with Search
+ *   description: Full header with search and user avatar (from screenshot)
+ *   code: |
+ *     <header class="ds-header">
+ *       <div class="ds-header__container">
+ *         <div class="ds-header__brand">
+ *           <svg class="ds-header__logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+ *           <span class="ds-header__logo">News Feed</span>
+ *         </div>
+ *         <div class="ds-header__search">
+ *           <div class="ds-search">
+ *             <svg class="ds-search__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *             <input class="ds-search__input" type="search" placeholder="Search articles...">
+ *           </div>
+ *         </div>
+ *         <div class="ds-header__actions">
+ *           <button class="ds-btn ds-btn--ghost" aria-label="Settings">
+ *             <svg class="ds-btn__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+ *           </button>
+ *           <button class="ds-btn ds-btn--primary">
+ *             <svg class="ds-btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+ *             <span class="ds-btn__label">New Article</span>
+ *           </button>
+ *         </div>
+ *         <div class="ds-header__user">
+ *           <div class="ds-avatar ds-avatar--sm">
+ *             <span class="ds-avatar__initials">DS</span>
+ *           </div>
+ *           <span class="ds-header__user-name">demo@solut...</span>
+ *         </div>
+ *       </div>
+ *     </header>
+ * - title: Sticky Header
+ *   description: Header that sticks to top on scroll
+ *   code: |
+ *     <header class="ds-header ds-header--sticky">
+ *       <div class="ds-header__container">
+ *         <div class="ds-header__brand">
+ *           <span class="ds-header__logo">Brand</span>
+ *         </div>
+ *         <nav class="ds-header__nav">
+ *           <a class="ds-header__nav-item" href="#">Products</a>
+ *           <a class="ds-header__nav-item" href="#">Solutions</a>
+ *           <a class="ds-header__nav-item" href="#">Resources</a>
+ *         </nav>
+ *         <div class="ds-header__actions">
+ *           <button class="ds-btn ds-btn--outline">Sign In</button>
+ *           <button class="ds-btn ds-btn--primary">Sign Up</button>
+ *         </div>
+ *       </div>
+ *     </header>
+ * - title: Transparent Header
+ *   description: Transparent background for hero overlays
+ *   code: |
+ *     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 0;">
+ *       <header class="ds-header ds-header--transparent">
+ *         <div class="ds-header__container">
+ *           <div class="ds-header__brand">
+ *             <span class="ds-header__logo">Brand</span>
+ *           </div>
+ *           <nav class="ds-header__nav">
+ *             <a class="ds-header__nav-item" href="#">About</a>
+ *             <a class="ds-header__nav-item" href="#">Blog</a>
+ *             <a class="ds-header__nav-item" href="#">Contact</a>
+ *           </nav>
+ *           <div class="ds-header__actions">
+ *             <button class="ds-btn ds-btn--outline">Login</button>
+ *           </div>
+ *         </div>
+ *       </header>
+ *     </div>
+ * - title: Dark Header
+ *   description: Dark themed header
+ *   code: |
+ *     <header class="ds-header ds-header--dark">
+ *       <div class="ds-header__container">
+ *         <div class="ds-header__brand">
+ *           <span class="ds-header__logo">Dark Theme</span>
+ *         </div>
+ *         <nav class="ds-header__nav">
+ *           <a class="ds-header__nav-item" href="#">Dashboard</a>
+ *           <a class="ds-header__nav-item" href="#">Analytics</a>
+ *           <a class="ds-header__nav-item" href="#">Settings</a>
+ *         </nav>
+ *         <div class="ds-header__user">
+ *           <div class="ds-avatar ds-avatar--sm">
+ *             <span class="ds-avatar__initials">JD</span>
+ *           </div>
+ *         </div>
+ *       </div>
+ *     </header>
+ * - title: Mobile Header with Menu Toggle
+ *   description: Header with hamburger menu for mobile
+ *   code: |
+ *     <header class="ds-header">
+ *       <div class="ds-header__container">
+ *         <button class="ds-header__menu-toggle" aria-label="Toggle menu">
+ *           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+ *         </button>
+ *         <div class="ds-header__brand">
+ *           <span class="ds-header__logo">Mobile</span>
+ *         </div>
+ *         <div class="ds-header__actions">
+ *           <button class="ds-btn ds-btn--ghost" aria-label="Search">
+ *             <svg class="ds-btn__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+ *           </button>
+ *         </div>
+ *       </div>
+ *     </header>
+ */
+
+@layer components {
+  .ds-header {
+    /* ===== Component Tokens ===== */
+    --header-bg: var(--color-semantic-surface);
+    --header-bg-blur: rgba(255, 255, 255, 0.9);
+    --header-text: var(--color-semantic-text);
+    --header-text-muted: var(--color-semantic-text-muted);
+    --header-border: var(--color-semantic-border);
+    --header-height: 64px;
+    --header-padding-x: var(--spacing-scale-lg);
+    --header-padding-y: 0;
+    --header-shadow: none;
+    --header-shadow-sticky: var(--shadow-sm);
+    --header-z-index: 1000;
+    --header-nav-gap: var(--spacing-scale-xs);
+    --header-nav-item-padding: var(--spacing-scale-sm) var(--spacing-scale-md);
+    --header-nav-item-radius: var(--border-radius-md);
+
+    /* ===== Base Styles ===== */
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: var(--header-height);
+    padding: var(--header-padding-y) var(--header-padding-x);
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--header-border);
+    box-shadow: var(--header-shadow);
+    font-family: var(--font-family-base);
+    position: relative;
+    z-index: var(--header-z-index);
+
+    /* ===== Elements ===== */
+    &__container {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-scale-lg);
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    &__brand {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-scale-sm);
+      flex-shrink: 0;
+    }
+
+    &__logo {
+      font-family: var(--font-family-heading);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      color: var(--header-text);
+      text-decoration: none;
+    }
+
+    &__logo-icon {
+      display: flex;
+      align-items: center;
+      color: var(--color-primary-500);
+
+      svg {
+        display: block;
+      }
+    }
+
+    &__nav {
+      display: flex;
+      align-items: center;
+      gap: var(--header-nav-gap);
+    }
+
+    &__nav-item {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--header-nav-item-padding);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-medium);
+      color: var(--header-text-muted);
+      text-decoration: none;
+      border-radius: var(--header-nav-item-radius);
+      transition:
+        color var(--transition-duration-fast),
+        background var(--transition-duration-fast);
+
+      &:hover {
+        color: var(--header-text);
+        background: var(--color-neutral-100);
+      }
+
+      &--active {
+        color: var(--color-primary-500);
+
+        &:hover {
+          color: var(--color-primary-600);
+        }
+      }
+    }
+
+    &__search {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      max-width: 400px;
+    }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-scale-sm);
+      margin-left: auto;
+    }
+
+    &__user {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-scale-sm);
+      padding-left: var(--spacing-scale-md);
+      border-left: 1px solid var(--header-border);
+      cursor: pointer;
+    }
+
+    &__user-name {
+      font-size: var(--font-size-sm);
+      color: var(--header-text-muted);
+      max-width: 120px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &__menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      color: var(--header-text);
+      background: transparent;
+      border: none;
+      border-radius: var(--border-radius-md);
+      cursor: pointer;
+      transition: background var(--transition-duration-fast);
+
+      &:hover {
+        background: var(--color-neutral-100);
+      }
+
+      svg {
+        display: block;
+      }
+    }
+  }
+
+  /* ===== Variations ===== */
+
+  .ds-header--sticky {
+    position: sticky;
+    top: 0;
+    background: var(--header-bg-blur);
+    backdrop-filter: blur(8px);
+    box-shadow: var(--header-shadow-sticky);
+  }
+
+  .ds-header--transparent {
+    --header-bg: transparent;
+    --header-text: #ffffff;
+    --header-text-muted: rgba(255, 255, 255, 0.8);
+    --header-border: rgba(255, 255, 255, 0.2);
+    border-bottom-color: var(--header-border);
+
+    .ds-header__nav-item {
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    .ds-header__logo-icon {
+      color: #ffffff;
+    }
+  }
+
+  .ds-header--dark {
+    --header-bg: var(--color-neutral-900);
+    --header-text: #ffffff;
+    --header-text-muted: var(--color-neutral-400);
+    --header-border: var(--color-neutral-800);
+
+    .ds-header__nav-item {
+      &:hover {
+        background: var(--color-neutral-800);
+      }
+    }
+
+    .ds-header__logo-icon {
+      color: var(--color-primary-400);
+    }
+  }
+
+  /* Responsive - Mobile */
+  @media (max-width: 768px) {
+    .ds-header {
+      --header-padding-x: var(--spacing-scale-md);
+
+      &__menu-toggle {
+        display: flex;
+      }
+
+      &__nav {
+        display: none;
+      }
+
+      &__search {
+        display: none;
+      }
+
+      &__user-name {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "tabs",
+    "description": "Design tokens for the Tabs component"
+  },
+  "tabs": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Tabs background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Tabs text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Tabs padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Tabs border radius"
+    }
+  }
+}

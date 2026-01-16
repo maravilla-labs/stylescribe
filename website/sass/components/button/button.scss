@@ -1,0 +1,290 @@
+/**
+ * @title Button
+ * @description Primary interactive element for user actions. Supports multiple
+ *   variants for different contexts and semantic meanings. Features modern CSS
+ *   including container queries for responsive component sizing.
+ * @navtitle Button
+ * @group Actions
+ * @order 1
+ * @verified true
+ * @role button
+ * @maintag button
+ * @variations primary, secondary, outline, ghost, danger
+ * @additional_variations sm, lg, loading, responsive
+ * @elements icon, label, spinner
+ * @classname btn
+ * @elementConfigs
+ * - name: icon
+ *   html: <svg class="{{class}}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+ * - name: label
+ *   html: <span class="{{class}}">Button</span>
+ * - name: spinner
+ *   html: <span class="{{class}}"></span>
+ * @examples
+ * - title: Complete Button
+ *   description: Button with all available elements
+ *   code: |
+ *     <button class="ds-btn ds-btn--primary">
+ *       <svg class="ds-btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+ *       <span class="ds-btn__label">Continue</span>
+ *       <span class="ds-btn__spinner" style="display: none;"></span>
+ *     </button>
+ * - title: Primary Button
+ *   description: Main call-to-action for important actions
+ *   code: <button class="ds-btn ds-btn--primary">Get Started</button>
+ * - title: Secondary Button
+ *   description: Supporting action with less emphasis
+ *   code: <button class="ds-btn ds-btn--secondary">Learn More</button>
+ * - title: Outline Button
+ *   description: Subtle bordered style
+ *   code: <button class="ds-btn ds-btn--outline">View Details</button>
+ * - title: Button with Icon
+ *   description: Visual indicator with action text
+ *   code: |
+ *     <button class="ds-btn ds-btn--primary">
+ *       <svg class="ds-btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+ *       <span class="ds-btn__label">Continue</span>
+ *     </button>
+ * - title: Icon Only Button
+ *   description: Compact button with just an icon
+ *   code: |
+ *     <button class="ds-btn ds-btn--ghost" aria-label="Settings">
+ *       <svg class="ds-btn__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+ *     </button>
+ * - title: Danger Button
+ *   description: Destructive action warning
+ *   code: |
+ *     <button class="ds-btn ds-btn--danger">
+ *       <svg class="ds-btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+ *       <span class="ds-btn__label">Delete</span>
+ *     </button>
+ * - title: Loading State
+ *   description: Shows progress during async operations
+ *   code: |
+ *     <button class="ds-btn ds-btn--primary ds-btn--loading" disabled>
+ *       <span class="ds-btn__spinner"></span>
+ *       <span class="ds-btn__label">Saving...</span>
+ *     </button>
+ * - title: Size Variations
+ *   description: Small and large button sizes
+ *   code: |
+ *     <button class="ds-btn ds-btn--primary ds-btn--sm">Small</button>
+ *     <button class="ds-btn ds-btn--primary">Default</button>
+ *     <button class="ds-btn ds-btn--primary ds-btn--lg">Large</button>
+ * - title: Container Query Responsive
+ *   description: Button adapts to container size (resize the container to see changes)
+ *   code: |
+ *     <div class="ds-btn-container" style="resize: horizontal; overflow: hidden; padding: 1rem; border: 2px dashed #ccc; min-width: 150px;">
+ *       <button class="ds-btn ds-btn--primary ds-btn--responsive">
+ *         <svg class="ds-btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+ *         <span class="ds-btn__label">Responsive Button</span>
+ *       </button>
+ *     </div>
+ */
+
+@layer components {
+  .ds-btn {
+    /* Internal token defaults (fallbacks) */
+    --btn-bg: transparent;
+    --btn-bg-hover: var(--btn-bg);
+    --btn-bg-active: var(--btn-bg-hover);
+
+    --btn-border: transparent;
+    --btn-border-hover: var(--btn-border);
+
+    --btn-text: var(--color-text);
+    --btn-text-hover: var(--btn-text);
+
+    --btn-shadow: none;
+    --btn-shadow-hover: var(--btn-shadow);
+
+    --btn-hover-translate-y: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+    text-decoration: none;
+
+    border: var(--border-width-thin) solid var(--btn-border);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    position: relative;
+
+    color: var(--btn-text);
+    background: var(--btn-bg);
+    box-shadow: var(--btn-shadow);
+
+    transition:
+      background var(--transition-fast),
+      color var(--transition-fast),
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast),
+      transform var(--transition-fast);
+
+    &:hover:not(:disabled) {
+      background: var(--btn-bg-hover);
+      color: var(--btn-text-hover);
+      border-color: var(--btn-border-hover);
+      box-shadow: var(--btn-shadow-hover);
+      transform: translateY(var(--btn-hover-translate-y));
+    }
+
+    &:active:not(:disabled) {
+      background: var(--btn-bg-active);
+      transform: translateY(0);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    /* Elements */
+    &__icon {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+
+      svg {
+        display: block;
+      }
+    }
+
+    &__label {
+      display: inline-block;
+    }
+
+    &__spinner {
+      width: 1em;
+      height: 1em;
+      border: 2px solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: btn-spin 0.75s linear infinite;
+    }
+
+    /* Sizes */
+    &--sm {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      font-size: var(--font-size-sm);
+      gap: var(--spacing-xs);
+    }
+
+    &--lg {
+      padding: var(--spacing-md) var(--spacing-lg);
+      font-size: var(--font-size-lg);
+    }
+
+    /* Loading */
+    &--loading {
+      .ds-btn__label {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  /* Variants only set tokens */
+
+  .ds-btn--primary {
+    --btn-bg: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
+    --btn-bg-hover: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-700) 100%);
+    --btn-border: var(--color-primary-500);
+    --btn-border-hover: var(--color-primary-600);
+    --btn-text: #fff;
+    --btn-text-hover: #fff;
+    --btn-shadow: var(--shadow-sm);
+    --btn-shadow-hover: var(--shadow-md);
+    --btn-hover-translate-y: -1px;
+  }
+
+  .ds-btn--secondary {
+    --btn-bg: var(--color-neutral-500);
+    --btn-bg-hover: var(--color-neutral-900);
+    --btn-border: var(--color-neutral-500);
+    --btn-border-hover: var(--color-neutral-900);
+    --btn-text: #fff;
+    --btn-text-hover: #fff;
+  }
+
+  .ds-btn--outline {
+    --btn-bg: transparent;
+    --btn-bg-hover: var(--color-primary-500);
+    --btn-border: var(--color-primary-500);
+    --btn-border-hover: var(--color-primary-500);
+    --btn-text: var(--color-primary-500);
+    --btn-text-hover: #fff;
+  }
+
+  .ds-btn--ghost {
+    --btn-bg: transparent;
+    --btn-bg-hover: var(--color-neutral-100);
+    --btn-border: transparent;
+    --btn-border-hover: transparent;
+    --btn-text: var(--color-text);
+    --btn-text-hover: var(--color-text);
+
+    padding: var(--spacing-sm);
+  }
+
+  .ds-btn--danger {
+    --btn-bg: linear-gradient(135deg, var(--color-danger-base) 0%, #a71d2a 100%);
+    --btn-bg-hover: linear-gradient(135deg, #c82333 0%, #8b1825 100%);
+    --btn-border: var(--color-danger-base);
+    --btn-border-hover: #c82333;
+    --btn-text: #fff;
+    --btn-text-hover: #fff;
+  }
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Container Query Demo */
+.ds-btn-container {
+  container-type: inline-size;
+  container-name: button-container;
+}
+
+/* Responsive button that adapts to container size */
+@layer components {
+  .ds-btn--responsive {
+    @container button-container (max-width: 200px) {
+      padding: var(--spacing-sm);
+
+      .ds-btn__label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+      }
+    }
+
+    @container button-container (min-width: 200px) and (max-width: 300px) {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      font-size: var(--font-size-sm);
+      gap: var(--spacing-xs);
+    }
+
+    @container button-container (min-width: 400px) {
+      padding: var(--spacing-md) var(--spacing-xl);
+      font-size: var(--font-size-lg);
+      gap: var(--spacing-md);
+    }
+  }
+}

@@ -1,0 +1,183 @@
+/**
+ * @title Progress Bar
+ * @description Visual indicator showing task completion or loading state.
+ *   Demonstrates component-specific design tokens with token references.
+ * @navtitle Progress
+ * @group Feedback
+ * @order 3
+ * @verified true
+ * @classname progress
+ * @variations default, success, warning, danger
+ * @additional_variations sm, lg, striped, animated
+ * @elements track
+ * @elementConfigs
+ * - name: track
+ *   pug: div(class="{{class}}"): div.ds-progress__fill(style="width: 60%")
+ * @examples
+ * - title: Basic Progress
+ *   description: Default progress bar at 60%
+ *   code: |
+ *     <div class="ds-progress">
+ *       <div class="ds-progress__track">
+ *         <div class="ds-progress__fill" style="width: 60%"></div>
+ *       </div>
+ *     </div>
+ * - title: With Label
+ *   description: Progress bar with percentage label
+ *   code: |
+ *     <div class="ds-progress">
+ *       <div class="ds-progress__header">
+ *         <span class="ds-progress__label">Uploading...</span>
+ *         <span class="ds-progress__value">75%</span>
+ *       </div>
+ *       <div class="ds-progress__track">
+ *         <div class="ds-progress__fill" style="width: 75%"></div>
+ *       </div>
+ *     </div>
+ * - title: Status Variants
+ *   description: Semantic color variations for different states
+ *   code: |
+ *     <div class="ds-progress ds-progress--success" style="margin-bottom: 8px;">
+ *       <div class="ds-progress__track">
+ *         <div class="ds-progress__fill" style="width: 100%"></div>
+ *       </div>
+ *     </div>
+ *     <div class="ds-progress ds-progress--warning" style="margin-bottom: 8px;">
+ *       <div class="ds-progress__track">
+ *         <div class="ds-progress__fill" style="width: 60%"></div>
+ *       </div>
+ *     </div>
+ *     <div class="ds-progress ds-progress--danger">
+ *       <div class="ds-progress__track">
+ *         <div class="ds-progress__fill" style="width: 25%"></div>
+ *       </div>
+ *     </div>
+ * - title: Animated Striped
+ *   description: Animated stripes for indeterminate progress
+ *   code: |
+ *     <div class="ds-progress ds-progress--striped ds-progress--animated">
+ *       <div class="ds-progress__track">
+ *         <div class="ds-progress__fill" style="width: 100%"></div>
+ *       </div>
+ *     </div>
+ * - title: Size Variants
+ *   description: Small and large progress bars
+ *   code: |
+ *     <div class="ds-progress ds-progress--sm" style="margin-bottom: 12px;">
+ *       <div class="ds-progress__track">
+ *         <div class="ds-progress__fill" style="width: 40%"></div>
+ *       </div>
+ *     </div>
+ *     <div class="ds-progress" style="margin-bottom: 12px;">
+ *       <div class="ds-progress__track">
+ *         <div class="ds-progress__fill" style="width: 60%"></div>
+ *       </div>
+ *     </div>
+ *     <div class="ds-progress ds-progress--lg">
+ *       <div class="ds-progress__track">
+ *         <div class="ds-progress__fill" style="width: 80%"></div>
+ *       </div>
+ *     </div>
+ */
+
+@layer components {
+  .ds-progress {
+    /* Internal token defaults */
+    --progress-track-height: var(--spacing-sm);
+    --progress-track-bg: var(--color-neutral-100);
+    --progress-track-radius: 9999px;
+    --progress-fill-bg: var(--color-primary-500);
+    --progress-animation-duration: var(--transition-slow);
+    --progress-label-color: var(--color-text);
+    --progress-label-size: var(--font-size-sm);
+
+    width: 100%;
+
+    /* Elements */
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    &__label {
+      font-size: var(--progress-label-size);
+      color: var(--progress-label-color);
+      font-weight: var(--font-weight-medium);
+    }
+
+    &__value {
+      font-size: var(--progress-label-size);
+      color: var(--color-text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    &__track {
+      height: var(--progress-track-height);
+      background-color: var(--progress-track-bg);
+      border-radius: var(--progress-track-radius);
+      overflow: hidden;
+    }
+
+    &__fill {
+      height: 100%;
+      background-color: var(--progress-fill-bg);
+      border-radius: inherit;
+
+      transition: width var(--progress-animation-duration) ease;
+    }
+  }
+
+  /* Variants only set tokens */
+
+  .ds-progress--success {
+    --progress-fill-bg: var(--color-success-base);
+  }
+
+  .ds-progress--warning {
+    --progress-fill-bg: var(--color-warning-base);
+  }
+
+  .ds-progress--danger {
+    --progress-fill-bg: var(--color-danger-base);
+  }
+
+  /* Size variants */
+  .ds-progress--sm {
+    --progress-track-height: calc(var(--spacing-sm) / 2);
+  }
+
+  .ds-progress--lg {
+    --progress-track-height: calc(var(--spacing-sm) * 1.5);
+  }
+
+  /* Striped variant */
+  .ds-progress--striped .ds-progress__fill {
+    background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 1rem 1rem;
+  }
+
+  /* Animated variant */
+  .ds-progress--animated .ds-progress__fill {
+    animation: progress-stripes 1s linear infinite;
+  }
+}
+
+@keyframes progress-stripes {
+  from {
+    background-position: 1rem 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}

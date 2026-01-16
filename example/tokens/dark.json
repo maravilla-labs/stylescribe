@@ -1,0 +1,65 @@
+{
+  "$meta": {
+    "name": "dark",
+    "mode": "dark",
+    "description": "Dark mode theme - overrides semantic tokens for dark backgrounds"
+  },
+  "color": {
+    "semantic": {
+      "$description": "Semantic colors for dark mode - matches paths used by components",
+      "background": {
+        "$value": "#1a1a2e",
+        "$type": "color",
+        "$description": "Dark page background"
+      },
+      "surface": {
+        "$value": "#16213e",
+        "$type": "color",
+        "$description": "Dark surface/card background"
+      },
+      "text": {
+        "$value": "#eaeaea",
+        "$type": "color",
+        "$description": "Light text on dark backgrounds"
+      },
+      "text-muted": {
+        "$value": "#a0a0a0",
+        "$type": "color",
+        "$description": "Muted/secondary text on dark"
+      },
+      "border": {
+        "$value": "#3a3a5c",
+        "$type": "color",
+        "$description": "Border color on dark backgrounds"
+      }
+    },
+    "primary": {
+      "$description": "Primary brand colors adjusted for dark mode",
+      "500": {
+        "$value": "#4dabf7",
+        "$type": "color",
+        "$description": "Primary color for dark mode (lighter for contrast)"
+      },
+      "600": {
+        "$value": "#74c0fc",
+        "$type": "color",
+        "$description": "Primary hover on dark"
+      }
+    },
+    "neutral": {
+      "50": {
+        "$value": "#2a2a4a",
+        "$type": "color",
+        "$description": "Lightest neutral on dark"
+      },
+      "100": {
+        "$value": "#323252",
+        "$type": "color"
+      },
+      "200": {
+        "$value": "#3a3a5c",
+        "$type": "color"
+      }
+    }
+  }
+}

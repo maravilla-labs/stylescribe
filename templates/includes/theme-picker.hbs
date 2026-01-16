@@ -1,0 +1,78 @@
+{{!-- Theme Picker for component preview area --}}
+{{#if themeOptions}}
+<div class="theme-picker flex items-center gap-4 p-3 rounded-lg mb-4 {{themeClass 'themePicker' 'background'}}" id="themePicker">
+    {{!-- Mode Toggle (Light/Dark/System) --}}
+    <div class="flex items-center gap-2">
+        <span class="text-xs font-medium uppercase tracking-wider {{themeClass 'themePicker' 'label'}}">Mode</span>
+        <div class="flex items-center rounded-lg p-0.5 {{themeClass 'themePicker' 'button'}}">
+            {{#each themeOptions.modes}}
+            <button class="theme-mode-btn px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors
+                          {{#if (eq this.name 'light')}}theme-mode-active{{/if}}"
+                    data-mode="{{this.name}}"
+                    title="{{this.label}} mode">
+                {{#if (eq this.name "light")}}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+                {{else if (eq this.name "dark")}}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                </svg>
+                {{else}}
+                {{this.label}}
+                {{/if}}
+            </button>
+            {{/each}}
+            {{!-- System mode option --}}
+            <button class="theme-mode-btn px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors"
+                    data-mode="system"
+                    title="System preference">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    {{!-- Theme Variant Selector (only show if there are variants) --}}
+    {{#if themeOptions.variants}}
+    {{#unless (eq themeOptions.variants.length 1)}}
+    <div class="flex items-center gap-2">
+        <span class="text-xs font-medium uppercase tracking-wider {{themeClass 'themePicker' 'label'}}">Theme</span>
+        <select id="themeVariantSelect"
+                class="text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500 {{themeClass 'themePicker' 'button'}} {{themeClass 'card' 'title'}}">
+            {{#each themeOptions.variants}}
+            <option value="{{this.name}}" data-class="{{this.className}}">
+                {{this.label}}
+            </option>
+            {{/each}}
+        </select>
+    </div>
+    {{/unless}}
+    {{/if}}
+</div>
+
+<style>
+.theme-picker .theme-mode-btn {
+    color: var(--color-slate-600, #475569);
+}
+.dark .theme-picker .theme-mode-btn {
+    color: var(--color-slate-400, #94a3b8);
+}
+.theme-picker .theme-mode-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.dark .theme-picker .theme-mode-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.theme-picker .theme-mode-btn.theme-mode-active {
+    background-color: white;
+    color: var(--color-slate-900, #0f172a);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.dark .theme-picker .theme-mode-btn.theme-mode-active {
+    background-color: var(--color-slate-600, #475569);
+    color: white;
+}
+</style>
+{{/if}}

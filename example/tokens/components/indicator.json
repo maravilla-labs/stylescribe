@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "indicator",
+    "description": "Design tokens for the Indicator component"
+  },
+  "indicator": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Indicator background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Indicator text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Indicator padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Indicator border radius"
+    }
+  }
+}

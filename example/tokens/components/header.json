@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "header",
+    "description": "Design tokens for the Header component"
+  },
+  "header": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Header background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Header text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Header padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Header border radius"
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "$meta": {
+    "name": "dark",
+    "mode": "dark",
+    "description": "Dark mode theme - uses programmable functions for accessibility"
+  },
+  "color": {
+    "background": {
+      "$value": "#0f172a",
+      "$type": "color",
+      "$description": "Dark slate background"
+    },
+    "surface": {
+      "$value": "#1e293b",
+      "$type": "color",
+      "$description": "Elevated surface in dark mode"
+    },
+    "text": {
+      "$value": "#f1f5f9",
+      "$type": "color",
+      "$description": "High contrast text"
+    },
+    "text-muted": {
+      "$value": "#94a3b8",
+      "$type": "color",
+      "$description": "Secondary text"
+    },
+    "primary": {
+      "50": { "$value": "shade(#6366f1, 50%)", "$type": "color" },
+      "100": { "$value": "shade(#6366f1, 40%)", "$type": "color" },
+      "200": { "$value": "shade(#6366f1, 30%)", "$type": "color" },
+      "300": { "$value": "shade(#6366f1, 15%)", "$type": "color" },
+      "400": { "$value": "#6366f1", "$type": "color" },
+      "500": { "$value": "tint(#6366f1, 15%)", "$type": "color" },
+      "600": { "$value": "tint(#6366f1, 30%)", "$type": "color" },
+      "700": { "$value": "tint(#6366f1, 45%)", "$type": "color" },
+      "800": { "$value": "tint(#6366f1, 60%)", "$type": "color" },
+      "900": { "$value": "tint(#6366f1, 80%)", "$type": "color" }
+    },
+    "on-primary": {
+      "$value": "accessibleText(tint(#6366f1, 15%))",
+      "$type": "color",
+      "$description": "Accessible text on dark mode primary"
+    },
+    "accent": {
+      "$value": "tint(complement(#6366f1), 20%)",
+      "$type": "color",
+      "$description": "Brighter accent for dark mode"
+    },
+    "success": {
+      "base": { "$value": "tint(#22c55e, 15%)", "$type": "color" },
+      "light": { "$value": "shade(#22c55e, 50%)", "$type": "color" },
+      "dark": { "$value": "tint(#22c55e, 30%)", "$type": "color" }
+    },
+    "warning": {
+      "base": { "$value": "tint(#f59e0b, 10%)", "$type": "color" },
+      "light": { "$value": "shade(#f59e0b, 50%)", "$type": "color" },
+      "dark": { "$value": "tint(#f59e0b, 25%)", "$type": "color" }
+    },
+    "danger": {
+      "base": { "$value": "tint(#ef4444, 15%)", "$type": "color" },
+      "light": { "$value": "shade(#ef4444, 50%)", "$type": "color" },
+      "dark": { "$value": "tint(#ef4444, 30%)", "$type": "color" }
+    },
+    "border": {
+      "$value": "#334155",
+      "$type": "color",
+      "$description": "Visible border on dark backgrounds"
+    },
+    "overlay": {
+      "light": { "$value": "alpha(#f1f5f9, 0.05)", "$type": "color" },
+      "medium": { "$value": "alpha(#f1f5f9, 0.15)", "$type": "color" },
+      "dark": { "$value": "alpha(#000000, 0.6)", "$type": "color" }
+    }
+  }
+}

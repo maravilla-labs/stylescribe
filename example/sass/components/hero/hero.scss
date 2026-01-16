@@ -1,0 +1,181 @@
+/**
+ * @title Hero
+ * @description Full-width banner section for prominent content like landing pages,
+ *   feature highlights, or call-to-action areas. Supports multiple alignment and
+ *   color variations.
+ * @group Layout
+ * @order 2
+ * @dependencies button
+ * @classname hero
+ * @variations centered, primary, dark, subtle
+ * @elements
+ * - name: content
+ *   html: <div class="{{class}}"></div>
+ * - name: title
+ *   html: <h1 class="{{class}}">Hero Title</h1>
+ * - name: subtitle
+ *   html: <p class="{{class}}">Hero subtitle text</p>
+ * - name: description
+ *   html: <p class="{{class}}">Description text</p>
+ * - name: actions
+ *   html: <div class="{{class}}"></div>
+ * @examples
+ * - title: Default Hero
+ *   description: Left-aligned hero with title, subtitle and actions
+ *   code: |
+ *     <section class="ds-hero">
+ *       <div class="ds-hero__content">
+ *         <h1 class="ds-hero__title">Welcome to Our Platform</h1>
+ *         <p class="ds-hero__subtitle">Build something amazing today</p>
+ *         <p class="ds-hero__description">Get started with our powerful tools and create stunning experiences for your users.</p>
+ *         <div class="ds-hero__actions">
+ *           <button class="ds-btn ds-btn--primary">Get Started</button>
+ *           <button class="ds-btn ds-btn--outline">Learn More</button>
+ *         </div>
+ *       </div>
+ *     </section>
+ * - title: Centered Hero
+ *   description: Center-aligned hero for landing pages
+ *   code: |
+ *     <section class="ds-hero ds-hero--centered">
+ *       <div class="ds-hero__content">
+ *         <h1 class="ds-hero__title">Centered Hero Section</h1>
+ *         <p class="ds-hero__subtitle">Perfect for landing pages and feature announcements</p>
+ *         <div class="ds-hero__actions">
+ *           <button class="ds-btn ds-btn--primary ds-btn--lg">Call to Action</button>
+ *         </div>
+ *       </div>
+ *     </section>
+ * - title: Primary Hero
+ *   description: Hero with primary brand color background
+ *   code: |
+ *     <section class="ds-hero ds-hero--primary ds-hero--centered">
+ *       <div class="ds-hero__content">
+ *         <h1 class="ds-hero__title">Primary Brand Hero</h1>
+ *         <p class="ds-hero__subtitle">Stand out with your brand colors</p>
+ *         <div class="ds-hero__actions">
+ *           <button class="ds-btn ds-btn--outline-light">Explore Features</button>
+ *         </div>
+ *       </div>
+ *     </section>
+ * - title: Dark Hero
+ *   description: Hero with dark background
+ *   code: |
+ *     <section class="ds-hero ds-hero--dark ds-hero--centered">
+ *       <div class="ds-hero__content">
+ *         <h1 class="ds-hero__title">Dark Theme Hero</h1>
+ *         <p class="ds-hero__subtitle">Elegant and professional look</p>
+ *         <div class="ds-hero__actions">
+ *           <button class="ds-btn ds-btn--primary">Get Started</button>
+ *         </div>
+ *       </div>
+ *     </section>
+ * - title: Subtle Hero
+ *   description: Hero with subtle background for secondary sections
+ *   code: |
+ *     <section class="ds-hero ds-hero--subtle">
+ *       <div class="ds-hero__content">
+ *         <h1 class="ds-hero__title">Subtle Background</h1>
+ *         <p class="ds-hero__subtitle">Great for secondary content sections</p>
+ *         <p class="ds-hero__description">Use this variation when you need a hero section that doesn't compete with the main content.</p>
+ *       </div>
+ *     </section>
+ */
+
+@layer components {
+  .ds-hero {
+    /* ===== Component Tokens ===== */
+    --hero-bg: var(--color-semantic-surface);
+    --hero-text: var(--color-semantic-text);
+    --hero-text-muted: var(--color-semantic-text-muted);
+    --hero-padding-y: var(--spacing-fluid-xl);
+    --hero-padding-x: var(--spacing-scale-lg);
+    --hero-max-width: 800px;
+    --hero-gap: var(--spacing-scale-lg);
+    --hero-text-align: left;
+
+    /* ===== Base Styles ===== */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: var(--hero-bg);
+    color: var(--hero-text);
+    font-family: var(--font-family-base);
+    padding: var(--hero-padding-y) var(--hero-padding-x);
+
+    /* ===== Elements ===== */
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--hero-gap);
+      max-width: var(--hero-max-width);
+      width: 100%;
+      text-align: var(--hero-text-align);
+    }
+
+    &__title {
+      font-family: var(--font-family-heading);
+      font-size: var(--font-size-5xl);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--font-lineHeight-tight);
+      letter-spacing: var(--font-letterSpacing-tight);
+      margin: 0;
+      color: inherit;
+    }
+
+    &__subtitle {
+      font-family: var(--font-family-base);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: var(--font-lineHeight-normal);
+      margin: 0;
+      color: inherit;
+      opacity: 0.9;
+    }
+
+    &__description {
+      font-size: var(--font-size-lg);
+      line-height: var(--font-lineHeight-relaxed);
+      margin: 0;
+      color: var(--hero-text-muted);
+    }
+
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-scale-md);
+      margin-top: var(--spacing-scale-sm);
+    }
+  }
+
+  /* ===== Variations (token overrides only) ===== */
+
+  .ds-hero--centered {
+    --hero-text-align: center;
+
+    .ds-hero__content {
+      align-items: center;
+    }
+
+    .ds-hero__actions {
+      justify-content: center;
+    }
+  }
+
+  .ds-hero--primary {
+    --hero-bg: var(--color-primary-500);
+    --hero-text: var(--color-accessibility-on-primary);
+    --hero-text-muted: var(--color-accessibility-on-primary);
+  }
+
+  .ds-hero--dark {
+    --hero-bg: var(--color-neutral-900);
+    --hero-text: var(--color-neutral-50);
+    --hero-text-muted: var(--color-neutral-400);
+  }
+
+  .ds-hero--subtle {
+    --hero-bg: var(--color-neutral-100);
+    --hero-padding-y: var(--spacing-fluid-lg);
+  }
+}

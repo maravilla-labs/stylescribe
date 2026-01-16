@@ -1,0 +1,43 @@
+{
+  "$meta": {
+    "name": "hero",
+    "description": "Design tokens for the Hero component"
+  },
+  "hero": {
+    "background": {
+      "$value": "{color.semantic.surface}",
+      "$type": "color",
+      "$description": "Hero background color"
+    },
+    "text": {
+      "$value": "{color.semantic.text}",
+      "$type": "color",
+      "$description": "Hero text color"
+    },
+    "text-muted": {
+      "$value": "{color.semantic.text-muted}",
+      "$type": "color",
+      "$description": "Hero muted text color for descriptions"
+    },
+    "padding-y": {
+      "$value": "{spacing.fluid.xl}",
+      "$type": "dimension",
+      "$description": "Hero vertical padding (fluid)"
+    },
+    "padding-x": {
+      "$value": "{spacing.scale.lg}",
+      "$type": "dimension",
+      "$description": "Hero horizontal padding"
+    },
+    "max-width": {
+      "$value": "800px",
+      "$type": "dimension",
+      "$description": "Maximum width of hero content"
+    },
+    "gap": {
+      "$value": "{spacing.scale.lg}",
+      "$type": "dimension",
+      "$description": "Gap between hero elements"
+    }
+  }
+}

@@ -1,0 +1,167 @@
+/**
+ * @title Alert
+ * @description Contextual feedback messages for user notifications.
+ *   Supports semantic variants for different message types.
+ * @navtitle Alert
+ * @group Feedback
+ * @order 1
+ * @verified true
+ * @role alert
+ * @maintag div
+ * @dependencies icon
+ * @variations info, success, warning, error
+ * @elements
+ * - name: icon
+ *   html: <span class="{{class}} ds-icon ds-icon--info"></span>
+ * - name: content
+ *   html: <div class="{{class}}"></div>
+ * - name: title
+ *   html: <strong class="{{class}}">Alert Title</strong>
+ * - name: message
+ *   html: <p class="{{class}}">Alert message content.</p>
+ * - name: close
+ *   html: <button class="{{class}} ds-icon ds-icon--cancel"></button>
+ * @examples
+ * - title: Success Alert
+ *   description: Confirms successful operations
+ *   code: |
+ *     <div class="ds-alert ds-alert--success" role="alert">
+ *       <svg class="ds-alert__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+ *       <div class="ds-alert__content">
+ *         <strong class="ds-alert__title">Success!</strong>
+ *         <p class="ds-alert__message">Your changes have been saved successfully.</p>
+ *       </div>
+ *       <button class="ds-alert__close" aria-label="Dismiss">
+ *         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+ *       </button>
+ *     </div>
+ * - title: Error Alert
+ *   description: Indicates errors requiring attention
+ *   code: |
+ *     <div class="ds-alert ds-alert--error" role="alert">
+ *       <svg class="ds-alert__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+ *       <p class="ds-alert__message">Something went wrong. Please try again.</p>
+ *     </div>
+ * - title: Info Alert
+ *   description: Provides helpful information
+ *   code: |
+ *     <div class="ds-alert ds-alert--info" role="alert">
+ *       <svg class="ds-alert__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+ *       <p class="ds-alert__message">A new version is available. Refresh to update.</p>
+ *     </div>
+ * - title: Warning Alert
+ *   description: Warns about potential issues
+ *   code: |
+ *     <div class="ds-alert ds-alert--warning" role="alert">
+ *       <svg class="ds-alert__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+ *       <p class="ds-alert__message">Your session will expire in 5 minutes.</p>
+ *     </div>
+ */
+
+@layer components {
+  .ds-alert {
+    /* Internal token defaults */
+    --alert-bg: var(--color-neutral-100);
+    --alert-border: var(--color-neutral-200);
+    --alert-text: var(--color-semantic-text);
+    --alert-close-hover-bg: rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-scale-sm);
+    padding: var(--spacing-scale-md);
+    border-radius: var(--border-radius-lg);
+    border-left: 4px solid var(--alert-border);
+    background-color: var(--alert-bg);
+    color: var(--alert-text);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--font-lineHeight-normal);
+
+    /* Elements */
+    &__icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    &__content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    &__title {
+      display: block;
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--spacing-scale-xs);
+    }
+
+    &__message {
+      margin: 0;
+      line-height: var(--font-lineHeight-normal);
+    }
+
+    &__close {
+      /* Internal token defaults for close button */
+      --close-opacity: 0.6;
+      --close-opacity-hover: 1;
+
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      opacity: var(--close-opacity);
+
+      transition:
+        opacity var(--transition-duration-fast),
+        background-color var(--transition-duration-fast);
+
+      &:hover {
+        opacity: var(--close-opacity-hover);
+        background-color: var(--alert-close-hover-bg);
+      }
+
+      &:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+        opacity: var(--close-opacity-hover);
+      }
+    }
+  }
+
+  /* Variants only set tokens */
+
+  .ds-alert--info {
+    --alert-bg: #e7f5ff;
+    --alert-border: var(--color-info-base);
+    --alert-text: #1971c2;
+    --alert-close-hover-bg: rgba(25, 113, 194, 0.1);
+  }
+
+  .ds-alert--success {
+    --alert-bg: #ebfbee;
+    --alert-border: var(--color-success-base);
+    --alert-text: #2f9e44;
+    --alert-close-hover-bg: rgba(47, 158, 68, 0.1);
+  }
+
+  .ds-alert--warning {
+    --alert-bg: #fff9db;
+    --alert-border: var(--color-warning-base);
+    --alert-text: #e67700;
+    --alert-close-hover-bg: rgba(230, 119, 0, 0.1);
+  }
+
+  .ds-alert--error {
+    --alert-bg: #fff5f5;
+    --alert-border: var(--color-danger-base);
+    --alert-text: #e03131;
+    --alert-close-hover-bg: rgba(224, 49, 49, 0.1);
+  }
+}

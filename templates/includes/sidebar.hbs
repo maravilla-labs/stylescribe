@@ -1,0 +1,95 @@
+{{!--
+  Sidebar partial for documentation pages
+  Supports nested hierarchical navigation with fallback to flat sibling pages
+
+  Usage: {{> sidebar}}
+
+  Expected context variables:
+  - isNested: boolean - true if page is in a subfolder
+  - sidebarTree: object - nested navigation tree (optional)
+  - folderContext: object - folder info with label and href
+  - siblingPages: array - flat list of sibling pages (fallback)
+  - currentSlug: string - current page slug for active state
+  - navigation: object - global navigation with pages array
+  - groups: object - component groups
+  - basePath: string - base path for links
+  - isFolderIndex: boolean - true if page is folder's index.md
+--}}
+<aside class="hidden lg:block w-64 shrink-0 border-r {{themeClass 'sidebar' 'background'}}">
+    <nav class="sidebar-nav sticky top-16 max-h-[calc(100vh-64px)] overflow-y-auto p-4">
+        {{#if isNested}}
+        {{#if sidebarTree}}
+        {{!-- Nested hierarchical sidebar navigation --}}
+        <div class="sidebar-section-title">
+            {{#if sidebarTree.href}}
+            <a href="{{sidebarTree.hrefPrefix}}{{sidebarTree.href}}" class="hover:text-indigo-600 dark:hover:text-indigo-400 {{#if sidebarTree.isActive}}text-indigo-600 dark:text-indigo-400{{/if}}">
+                {{sidebarTree.label}}
+            </a>
+            {{else}}
+            {{sidebarTree.label}}
+            {{/if}}
+        </div>
+        {{#if sidebarTree.children.length}}
+        <div class="sidebar-tree-root" data-href-prefix="{{sidebarTree.hrefPrefix}}">
+            {{> sidebar-tree items=sidebarTree.children hrefPrefix=sidebarTree.hrefPrefix}}
+        </div>
+        {{/if}}
+        {{else if folderContext}}
+        {{!-- Fallback to flat sibling pages --}}
+        <div class="sidebar-section-title">
+            {{#if isFolderIndex}}
+            {{folderContext.label}}
+            {{else}}
+            <a href="index.html" class="hover:text-indigo-600">{{folderContext.label}}</a>
+            {{/if}}
+        </div>
+        <ul class="space-y-1">
+            {{#each siblingPages}}
+            <li>
+                <a class="sidebar-link {{#if (eq this.slug ../currentSlug)}}active{{/if}}"
+                   href="{{this.href}}">
+                    {{this.title}}
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+        {{else}}
+        <div class="sidebar-section-title">
+            Documentation
+        </div>
+        <ul class="space-y-1">
+            {{#each navigation.pages}}
+            <li>
+                <a class="sidebar-link {{#if (eq this.slug ../currentSlug)}}active{{/if}}"
+                   href="{{../basePath}}{{this.slug}}.html">
+                    {{this.title}}
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+
+        {{#unless isNested}}
+        {{#if groups}}
+        <div class="sidebar-section-title mt-6">
+            Components
+        </div>
+        {{#each groups as |groupComponents groupName|}}
+        <div class="sidebar-group-title">
+            {{groupName}}
+        </div>
+        <ul class="space-y-1 mb-3">
+            {{#each groupComponents}}
+            <li>
+                <a class="sidebar-link" href="{{@root.basePath}}components/{{this.name}}.html">
+                    {{this.title}}
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+        {{/each}}
+        {{/if}}
+        {{/unless}}
+    </nav>
+</aside>

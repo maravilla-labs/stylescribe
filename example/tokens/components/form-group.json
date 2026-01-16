@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "form-group",
+    "description": "Design tokens for the Form-group component"
+  },
+  "form-group": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Form-group background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Form-group text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Form-group padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Form-group border radius"
+    }
+  }
+}

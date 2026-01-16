@@ -1,0 +1,203 @@
+{
+  "$meta": {
+    "name": "button",
+    "description": "Design tokens for the Button component"
+  },
+  "button": {
+    "background": {
+      "default": {
+        "$value": "transparent",
+        "$type": "color",
+        "$description": "Default button background color"
+      },
+      "hover": {
+        "$value": "{button.background.default}",
+        "$type": "color",
+        "$description": "Button background on hover state"
+      },
+      "active": {
+        "$value": "{button.background.hover}",
+        "$type": "color",
+        "$description": "Button background on active/pressed state"
+      }
+    },
+    "border": {
+      "color": {
+        "$value": "transparent",
+        "$type": "color",
+        "$description": "Default button border color"
+      },
+      "hover": {
+        "$value": "{button.border.color}",
+        "$type": "color",
+        "$description": "Button border color on hover"
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "{color.text}",
+        "$type": "color",
+        "$description": "Default button text color"
+      },
+      "hover": {
+        "$value": "{button.text.default}",
+        "$type": "color",
+        "$description": "Button text color on hover"
+      }
+    },
+    "shadow": {
+      "default": {
+        "$value": "none",
+        "$type": "shadow",
+        "$description": "Default button shadow"
+      },
+      "hover": {
+        "$value": "{button.shadow.default}",
+        "$type": "shadow",
+        "$description": "Button shadow on hover"
+      }
+    },
+    "transform": {
+      "hover-y": {
+        "$value": "0",
+        "$type": "dimension",
+        "$description": "Vertical translation on hover (negative moves up)"
+      }
+    },
+    "primary": {
+      "$description": "Primary button variant tokens",
+      "background": {
+        "$value": "linear-gradient(135deg, {color.primary.500} 0%, {color.primary.600} 100%)",
+        "$type": "color",
+        "$description": "Primary button gradient background"
+      },
+      "background-hover": {
+        "$value": "linear-gradient(135deg, {color.primary.600} 0%, {color.primary.700} 100%)",
+        "$type": "color",
+        "$description": "Primary button gradient on hover"
+      },
+      "border": {
+        "$value": "{color.primary.500}",
+        "$type": "color",
+        "$description": "Primary button border color"
+      },
+      "border-hover": {
+        "$value": "{color.primary.600}",
+        "$type": "color",
+        "$description": "Primary button border on hover"
+      },
+      "text": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Primary button text color"
+      },
+      "shadow": {
+        "$value": "{shadow.sm}",
+        "$type": "shadow",
+        "$description": "Primary button shadow"
+      },
+      "shadow-hover": {
+        "$value": "{shadow.md}",
+        "$type": "shadow",
+        "$description": "Primary button shadow on hover"
+      }
+    },
+    "secondary": {
+      "$description": "Secondary button variant tokens",
+      "background": {
+        "$value": "{color.neutral.500}",
+        "$type": "color",
+        "$description": "Secondary button background"
+      },
+      "background-hover": {
+        "$value": "{color.neutral.900}",
+        "$type": "color",
+        "$description": "Secondary button background on hover"
+      },
+      "border": {
+        "$value": "{color.neutral.500}",
+        "$type": "color",
+        "$description": "Secondary button border"
+      },
+      "border-hover": {
+        "$value": "{color.neutral.900}",
+        "$type": "color",
+        "$description": "Secondary button border on hover"
+      },
+      "text": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Secondary button text color"
+      }
+    },
+    "outline": {
+      "$description": "Outline button variant tokens",
+      "background": {
+        "$value": "transparent",
+        "$type": "color",
+        "$description": "Outline button background"
+      },
+      "background-hover": {
+        "$value": "{color.primary.500}",
+        "$type": "color",
+        "$description": "Outline button background on hover"
+      },
+      "border": {
+        "$value": "{color.primary.500}",
+        "$type": "color",
+        "$description": "Outline button border"
+      },
+      "text": {
+        "$value": "{color.primary.500}",
+        "$type": "color",
+        "$description": "Outline button text"
+      },
+      "text-hover": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Outline button text on hover"
+      }
+    },
+    "ghost": {
+      "$description": "Ghost button variant tokens",
+      "background-hover": {
+        "$value": "{color.neutral.100}",
+        "$type": "color",
+        "$description": "Ghost button background on hover"
+      },
+      "text": {
+        "$value": "{color.text}",
+        "$type": "color",
+        "$description": "Ghost button text color"
+      }
+    },
+    "danger": {
+      "$description": "Danger button variant tokens",
+      "background": {
+        "$value": "linear-gradient(135deg, {color.danger.base} 0%, #a71d2a 100%)",
+        "$type": "color",
+        "$description": "Danger button gradient background"
+      },
+      "background-hover": {
+        "$value": "linear-gradient(135deg, #c82333 0%, #8b1825 100%)",
+        "$type": "color",
+        "$description": "Danger button gradient on hover"
+      },
+      "border": {
+        "$value": "{color.danger.base}",
+        "$type": "color",
+        "$description": "Danger button border"
+      },
+      "border-hover": {
+        "$value": "#c82333",
+        "$type": "color",
+        "$description": "Danger button border on hover"
+      },
+      "text": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Danger button text color"
+      }
+    }
+  }
+}

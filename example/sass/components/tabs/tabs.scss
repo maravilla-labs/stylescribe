@@ -1,0 +1,356 @@
+/**
+ * @title Tabs
+ * @description Horizontal tab navigation with animated active indicator. Supports multiple visual styles.
+ * @navtitle Tabs
+ * @group Navigation
+ * @order 2
+ * @dependencies badge, icon
+ * @variations default, pills, boxed, vertical
+ * @additional_variations sm, lg, full-width
+ * @elements
+ * - name: list
+ *   html: <div class="{{class}}" role="tablist"></div>
+ * - name: item
+ *   html: <button class="{{class}}" role="tab"></button>
+ * - name: indicator
+ *   html: <div class="{{class}}"></div>
+ * - name: icon
+ *   html: <span class="{{class}} ds-icon ds-icon--home"></span>
+ * - name: label
+ *   html: <span class="{{class}}">Tab</span>
+ * - name: badge
+ *   html: <span class="{{class}} ds-badge">3</span>
+ * - name: panel
+ *   html: <div class="{{class}}" role="tabpanel">Content</div>
+ * @examples
+ * - title: Default Tabs
+ *   description: Underlined tab navigation
+ *   code: |
+ *     <div class="ds-tabs">
+ *       <div class="ds-tabs__list" role="tablist">
+ *         <button class="ds-tabs__item ds-tabs__item--active" role="tab">
+ *           <span class="ds-tabs__label">All</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">Technology</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">Science</span>
+ *         </button>
+ *       </div>
+ *     </div>
+ * - title: Tabs with Dot Indicator
+ *   description: Active tab with colored dot
+ *   code: |
+ *     <div class="ds-tabs">
+ *       <div class="ds-tabs__list" role="tablist">
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">All</span>
+ *         </button>
+ *         <button class="ds-tabs__item ds-tabs__item--active" role="tab">
+ *           <span class="ds-tabs__indicator"></span>
+ *           <span class="ds-tabs__label">Technology</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">Science</span>
+ *         </button>
+ *       </div>
+ *     </div>
+ * - title: Tabs with Icons
+ *   description: Icon-enhanced tabs for visual context
+ *   code: |
+ *     <div class="ds-tabs">
+ *       <div class="ds-tabs__list" role="tablist">
+ *         <button class="ds-tabs__item ds-tabs__item--active" role="tab">
+ *           <svg class="ds-tabs__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+ *           <span class="ds-tabs__label">Home</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <svg class="ds-tabs__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+ *           <span class="ds-tabs__label">Documents</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <svg class="ds-tabs__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+ *           <span class="ds-tabs__label">Settings</span>
+ *         </button>
+ *       </div>
+ *     </div>
+ * - title: Tabs with Badge
+ *   description: Notification badge for counts
+ *   code: |
+ *     <div class="ds-tabs">
+ *       <div class="ds-tabs__list" role="tablist">
+ *         <button class="ds-tabs__item ds-tabs__item--active" role="tab">
+ *           <span class="ds-tabs__label">Inbox</span>
+ *           <span class="ds-badge ds-badge--primary ds-badge--pill">12</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">Sent</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">Drafts</span>
+ *           <span class="ds-badge ds-badge--secondary ds-badge--pill">3</span>
+ *         </button>
+ *       </div>
+ *     </div>
+ * - title: Pills Tabs
+ *   description: Filled pill-style tabs
+ *   code: |
+ *     <div class="ds-tabs ds-tabs--pills">
+ *       <div class="ds-tabs__list" role="tablist">
+ *         <button class="ds-tabs__item ds-tabs__item--active" role="tab">
+ *           <span class="ds-tabs__label">Overview</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">Analytics</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">Reports</span>
+ *         </button>
+ *       </div>
+ *     </div>
+ * - title: Boxed Tabs
+ *   description: Bordered box-style tabs
+ *   code: |
+ *     <div class="ds-tabs ds-tabs--boxed">
+ *       <div class="ds-tabs__list" role="tablist">
+ *         <button class="ds-tabs__item ds-tabs__item--active" role="tab">
+ *           <span class="ds-tabs__label">Details</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">Comments</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">History</span>
+ *         </button>
+ *       </div>
+ *     </div>
+ * - title: Full Width Tabs
+ *   description: Tabs spanning full container width
+ *   code: |
+ *     <div class="ds-tabs ds-tabs--full-width">
+ *       <div class="ds-tabs__list" role="tablist">
+ *         <button class="ds-tabs__item ds-tabs__item--active" role="tab">
+ *           <span class="ds-tabs__label">Tab One</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">Tab Two</span>
+ *         </button>
+ *         <button class="ds-tabs__item" role="tab">
+ *           <span class="ds-tabs__label">Tab Three</span>
+ *         </button>
+ *       </div>
+ *     </div>
+ */
+
+@layer components {
+  .ds-tabs {
+    /* ===== Component Tokens ===== */
+    --tabs-bg: transparent;
+    --tabs-border: var(--color-semantic-border);
+    --tabs-gap: var(--spacing-scale-xs);
+    --tabs-padding: 0;
+
+    --tab-text: var(--color-semantic-text-muted);
+    --tab-text-hover: var(--color-semantic-text);
+    --tab-text-active: var(--color-primary-500);
+    --tab-bg: transparent;
+    --tab-bg-hover: var(--color-neutral-100);
+    --tab-bg-active: transparent;
+    --tab-padding: var(--spacing-scale-sm) var(--spacing-scale-md);
+    --tab-radius: var(--border-radius-md);
+    --tab-font-size: var(--font-size-base);
+    --tab-font-weight: var(--font-weight-medium);
+
+    --indicator-color: var(--color-primary-500);
+    --indicator-size: 6px;
+
+    /* ===== Base Styles ===== */
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-family-base);
+
+    /* ===== Elements ===== */
+    &__list {
+      display: flex;
+      align-items: center;
+      gap: var(--tabs-gap);
+      padding: var(--tabs-padding);
+      background: var(--tabs-bg);
+      border-bottom: 1px solid var(--tabs-border);
+    }
+
+    &__item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-scale-xs);
+      padding: var(--tab-padding);
+      font-family: inherit;
+      font-size: var(--tab-font-size);
+      font-weight: var(--tab-font-weight);
+      color: var(--tab-text);
+      background: var(--tab-bg);
+      border: none;
+      border-radius: var(--tab-radius);
+      cursor: pointer;
+      position: relative;
+      transition:
+        color var(--transition-duration-fast),
+        background var(--transition-duration-fast);
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: transparent;
+        transition: background var(--transition-duration-fast);
+      }
+
+      &:hover {
+        color: var(--tab-text-hover);
+        background: var(--tab-bg-hover);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-primary-500);
+        outline-offset: 2px;
+      }
+
+      &--active {
+        color: var(--tab-text-active);
+        background: var(--tab-bg-active);
+
+        &::after {
+          background: var(--indicator-color);
+        }
+      }
+    }
+
+    &__indicator {
+      display: inline-block;
+      width: var(--indicator-size);
+      height: var(--indicator-size);
+      background: var(--indicator-color);
+      border-radius: 50%;
+    }
+
+    &__icon {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+
+      svg {
+        display: block;
+      }
+    }
+
+    &__label {
+      display: inline;
+    }
+
+    &__panel {
+      padding: var(--spacing-scale-lg) 0;
+    }
+  }
+
+  /* ===== Variations ===== */
+
+  .ds-tabs--pills {
+    --tabs-border: transparent;
+    --tab-bg-hover: var(--color-neutral-100);
+    --tab-bg-active: var(--color-primary-100);
+    --tab-text-active: var(--color-primary-700);
+    --tab-radius: var(--border-radius-lg);
+
+    .ds-tabs__list {
+      border-bottom: none;
+    }
+
+    .ds-tabs__item {
+      &::after {
+        display: none;
+      }
+
+      &--active {
+        background: var(--tab-bg-active);
+      }
+    }
+  }
+
+  .ds-tabs--boxed {
+    --tabs-border: transparent;
+    --tab-bg: var(--color-neutral-100);
+    --tab-bg-hover: var(--color-neutral-200);
+    --tab-bg-active: var(--color-semantic-surface);
+    --tab-text-active: var(--color-semantic-text);
+
+    .ds-tabs__list {
+      gap: 0;
+      padding: var(--spacing-scale-xs);
+      background: var(--color-neutral-100);
+      border: none;
+      border-radius: var(--border-radius-lg);
+    }
+
+    .ds-tabs__item {
+      &::after {
+        display: none;
+      }
+
+      &--active {
+        box-shadow: var(--shadow-sm);
+      }
+    }
+  }
+
+  .ds-tabs--vertical {
+    flex-direction: row;
+
+    .ds-tabs__list {
+      flex-direction: column;
+      border-bottom: none;
+      border-right: 1px solid var(--tabs-border);
+    }
+
+    .ds-tabs__item {
+      width: 100%;
+      justify-content: flex-start;
+
+      &::after {
+        bottom: auto;
+        top: 0;
+        left: auto;
+        right: -1px;
+        width: 2px;
+        height: 100%;
+      }
+    }
+  }
+
+  /* Size: Small */
+  .ds-tabs--sm {
+    --tab-padding: var(--spacing-scale-xs) var(--spacing-scale-sm);
+    --tab-font-size: var(--font-size-sm);
+  }
+
+  /* Size: Large */
+  .ds-tabs--lg {
+    --tab-padding: var(--spacing-scale-md) var(--spacing-scale-lg);
+    --tab-font-size: var(--font-size-lg);
+  }
+
+  /* Full Width */
+  .ds-tabs--full-width {
+    .ds-tabs__list {
+      width: 100%;
+    }
+
+    .ds-tabs__item {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+}

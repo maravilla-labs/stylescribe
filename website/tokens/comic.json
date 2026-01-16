@@ -1,0 +1,31 @@
+{
+  "$meta": {
+    "name": "comic",
+    "description": "Fun comic-style theme variant"
+  },
+  "color": {
+    "primary": {
+      "$value": "#ff6b6b",
+      "$type": "color",
+      "$description": "Comic red primary"
+    },
+    "primary-hover": {
+      "$value": "#ee5a5a",
+      "$type": "color",
+      "$description": "Comic red hover"
+    },
+    "background": {
+      "$value": "#fff9db",
+      "$type": "color",
+      "$description": "Comic yellow background"
+    }
+  },
+  "border": {
+    "radius": {
+      "sm": { "$value": "8px", "$type": "dimension" },
+      "md": { "$value": "16px", "$type": "dimension" },
+      "lg": { "$value": "24px", "$type": "dimension" }
+    },
+    "width": { "$value": "3px", "$type": "dimension" }
+  }
+}

@@ -1,0 +1,363 @@
+<nav class="sticky top-0 z-50 bg-gradient-to-r from-indigo-700/90 to-purple-800/90 dark:from-slate-900/95 dark:via-indigo-950/80 dark:to-purple-950/70 backdrop-blur-md border-b border-white/10 {{themeClass 'nav' 'background'}}">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+            <!-- Brand -->
+            <a href="{{basePath}}index.html" class="font-bold text-xl transition-colors text-white {{themeClass 'nav' 'text'}} hover:opacity-80">
+                {{#if branding.logo}}
+                <img src="{{basePath}}static/{{branding.logo}}" alt="{{branding.name}}" class="h-8">
+                {{else}}
+                {{branding.name}}
+                {{/if}}
+            </a>
+
+            <!-- Mobile menu button (Alpine.js controlled) -->
+            <button x-data x-on:click="$dispatch('toggle-mobile-menu')"
+                    class="lg:hidden p-2 hover:bg-white/10 rounded-lg transition-colors text-white {{themeClass 'nav' 'text'}}"
+                    aria-controls="mobile-menu">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+
+            <!-- Search Box (Desktop) -->
+            <div class="search-container relative hidden lg:block flex-1 max-w-md mx-8">
+                <div class="relative">
+                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 opacity-50 {{themeClass 'nav' 'text'}}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input type="text"
+                           id="globalSearch"
+                           class="search-input w-full pl-10 pr-12 {{themeClass 'nav' 'searchBg'}} {{themeClass 'nav' 'searchText'}}"
+                           placeholder="Search..."
+                           autocomplete="off">
+                    <kbd class="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 text-xs text-white/40 bg-white/10 rounded">
+                        <span class="text-xs">&#8984;</span>K
+                    </kbd>
+                </div>
+                <div id="searchResults" class="search-results hidden"></div>
+            </div>
+
+            <!-- Desktop navigation -->
+            <div class="hidden lg:flex lg:items-center lg:gap-1">
+                {{#each navigation.topNav}}
+                    {{!-- Direct link --}}
+                    {{#if (eq this.type "link")}}
+                    <a href="{{#if this.absolute}}{{this.href}}{{else}}{{../basePath}}{{this.href}}{{/if}}" class="nav-link {{themeClass 'nav' 'link'}}">
+                        {{this.label}}
+                    </a>
+                    {{/if}}
+
+                    {{!-- External link --}}
+                    {{#if (eq this.type "external")}}
+                    <a href="{{this.href}}" target="_blank" rel="noopener noreferrer" class="nav-link flex items-center gap-1 {{themeClass 'nav' 'link'}}">
+                        {{this.label}}
+                        <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                        </svg>
+                    </a>
+                    {{/if}}
+
+                    {{!-- Components mega dropdown (Alpine.js) --}}
+                    {{#if (eq this.type "components")}}
+                    <div x-data="dropdown" class="relative">
+                        <button x-on:click="toggle"
+                                :aria-expanded="open"
+                                class="nav-link flex items-center gap-1 {{themeClass 'nav' 'link'}}">
+                            {{this.label}}
+                            <svg class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div x-show="open"
+                             x-cloak
+                             x-on:click.away="close"
+                             x-transition:enter="transition ease-out duration-200"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-150"
+                             x-transition:leave-start="opacity-100"
+                             x-transition:leave-end="opacity-0"
+                             class="mega-dropdown !opacity-100 !visible !translate-y-0">
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+                                {{#each ../groups as |groupComponents groupName|}}
+                                <div class="dropdown-section">
+                                    <h6 class="dropdown-section-title">{{groupName}}</h6>
+                                    <ul class="space-y-1">
+                                        {{#each groupComponents}}
+                                        <li>
+                                            <a href="{{@root.basePath}}components/{{this.name}}.html" class="dropdown-item rounded-lg">
+                                                {{this.title}}
+                                            </a>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                    {{/if}}
+
+                    {{!-- UI Blocks mega dropdown (Alpine.js) --}}
+                    {{#if (eq this.type "blocks")}}
+                    <div x-data="dropdown" class="relative">
+                        <button x-on:click="toggle"
+                                :aria-expanded="open"
+                                class="nav-link flex items-center gap-1 {{themeClass 'nav' 'link'}}">
+                            {{this.label}}
+                            <svg class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div x-show="open"
+                             x-cloak
+                             x-on:click.away="close"
+                             x-transition:enter="transition ease-out duration-200"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-150"
+                             x-transition:leave-start="opacity-100"
+                             x-transition:leave-end="opacity-0"
+                             class="mega-dropdown !opacity-100 !visible !translate-y-0">
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+                                {{#each ../navigation.blockGroups as |groupBlocks groupName|}}
+                                <div class="dropdown-section">
+                                    <h6 class="dropdown-section-title">{{groupName}}</h6>
+                                    <ul class="space-y-1">
+                                        {{#each groupBlocks}}
+                                        <li>
+                                            <a href="{{@root.basePath}}blocks/{{this.name}}.html" class="dropdown-item rounded-lg">
+                                                {{this.title}}
+                                            </a>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                    {{/if}}
+
+                    {{!-- Full Pages mega dropdown (Alpine.js) --}}
+                    {{#if (eq this.type "pages")}}
+                    <div x-data="dropdown" class="relative">
+                        <button x-on:click="toggle"
+                                :aria-expanded="open"
+                                class="nav-link flex items-center gap-1 {{themeClass 'nav' 'link'}}">
+                            {{this.label}}
+                            <svg class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div x-show="open"
+                             x-cloak
+                             x-on:click.away="close"
+                             x-transition:enter="transition ease-out duration-200"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-150"
+                             x-transition:leave-start="opacity-100"
+                             x-transition:leave-end="opacity-0"
+                             class="mega-dropdown !opacity-100 !visible !translate-y-0">
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+                                {{#each ../navigation.pageGroups as |groupPages groupName|}}
+                                <div class="dropdown-section">
+                                    <h6 class="dropdown-section-title">{{groupName}}</h6>
+                                    <ul class="space-y-1">
+                                        {{#each groupPages}}
+                                        <li>
+                                            <a href="{{@root.basePath}}pages/{{this.name}}.html" class="dropdown-item rounded-lg">
+                                                {{this.title}}
+                                            </a>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                    {{/if}}
+
+                    {{!-- Generic dropdown for folder-based navigation (Alpine.js) --}}
+                    {{#if (eq this.type "dropdown")}}
+                    <div x-data="dropdown" class="relative">
+                        <button x-on:click="toggle"
+                                :aria-expanded="open"
+                                class="nav-link flex items-center gap-1 {{themeClass 'nav' 'link'}}">
+                            {{this.label}}
+                            <svg class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div x-show="open"
+                             x-cloak
+                             x-on:click.away="close"
+                             x-transition:enter="transition ease-out duration-200"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-150"
+                             x-transition:leave-start="opacity-100"
+                             x-transition:leave-end="opacity-0"
+                             class="dropdown-menu !opacity-100 !visible !translate-y-0">
+                            {{#each this.children}}
+                            <a href="{{@root.basePath}}{{this.href}}" class="dropdown-item">
+                                {{this.label}}
+                            </a>
+                            {{/each}}
+                        </div>
+                    </div>
+                    {{/if}}
+                {{/each}}
+
+                {{!-- GitHub Link (if configured) --}}
+                {{#if branding.github}}
+                <a href="{{branding.github}}" target="_blank" rel="noopener noreferrer"
+                   class="p-2 rounded-lg hover:bg-white/10 transition-colors ml-2"
+                   aria-label="View on GitHub"
+                   title="View on GitHub">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/>
+                    </svg>
+                </a>
+                {{/if}}
+
+                <!-- Theme Toggle (Alpine.js controlled) -->
+                <div x-data="darkMode" class="ml-2">
+                    <button x-on:click="toggle"
+                            class="p-2 rounded-lg hover:bg-white/10 transition-colors"
+                            aria-label="Toggle dark mode">
+                        <!-- Sun icon (shown in dark mode) -->
+                        <svg x-show="isDark" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        <!-- Moon icon (shown in light mode) -->
+                        <svg x-show="!isDark" x-cloak class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Theme Toggle (Mobile, Alpine.js controlled) -->
+            <div x-data="darkMode" class="lg:hidden mr-2">
+                <button x-on:click="toggle"
+                        class="p-2 rounded-lg hover:bg-white/10 transition-colors"
+                        aria-label="Toggle dark mode">
+                    <svg x-show="isDark" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <svg x-show="!isDark" x-cloak class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu (Alpine.js controlled) -->
+        <div x-data="mobileMenu"
+             x-on:toggle-mobile-menu.window="toggle"
+             x-show="open"
+             x-cloak
+             x-on:click.away="close"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-2"
+             id="mobile-menu"
+             class="lg:hidden pb-4 border-t border-white/10 mt-2">
+            <div class="pt-4 space-y-1">
+                {{#each navigation.topNav}}
+                    {{!-- Direct link --}}
+                    {{#if (eq this.type "link")}}
+                    <a href="{{#if this.absolute}}{{this.href}}{{else}}{{../basePath}}{{this.href}}{{/if}}"
+                       class="block text-white py-2 px-3 rounded-lg hover:bg-white/10 transition-colors font-medium">
+                        {{this.label}}
+                    </a>
+                    {{/if}}
+
+                    {{!-- External link --}}
+                    {{#if (eq this.type "external")}}
+                    <a href="{{this.href}}" target="_blank" rel="noopener noreferrer"
+                       class="block text-white py-2 px-3 rounded-lg hover:bg-white/10 transition-colors font-medium flex items-center gap-1">
+                        {{this.label}}
+                        <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                        </svg>
+                    </a>
+                    {{/if}}
+
+                    {{!-- Components section --}}
+                    {{#if (eq this.type "components")}}
+                    <div class="py-2">
+                        <span class="text-white font-medium text-sm px-3 block mb-2">{{this.label}}</span>
+                        {{#each ../groups as |groupComponents groupName|}}
+                        <div class="mb-3">
+                            <span class="text-white/60 text-xs uppercase tracking-wider px-3 block mb-1">{{groupName}}</span>
+                            {{#each groupComponents}}
+                            <a href="{{@root.basePath}}components/{{this.name}}.html"
+                               class="block text-white py-1.5 px-6 hover:bg-white/10 rounded-lg transition-colors text-sm">
+                                {{this.title}}
+                            </a>
+                            {{/each}}
+                        </div>
+                        {{/each}}
+                    </div>
+                    {{/if}}
+
+                    {{!-- UI Blocks section (mobile) --}}
+                    {{#if (eq this.type "blocks")}}
+                    <div class="py-2 border-t border-white/10">
+                        <span class="text-white font-medium text-sm px-3 block mb-2 pt-2">{{this.label}}</span>
+                        {{#each ../navigation.blockGroups as |groupBlocks groupName|}}
+                        <div class="mb-3">
+                            <span class="text-white/60 text-xs uppercase tracking-wider px-3 block mb-1">{{groupName}}</span>
+                            {{#each groupBlocks}}
+                            <a href="{{@root.basePath}}blocks/{{this.name}}.html"
+                               class="block text-white py-1.5 px-6 hover:bg-white/10 rounded-lg transition-colors text-sm">
+                                {{this.title}}
+                            </a>
+                            {{/each}}
+                        </div>
+                        {{/each}}
+                    </div>
+                    {{/if}}
+
+                    {{!-- Full Pages section (mobile) --}}
+                    {{#if (eq this.type "pages")}}
+                    <div class="py-2 border-t border-white/10">
+                        <span class="text-white font-medium text-sm px-3 block mb-2 pt-2">{{this.label}}</span>
+                        {{#each ../navigation.pageGroups as |groupPages groupName|}}
+                        <div class="mb-3">
+                            <span class="text-white/60 text-xs uppercase tracking-wider px-3 block mb-1">{{groupName}}</span>
+                            {{#each groupPages}}
+                            <a href="{{@root.basePath}}pages/{{this.name}}.html"
+                               class="block text-white py-1.5 px-6 hover:bg-white/10 rounded-lg transition-colors text-sm">
+                                {{this.title}}
+                            </a>
+                            {{/each}}
+                        </div>
+                        {{/each}}
+                    </div>
+                    {{/if}}
+
+                    {{!-- Generic dropdown for folder-based navigation (mobile) --}}
+                    {{#if (eq this.type "dropdown")}}
+                    <div class="py-2 border-t border-white/10">
+                        <span class="text-white font-medium text-sm px-3 block mb-2 pt-2">{{this.label}}</span>
+                        {{#each this.children}}
+                        <a href="{{@root.basePath}}{{this.href}}"
+                           class="block text-white py-1.5 px-6 hover:bg-white/10 rounded-lg transition-colors text-sm">
+                            {{this.label}}
+                        </a>
+                        {{/each}}
+                    </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</nav>

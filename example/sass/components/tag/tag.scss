@@ -1,0 +1,240 @@
+/**
+ * @title Tag
+ * @description Categorization tags with optional icons and interactive states. Use for filtering, labels, and categories.
+ * @navtitle Tag
+ * @group Data Display
+ * @order 4
+ * @dependencies icon
+ * @variations default, primary, outline, solid
+ * @additional_variations sm, lg, clickable, removable
+ * @elements
+ * - name: icon
+ *   html: <span class="{{class}} ds-icon ds-icon--info"></span>
+ * - name: label
+ *   html: <span class="{{class}}">Tag Label</span>
+ * - name: remove
+ *   html: <button class="{{class}} ds-icon ds-icon--cancel"></button>
+ * - name: count
+ *   html: <span class="{{class}}">12</span>
+ * @examples
+ * - title: Default Tag
+ *   description: Basic category tag
+ *   code: |
+ *     <span class="ds-tag">
+ *       <span class="ds-tag__label">Category</span>
+ *     </span>
+ * - title: Tag with Icon
+ *   description: Tag with leading icon for visual context
+ *   code: |
+ *     <span class="ds-tag">
+ *       <svg class="ds-tag__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+ *       <span class="ds-tag__label">AI/ML</span>
+ *     </span>
+ * - title: Primary Tag
+ *   description: Emphasized primary color tag
+ *   code: |
+ *     <span class="ds-tag ds-tag--primary">
+ *       <svg class="ds-tag__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+ *       <span class="ds-tag__label">Analysis</span>
+ *     </span>
+ * - title: Outline Tag
+ *   description: Subtle bordered style
+ *   code: |
+ *     <span class="ds-tag ds-tag--outline">
+ *       <span class="ds-tag__label">Draft</span>
+ *     </span>
+ * - title: Trending Tag
+ *   description: Tag with trending icon
+ *   code: |
+ *     <span class="ds-tag ds-tag--primary">
+ *       <svg class="ds-tag__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+ *       <span class="ds-tag__label">Trending</span>
+ *     </span>
+ * - title: Clickable Tags
+ *   description: Interactive tags for filtering
+ *   code: |
+ *     <button class="ds-tag ds-tag--clickable">
+ *       <span class="ds-tag__label">JavaScript</span>
+ *     </button>
+ *     <button class="ds-tag ds-tag--clickable ds-tag--primary">
+ *       <span class="ds-tag__label">TypeScript</span>
+ *     </button>
+ * - title: Removable Tag
+ *   description: Tag with remove button for selections
+ *   code: |
+ *     <span class="ds-tag ds-tag--removable">
+ *       <span class="ds-tag__label">React</span>
+ *       <button class="ds-tag__remove" aria-label="Remove">
+ *         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+ *       </button>
+ *     </span>
+ * - title: Tag with Count
+ *   description: Shows count for aggregations
+ *   code: |
+ *     <span class="ds-tag">
+ *       <span class="ds-tag__label">Articles</span>
+ *       <span class="ds-tag__count">42</span>
+ *     </span>
+ * - title: Size Variations
+ *   description: Small and large tag sizes
+ *   code: |
+ *     <span class="ds-tag ds-tag--sm">
+ *       <span class="ds-tag__label">Small</span>
+ *     </span>
+ *     <span class="ds-tag">
+ *       <span class="ds-tag__label">Default</span>
+ *     </span>
+ *     <span class="ds-tag ds-tag--lg">
+ *       <span class="ds-tag__label">Large</span>
+ *     </span>
+ */
+
+@layer components {
+  .ds-tag {
+    /* ===== Component Tokens ===== */
+    --tag-bg: var(--color-neutral-100);
+    --tag-bg-hover: var(--color-neutral-200);
+    --tag-text: var(--color-semantic-text);
+    --tag-border: transparent;
+    --tag-radius: var(--border-radius-md);
+    --tag-padding-x: var(--spacing-scale-sm);
+    --tag-padding-y: var(--spacing-scale-2xs);
+    --tag-font-size: var(--font-size-sm);
+    --tag-font-weight: var(--font-weight-medium);
+    --tag-gap: var(--spacing-scale-xs);
+
+    /* ===== Base Styles ===== */
+    display: inline-flex;
+    align-items: center;
+    gap: var(--tag-gap);
+    padding: var(--tag-padding-y) var(--tag-padding-x);
+    font-family: var(--font-family-base);
+    font-size: var(--tag-font-size);
+    font-weight: var(--tag-font-weight);
+    line-height: 1.4;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    border-radius: var(--tag-radius);
+    white-space: nowrap;
+    vertical-align: middle;
+
+    /* ===== Elements ===== */
+    &__icon {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+
+      svg {
+        display: block;
+      }
+    }
+
+    &__label {
+      display: inline-block;
+    }
+
+    &__count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.25em;
+      padding: 0 0.25em;
+      font-size: 0.85em;
+      font-weight: var(--font-weight-semibold);
+      color: var(--tag-text);
+      background: var(--color-neutral-200);
+      border-radius: var(--border-radius-sm);
+    }
+
+    &__remove {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      margin-left: -2px;
+      padding: 0;
+      color: currentColor;
+      background: transparent;
+      border: none;
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      opacity: 0.6;
+      transition:
+        opacity var(--transition-duration-fast),
+        background var(--transition-duration-fast);
+
+      &:hover {
+        opacity: 1;
+        background: var(--color-neutral-300);
+      }
+
+      svg {
+        display: block;
+      }
+    }
+  }
+
+  /* ===== Variations (token overrides only) ===== */
+
+  .ds-tag--primary {
+    --tag-bg: var(--color-primary-100);
+    --tag-bg-hover: var(--color-primary-200);
+    --tag-text: var(--color-primary-700);
+  }
+
+  .ds-tag--outline {
+    --tag-bg: transparent;
+    --tag-bg-hover: var(--color-neutral-100);
+    --tag-border: var(--color-semantic-border);
+  }
+
+  .ds-tag--solid {
+    --tag-bg: var(--color-primary-500);
+    --tag-bg-hover: var(--color-primary-600);
+    --tag-text: #ffffff;
+  }
+
+  /* Size: Small */
+  .ds-tag--sm {
+    --tag-padding-x: var(--spacing-scale-xs);
+    --tag-padding-y: 2px;
+    --tag-font-size: var(--font-size-xs);
+    --tag-gap: 4px;
+  }
+
+  /* Size: Large */
+  .ds-tag--lg {
+    --tag-padding-x: var(--spacing-scale-md);
+    --tag-padding-y: var(--spacing-scale-xs);
+    --tag-font-size: var(--font-size-base);
+  }
+
+  /* Clickable */
+  .ds-tag--clickable {
+    cursor: pointer;
+    transition:
+      background var(--transition-duration-fast),
+      transform var(--transition-duration-fast);
+
+    &:hover {
+      background: var(--tag-bg-hover);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+    }
+  }
+
+  /* Removable */
+  .ds-tag--removable {
+    padding-right: var(--spacing-scale-xs);
+  }
+}

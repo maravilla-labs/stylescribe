@@ -1,0 +1,27 @@
+{
+  "name": "stylescribe-example",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Example project demonstrating stylescribe features",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/solutas/stylescribe.git"
+  },
+  "scripts": {
+    "dev": "stylescribe dev --source ./sass --build-target ./build",
+    "build": "stylescribe build --source ./sass --output ./build",
+    "docs": "stylescribe docs --source ./sass --build-target ./build --output ./site",
+    "tokens:extract": "stylescribe tokens extract -i ./sass/base.css -o ./tokens/extracted.json",
+    "tokens:css": "stylescribe tokens export -i ./tokens/design-tokens.json -f css -o ./tokens/variables.css",
+    "tokens:scss": "stylescribe tokens convert -i ./tokens/design-tokens.json -f scss -o ./tokens/_tokens.scss",
+    "tokens:validate": "stylescribe tokens validate -i ./tokens/design-tokens.json"
+  },
+  "dependencies": {
+    "stylescribe": "file:.."
+  },
+  "devDependencies": {
+    "bootstrap-icons": "^1.11.0",
+    "lucide-static": "^0.400.0",
+    "playwright": "^1.57.0"
+  }
+}

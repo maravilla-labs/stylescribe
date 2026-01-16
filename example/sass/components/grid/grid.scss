@@ -1,0 +1,62 @@
+/**
+ * @title Grid
+ * @description Responsive grid layout using CSS Grid with auto-fit columns.
+ *   Adapts to available space automatically.
+ * @group Layout
+ * @order 5
+ *
+ * @elements
+ * - ds-grid: Container with responsive grid layout
+ *
+ * @variations
+ * - ds-grid--2: Two columns minimum
+ * - ds-grid--3: Three columns minimum
+ * - ds-grid--4: Four columns minimum
+ * - ds-grid--sm: Smaller minimum column width (200px)
+ * - ds-grid--lg: Larger minimum column width (320px)
+ *
+ * @dependencies card, text, layout
+ * @examples
+ * - title: Auto-fit Grid
+ *   code: |
+ *     <div class="ds-grid">
+ *       <div class="ds-card ds-layout ds-layout-p-md">Card 1</div>
+ *       <div class="ds-card ds-layout ds-layout-p-md">Card 2</div>
+ *       <div class="ds-card ds-layout ds-layout-p-md">Card 3</div>
+ *       <div class="ds-card ds-layout ds-layout-p-md">Card 4</div>
+ *     </div>
+ *
+ * - title: Stats Grid
+ *   code: |
+ *     <div class="ds-grid ds-grid--4">
+ *       <div class="ds-card ds-layout ds-layout-p-lg">
+ *         <span class="ds-text ds-text-2xl ds-text-bold">$45k</span>
+ *         <span class="ds-text ds-text-muted">Revenue</span>
+ *       </div>
+ *       <div class="ds-card ds-layout ds-layout-p-lg">
+ *         <span class="ds-text ds-text-2xl ds-text-bold">2,345</span>
+ *         <span class="ds-text ds-text-muted">Users</span>
+ *       </div>
+ *     </div>
+ */
+
+@layer components {
+  .ds-grid {
+    --grid-min: 250px;
+    --grid-gap: var(--spacing-md);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-min), 1fr));
+    gap: var(--grid-gap);
+  }
+
+  .ds-grid--2 { --grid-min: 300px; }
+  .ds-grid--3 { --grid-min: 250px; }
+  .ds-grid--4 { --grid-min: 200px; }
+
+  .ds-grid--sm { --grid-min: 200px; }
+  .ds-grid--lg { --grid-min: 320px; }
+
+  .ds-grid--gap-sm { --grid-gap: var(--spacing-sm); }
+  .ds-grid--gap-lg { --grid-gap: var(--spacing-lg); }
+}

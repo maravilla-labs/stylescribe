@@ -1,0 +1,52 @@
+{
+  "github": true,
+  "productionBasepath": "@example/",
+  "classPrefix": "sol-",
+  "externalCssIncludes": [
+    "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+  ],
+  "headIncludes": {
+    "css": ["./base.css"]
+  },
+  "components": {
+    "groupOrder": [
+      "Actions",
+      "Containment",
+      "Forms",
+      "Navigation",
+      "Typography",
+      "Layout",
+      "Messaging",
+      "Communication",
+      "Identity",
+      "Primitives",
+      "Utilities"
+    ]
+  },
+  "blocks": {
+    "source": "blocks",
+    "groupOrder": [
+      "Authentication",
+      "Navigation",
+      "Content"
+    ]
+  },
+  "pages": {
+    "source": "pages",
+    "groupOrder": [
+      "Auth",
+      "Dashboard",
+      "Marketing"
+    ]
+  },
+  "tokens": {
+    "source": "tokens/design-tokens.json",
+    "include": ["tokens/components/*.json"]
+  },
+  "branding": {
+    "name": "Styles Scribe Example",
+    "logo": "stylescribe-logo.png",
+    "favicon": "stylescribe-logo.png"
+  },
+  "static": "static"
+}

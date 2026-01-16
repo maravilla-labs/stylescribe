@@ -1,0 +1,26 @@
+{
+  "productionBasepath": "@stylescribe/",
+  "classPrefix": "styl-",
+  "github": "https://github.com/maravilla-labs/stylescribe",
+  "components": {
+    "groupOrder": [
+      "Actions",
+      "Containment",
+      "Communication",
+      "Identity",
+      "AI Chat"
+    ]
+  },
+  "tokens": {
+    "source": "tokens/design-tokens.json",
+    "include": [
+      "tokens/components/*.json"
+    ]
+  },
+  "branding": {
+    "name": "StyleScribe",
+    "logo": "stylescribe-logo.png",
+    "favicon": "stylescribe-logo.png"
+  },
+  "static": "static"
+}

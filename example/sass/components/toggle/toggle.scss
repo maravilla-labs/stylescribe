@@ -1,0 +1,204 @@
+/**
+ * @title Toggle
+ * @description Switch/toggle component for on/off states. Uses hidden checkbox for accessibility.
+ * @group Forms
+ * @order 7
+ * @variations default, disabled, sm, lg, label-left
+ * @elements
+ * - name: input
+ *   html: <input class="{{class}}" type="checkbox">
+ * - name: track
+ *   html: <span class="{{class}}"></span>
+ * - name: thumb
+ *   html: <span class="{{class}}"></span>
+ * - name: label
+ *   html: <span class="{{class}}">Toggle label</span>
+ * @examples
+ * - title: Default Toggle
+ *   description: Basic toggle switch
+ *   code: |
+ *     <label class="ds-toggle">
+ *       <input class="ds-toggle__input" type="checkbox">
+ *       <span class="ds-toggle__track">
+ *         <span class="ds-toggle__thumb"></span>
+ *       </span>
+ *       <span class="ds-toggle__label">Enable notifications</span>
+ *     </label>
+ * - title: Toggle On
+ *   description: Toggle in active/checked state
+ *   code: |
+ *     <label class="ds-toggle">
+ *       <input class="ds-toggle__input" type="checkbox" checked>
+ *       <span class="ds-toggle__track">
+ *         <span class="ds-toggle__thumb"></span>
+ *       </span>
+ *       <span class="ds-toggle__label">Dark mode enabled</span>
+ *     </label>
+ * - title: Toggle without Label
+ *   description: Standalone toggle switch
+ *   code: |
+ *     <label class="ds-toggle">
+ *       <input class="ds-toggle__input" type="checkbox">
+ *       <span class="ds-toggle__track">
+ *         <span class="ds-toggle__thumb"></span>
+ *       </span>
+ *     </label>
+ * - title: Label on Left
+ *   description: Toggle with label on left side
+ *   code: |
+ *     <label class="ds-toggle ds-toggle--label-left">
+ *       <span class="ds-toggle__label">Auto-save</span>
+ *       <input class="ds-toggle__input" type="checkbox" checked>
+ *       <span class="ds-toggle__track">
+ *         <span class="ds-toggle__thumb"></span>
+ *       </span>
+ *     </label>
+ * - title: Disabled Toggle
+ *   description: Non-interactive toggle
+ *   code: |
+ *     <label class="ds-toggle ds-toggle--disabled">
+ *       <input class="ds-toggle__input" type="checkbox" disabled>
+ *       <span class="ds-toggle__track">
+ *         <span class="ds-toggle__thumb"></span>
+ *       </span>
+ *       <span class="ds-toggle__label">Feature unavailable</span>
+ *     </label>
+ * - title: Disabled On
+ *   description: Disabled toggle in checked state
+ *   code: |
+ *     <label class="ds-toggle ds-toggle--disabled">
+ *       <input class="ds-toggle__input" type="checkbox" checked disabled>
+ *       <span class="ds-toggle__track">
+ *         <span class="ds-toggle__thumb"></span>
+ *       </span>
+ *       <span class="ds-toggle__label">Always enabled</span>
+ *     </label>
+ * - title: Small Toggle
+ *   description: Compact size variant
+ *   code: |
+ *     <label class="ds-toggle ds-toggle--sm">
+ *       <input class="ds-toggle__input" type="checkbox">
+ *       <span class="ds-toggle__track">
+ *         <span class="ds-toggle__thumb"></span>
+ *       </span>
+ *       <span class="ds-toggle__label">Compact option</span>
+ *     </label>
+ * - title: Large Toggle
+ *   description: Larger size variant
+ *   code: |
+ *     <label class="ds-toggle ds-toggle--lg">
+ *       <input class="ds-toggle__input" type="checkbox" checked>
+ *       <span class="ds-toggle__track">
+ *         <span class="ds-toggle__thumb"></span>
+ *       </span>
+ *       <span class="ds-toggle__label">Premium feature</span>
+ *     </label>
+ */
+
+@layer components {
+  .ds-toggle {
+    /* ===== Component Tokens ===== */
+    --toggle-width: 44px;
+    --toggle-height: 24px;
+    --toggle-track-bg: var(--color-neutral-300);
+    --toggle-track-bg-checked: var(--color-primary-500);
+    --toggle-thumb-bg: var(--color-semantic-surface);
+    --toggle-thumb-size: 20px;
+    --toggle-thumb-offset: 2px;
+    --toggle-gap: var(--spacing-scale-sm);
+    --toggle-font-size: var(--font-size-base);
+    --toggle-label-color: var(--color-semantic-text);
+
+    /* ===== Base Styles ===== */
+    display: inline-flex;
+    align-items: center;
+    gap: var(--toggle-gap);
+    font-family: var(--font-family-base);
+    font-size: var(--toggle-font-size);
+    color: var(--toggle-label-color);
+    cursor: pointer;
+    user-select: none;
+
+    /* ===== Elements ===== */
+    &__input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+
+      /* Focus state on track */
+      &:focus-visible ~ .ds-toggle__track {
+        outline: 2px solid var(--color-primary-500);
+        outline-offset: 2px;
+      }
+
+      /* Checked state */
+      &:checked ~ .ds-toggle__track {
+        background: var(--toggle-track-bg-checked);
+
+        .ds-toggle__thumb {
+          transform: translateX(calc(var(--toggle-width) - var(--toggle-thumb-size) - var(--toggle-thumb-offset) * 2));
+        }
+      }
+    }
+
+    &__track {
+      position: relative;
+      flex-shrink: 0;
+      width: var(--toggle-width);
+      height: var(--toggle-height);
+      background: var(--toggle-track-bg);
+      border-radius: var(--toggle-height);
+      transition: background var(--transition-duration-base);
+    }
+
+    &__thumb {
+      position: absolute;
+      top: var(--toggle-thumb-offset);
+      left: var(--toggle-thumb-offset);
+      width: var(--toggle-thumb-size);
+      height: var(--toggle-thumb-size);
+      background: var(--toggle-thumb-bg);
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-duration-base);
+    }
+
+    &__label {
+      line-height: var(--toggle-height);
+    }
+
+    /* ===== Variations (token overrides only) ===== */
+
+    /* Label on left */
+    &--label-left {
+      flex-direction: row-reverse;
+    }
+
+    /* Disabled state */
+    &--disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Size: Small */
+    &--sm {
+      --toggle-width: 36px;
+      --toggle-height: 20px;
+      --toggle-thumb-size: 16px;
+      --toggle-gap: var(--spacing-scale-xs);
+      --toggle-font-size: var(--font-size-sm);
+    }
+
+    /* Size: Large */
+    &--lg {
+      --toggle-width: 52px;
+      --toggle-height: 28px;
+      --toggle-thumb-size: 24px;
+      --toggle-gap: var(--spacing-scale-md);
+      --toggle-font-size: var(--font-size-lg);
+    }
+  }
+}

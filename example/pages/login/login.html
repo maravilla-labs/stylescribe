@@ -1,0 +1,79 @@
+<!--
+@title Login Page
+@description Complete login page layout with authentication form and branding
+@type page
+@group Auth
+@dependencies app, card, button, input, link, label, form-field, checkbox, section-header, text, layout, stack, cluster, icon
+@blocks auth-form
+@variations
+- title: Default
+  description: Standard centered login page
+- title: Split Layout
+  description: Login with side branding panel
+-->
+<div class="ds-app ds-app--centered">
+  <div class="ds-layout ds-layout-center ds-layout-sm ds-layout-p-lg">
+    <!-- Logo / Branding -->
+    <header class="ds-section-header ds-section-header--center ds-layout-mb-xl">
+      <div class="ds-layout ds-layout-flex-center ds-layout-mb-md">
+        <div class="ds-avatar ds-avatar--lg">
+          <span class="ds-icon ds-icon--home ds-icon--lg"></span>
+        </div>
+      </div>
+      <h1 class="ds-section-header__title">Welcome back</h1>
+      <p class="ds-section-header__subtitle">Sign in to your account</p>
+    </header>
+
+    <!-- Auth Form -->
+    <div class="ds-card">
+      <div class="ds-card__body">
+        <form class="ds-stack">
+          <div class="ds-form-field">
+            <label class="ds-form-field__label ds-label">
+              <span class="ds-icon ds-icon--mail"></span>
+              <span class="ds-label__text">Email Address</span>
+            </label>
+            <div class="ds-form-field__control">
+              <div class="ds-input">
+                <input class="ds-input__field" type="email" placeholder="you@example.com">
+              </div>
+            </div>
+          </div>
+
+          <div class="ds-form-field">
+            <label class="ds-form-field__label ds-label">
+              <span class="ds-icon ds-icon--lock"></span>
+              <span class="ds-label__text">Password</span>
+            </label>
+            <div class="ds-form-field__control">
+              <div class="ds-input">
+                <input class="ds-input__field" type="password" placeholder="Enter your password">
+              </div>
+            </div>
+          </div>
+
+          <div class="ds-cluster ds-cluster--between">
+            <label class="ds-checkbox">
+              <input class="ds-checkbox__input" type="checkbox">
+              <span class="ds-checkbox__box">
+                <svg class="ds-checkbox__check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span class="ds-checkbox__label">Remember me</span>
+            </label>
+            <a class="ds-link" href="#">Forgot password?</a>
+          </div>
+
+          <button class="ds-btn ds-btn--primary ds-btn--full">
+            <span class="ds-icon ds-icon--log-in"></span>
+            <span class="ds-btn__label">Sign In</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <p class="ds-text ds-text-muted ds-text-center ds-text-sm ds-layout-mt-lg">
+      Don't have an account? <a class="ds-link" href="#">Sign up</a>
+    </p>
+  </div>
+</div>

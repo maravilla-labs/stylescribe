@@ -1,0 +1,34 @@
+<div class="overflow-x-auto">
+    <table class="w-full text-sm">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="px-4 py-3 text-left font-semibold text-gray-700 border-b border-gray-200 w-36">Preview</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700 border-b border-gray-200">Token</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700 border-b border-gray-200">CSS Variable</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700 border-b border-gray-200">Value</th>
+                <th class="px-4 py-3 text-left font-semibold text-gray-700 border-b border-gray-200">Description</th>
+                <th class="px-4 py-3 border-b border-gray-200"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each tokens}}
+            <tr data-token-name="{{this.name}}" data-token-type="{{this.type}}" class="hover:bg-gray-50">
+                <td class="px-4 py-3 border-b border-gray-200">
+                    {{#if (eq this.type "color")}}
+                    <div class="w-8 h-8 rounded border border-gray-200" style="background-color: {{this.value}};"></div>
+                    {{else}}
+                    <div class="spacing-visual">
+                        <div class="spacing-visual-bar" style="width: {{this.value}};"></div>
+                    </div>
+                    {{/if}}
+                </td>
+                <td class="px-4 py-3 border-b border-gray-200"><code class="bg-gray-100 px-2 py-1 rounded text-xs">{{this.name}}</code></td>
+                <td class="px-4 py-3 border-b border-gray-200"><code class="bg-gray-100 px-2 py-1 rounded text-xs">{{this.cssVar}}</code></td>
+                <td class="px-4 py-3 border-b border-gray-200"><code class="bg-gray-100 px-2 py-1 rounded text-xs font-semibold">{{this.value}}</code></td>
+                <td class="px-4 py-3 border-b border-gray-200 text-gray-600">{{this.description}}</td>
+                <td class="px-4 py-3 border-b border-gray-200"><button class="copy-btn px-2 py-1 text-xs border border-gray-300 rounded bg-white hover:bg-gray-100 cursor-pointer transition-colors" onclick="copyToken('{{this.cssVar}}')">Copy</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

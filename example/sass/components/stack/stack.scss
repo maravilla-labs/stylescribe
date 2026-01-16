@@ -1,0 +1,51 @@
+/**
+ * @title Stack
+ * @description Vertical layout component that adds consistent spacing between
+ *   child elements. Uses CSS custom property for flexible gap control.
+ * @group Layout
+ * @order 1
+ *
+ * @elements
+ * - ds-stack: Container with vertical spacing between children
+ *
+ * @variations
+ * - ds-stack--xs: Extra small gap (spacing-xs)
+ * - ds-stack--sm: Small gap (spacing-sm)
+ * - ds-stack--md: Medium gap (spacing-md) - default
+ * - ds-stack--lg: Large gap (spacing-lg)
+ * - ds-stack--xl: Extra large gap (spacing-xl)
+ *
+ * @dependencies card, button, layout
+ * @examples
+ * - title: Basic Stack
+ *   code: |
+ *     <div class="ds-stack">
+ *       <div class="ds-card ds-layout ds-layout-p-md">Item 1</div>
+ *       <div class="ds-card ds-layout ds-layout-p-md">Item 2</div>
+ *       <div class="ds-card ds-layout ds-layout-p-md">Item 3</div>
+ *     </div>
+ *
+ * - title: Large Gap Stack
+ *   code: |
+ *     <div class="ds-stack ds-stack--lg">
+ *       <h2>Section Title</h2>
+ *       <p>Section content with larger spacing.</p>
+ *       <button class="ds-btn ds-btn--primary">Action</button>
+ *     </div>
+ */
+
+@layer components {
+  .ds-stack {
+    --stack-gap: var(--spacing-md);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--stack-gap);
+  }
+
+  .ds-stack--xs { --stack-gap: var(--spacing-xs); }
+  .ds-stack--sm { --stack-gap: var(--spacing-sm); }
+  .ds-stack--md { --stack-gap: var(--spacing-md); }
+  .ds-stack--lg { --stack-gap: var(--spacing-lg); }
+  .ds-stack--xl { --stack-gap: var(--spacing-xl); }
+}

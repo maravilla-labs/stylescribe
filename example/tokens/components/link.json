@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "link",
+    "description": "Design tokens for the Link component"
+  },
+  "link": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Link background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Link text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Link padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Link border radius"
+    }
+  }
+}

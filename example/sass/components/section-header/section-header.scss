@@ -1,0 +1,118 @@
+/**
+ * @title Section Header
+ * @description Title and subtitle combination for sections, cards, forms, and pages.
+ *   A flexible header pattern used across various contexts.
+ * @navtitle Section Header
+ * @group Typography
+ * @order 2
+ * @variations default, sm, lg, center
+ * @elements
+ * - name: title
+ *   html: <h2 class="{{class}}">Section Title</h2>
+ * - name: subtitle
+ *   html: <p class="{{class}}">Section subtitle</p>
+ * - name: description
+ *   html: <p class="{{class}}">Description text</p>
+ * @examples
+ * - title: Default Section Header
+ *   description: Standard title and subtitle
+ *   code: |
+ *     <header class="ds-section-header">
+ *       <h2 class="ds-section-header__title">Section Title</h2>
+ *       <p class="ds-section-header__subtitle">A brief description of this section's content</p>
+ *     </header>
+ * - title: Centered Header
+ *   description: For hero sections and centered layouts
+ *   code: |
+ *     <header class="ds-section-header ds-section-header--center">
+ *       <h2 class="ds-section-header__title">Welcome Back</h2>
+ *       <p class="ds-section-header__subtitle">Sign in to continue to your account</p>
+ *     </header>
+ * - title: Small Header
+ *   description: Compact header for cards and smaller sections
+ *   code: |
+ *     <header class="ds-section-header ds-section-header--sm">
+ *       <h3 class="ds-section-header__title">Account Settings</h3>
+ *       <p class="ds-section-header__subtitle">Manage your preferences</p>
+ *     </header>
+ * - title: Large Header
+ *   description: Prominent header for page titles
+ *   code: |
+ *     <header class="ds-section-header ds-section-header--lg">
+ *       <h1 class="ds-section-header__title">Dashboard</h1>
+ *       <p class="ds-section-header__subtitle">Overview of your account activity and metrics</p>
+ *     </header>
+ * - title: With Description
+ *   description: Extended description for detailed context
+ *   code: |
+ *     <header class="ds-section-header">
+ *       <h2 class="ds-section-header__title">Getting Started</h2>
+ *       <p class="ds-section-header__subtitle">Follow these steps to set up your project</p>
+ *       <p class="ds-section-header__description">This guide will walk you through the initial configuration process, including setting up your environment and connecting your first data source.</p>
+ *     </header>
+ */
+
+@layer components {
+  .ds-section-header {
+    /* ===== Component Tokens ===== */
+    --section-header-gap: var(--spacing-scale-xs);
+    --section-header-title-size: var(--font-size-xl);
+    --section-header-title-weight: var(--font-weight-semibold);
+    --section-header-title-color: var(--color-semantic-text);
+    --section-header-subtitle-size: var(--font-size-base);
+    --section-header-subtitle-color: var(--color-semantic-text-muted);
+    --section-header-description-size: var(--font-size-base);
+    --section-header-description-color: var(--color-semantic-text-muted);
+    --section-header-align: left;
+
+    /* ===== Base Styles ===== */
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-header-gap);
+    text-align: var(--section-header-align);
+    font-family: var(--font-family-base);
+
+    /* ===== Elements ===== */
+    &__title {
+      margin: 0;
+      font-family: var(--font-family-heading);
+      font-size: var(--section-header-title-size);
+      font-weight: var(--section-header-title-weight);
+      color: var(--section-header-title-color);
+      line-height: var(--font-lineHeight-tight);
+    }
+
+    &__subtitle {
+      margin: 0;
+      font-size: var(--section-header-subtitle-size);
+      color: var(--section-header-subtitle-color);
+      line-height: var(--font-lineHeight-normal);
+    }
+
+    &__description {
+      margin: var(--spacing-scale-sm) 0 0;
+      font-size: var(--section-header-description-size);
+      color: var(--section-header-description-color);
+      line-height: var(--font-lineHeight-relaxed);
+    }
+  }
+
+  /* ===== Variations ===== */
+
+  .ds-section-header--sm {
+    --section-header-title-size: var(--font-size-lg);
+    --section-header-subtitle-size: var(--font-size-sm);
+    --section-header-description-size: var(--font-size-sm);
+  }
+
+  .ds-section-header--lg {
+    --section-header-gap: var(--spacing-scale-sm);
+    --section-header-title-size: var(--font-size-3xl);
+    --section-header-subtitle-size: var(--font-size-lg);
+    --section-header-description-size: var(--font-size-lg);
+  }
+
+  .ds-section-header--center {
+    --section-header-align: center;
+  }
+}

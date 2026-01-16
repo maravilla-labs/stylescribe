@@ -1,0 +1,85 @@
+{
+  "$meta": {
+    "name": "chat-window",
+    "description": "Design tokens for the Chat Window component"
+  },
+  "chat-window": {
+    "background": {
+      "default": {
+        "$value": "{color.surface}",
+        "$type": "color",
+        "$description": "Window background color"
+      },
+      "messages": {
+        "$value": "{color.neutral.50}",
+        "$type": "color",
+        "$description": "Messages area background color"
+      }
+    },
+    "height": {
+      "default": {
+        "$value": "400px",
+        "$type": "dimension",
+        "$description": "Default window height"
+      },
+      "fullscreen": {
+        "$value": "100vh",
+        "$type": "dimension",
+        "$description": "Fullscreen window height"
+      }
+    },
+    "border": {
+      "color": {
+        "$value": "{color.border}",
+        "$type": "color",
+        "$description": "Window border color"
+      },
+      "radius": {
+        "$value": "{border.radius.xl}",
+        "$type": "dimension",
+        "$description": "Window corner radius"
+      }
+    },
+    "shadow": {
+      "default": {
+        "$value": "{shadow.lg}",
+        "$type": "shadow",
+        "$description": "Window shadow"
+      }
+    },
+    "typing": {
+      "$description": "Typing indicator tokens",
+      "dot-size": {
+        "$value": "6px",
+        "$type": "dimension",
+        "$description": "Typing indicator dot size"
+      }
+    },
+    "fullscreen": {
+      "$description": "Fullscreen variant tokens",
+      "border-radius": {
+        "$value": "0",
+        "$type": "dimension",
+        "$description": "No radius in fullscreen mode"
+      }
+    },
+    "embedded": {
+      "$description": "Embedded variant tokens",
+      "border": {
+        "$value": "transparent",
+        "$type": "color",
+        "$description": "No visible border when embedded"
+      },
+      "border-radius": {
+        "$value": "0",
+        "$type": "dimension",
+        "$description": "No radius when embedded"
+      },
+      "shadow": {
+        "$value": "none",
+        "$type": "shadow",
+        "$description": "No shadow when embedded"
+      }
+    }
+  }
+}

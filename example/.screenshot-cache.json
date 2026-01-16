@@ -1,0 +1,335 @@
+{
+  "version": 1,
+  "items": {
+    "component:app": {
+      "hash": "3ea50411ef613678",
+      "generated": "2026-01-11T15:58:07.110Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-app.png"
+    },
+    "component:alert": {
+      "hash": "f777e6aa417bf66d",
+      "generated": "2026-01-16T12:43:36.416Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-alert.png"
+    },
+    "component:button": {
+      "hash": "50f645344ac5c4be",
+      "generated": "2026-01-16T12:43:36.417Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-button.png"
+    },
+    "component:card": {
+      "hash": "d43e8598a6b7cdef",
+      "generated": "2026-01-11T15:58:08.100Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-card.png"
+    },
+    "component:avatar": {
+      "hash": "cb35f970c17015dd",
+      "generated": "2026-01-11T15:58:08.525Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-avatar.png"
+    },
+    "component:appbar": {
+      "hash": "3f30076b29d01b14",
+      "generated": "2026-01-16T12:43:36.676Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-appbar.png"
+    },
+    "component:chat-bubble": {
+      "hash": "c8f2c5c95dd0d871",
+      "generated": "2026-01-11T15:58:09.109Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-chat-bubble.png"
+    },
+    "component:header": {
+      "hash": "d543da72b96e1757",
+      "generated": "2026-01-16T12:43:36.418Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-header.png"
+    },
+    "component:label": {
+      "hash": "697aa144f592eca6",
+      "generated": "2026-01-16T12:43:37.373Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-label.png"
+    },
+    "component:prose": {
+      "hash": "951c7f5a909ec88c",
+      "generated": "2026-01-11T15:58:09.985Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-prose.png"
+    },
+    "component:nav": {
+      "hash": "3af0f7e1cc3bb65f",
+      "generated": "2026-01-11T15:58:10.059Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-nav.png"
+    },
+    "component:stack": {
+      "hash": "5d621a72c48311d2",
+      "generated": "2026-01-11T17:24:48.082Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-stack.png"
+    },
+    "component:text": {
+      "hash": "f5537b524d030571",
+      "generated": "2026-01-11T17:21:12.379Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-text.png"
+    },
+    "component:search": {
+      "hash": "de3877ada94c72e6",
+      "generated": "2026-01-16T12:43:37.373Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-search.png"
+    },
+    "component:chat-input": {
+      "hash": "000122927836deff",
+      "generated": "2026-01-16T12:43:37.373Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-chat-input.png"
+    },
+    "component:badge": {
+      "hash": "79ff74cbe1de882d",
+      "generated": "2026-01-11T15:58:11.024Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-badge.png"
+    },
+    "component:cluster": {
+      "hash": "f1184b80ed17f7ab",
+      "generated": "2026-01-11T15:58:11.359Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-cluster.png"
+    },
+    "component:dropdown": {
+      "hash": "3238b432856364ea",
+      "generated": "2026-01-16T12:43:37.598Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-dropdown.png"
+    },
+    "component:hero": {
+      "hash": "8c5d84f2322b53cb",
+      "generated": "2026-01-11T15:58:11.911Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-hero.png"
+    },
+    "component:input": {
+      "hash": "8ef871e3187407b1",
+      "generated": "2026-01-16T12:43:38.341Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-input.png"
+    },
+    "component:layout": {
+      "hash": "8d750560417d8d93",
+      "generated": "2026-01-11T17:21:32.714Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-layout.png"
+    },
+    "component:tabs": {
+      "hash": "efc96354c2244576",
+      "generated": "2026-01-16T12:43:38.340Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-tabs.png"
+    },
+    "component:section-header": {
+      "hash": "504b3fd6cd425b66",
+      "generated": "2026-01-11T15:58:12.899Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-section-header.png"
+    },
+    "component:link": {
+      "hash": "b24e62e70f1e05de",
+      "generated": "2026-01-16T12:43:38.340Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-link.png"
+    },
+    "component:article": {
+      "hash": "ae04ce0fc90eedf3",
+      "generated": "2026-01-11T15:58:13.583Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-article.png"
+    },
+    "component:chat-window": {
+      "hash": "edb7e48219339023",
+      "generated": "2026-01-11T15:58:13.848Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-chat-window.png"
+    },
+    "component:container": {
+      "hash": "acdbe47c92f5d3bc",
+      "generated": "2026-01-11T15:58:13.848Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-container.png"
+    },
+    "component:media": {
+      "hash": "b9b9be42bb95019c",
+      "generated": "2026-01-11T15:58:13.848Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-media.png"
+    },
+    "component:spinner": {
+      "hash": "40b2de9923d808d8",
+      "generated": "2026-01-11T15:58:14.523Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-spinner.png"
+    },
+    "component:textarea": {
+      "hash": "b119c10905a25c3d",
+      "generated": "2026-01-11T15:58:14.793Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-textarea.png"
+    },
+    "component:timeline": {
+      "hash": "759d3a1b59910e59",
+      "generated": "2026-01-16T12:43:38.576Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-timeline.png"
+    },
+    "component:indicator": {
+      "hash": "64ccc5936229c2bc",
+      "generated": "2026-01-11T15:58:14.833Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-indicator.png"
+    },
+    "component:select": {
+      "hash": "da03ebb0a24d11e2",
+      "generated": "2026-01-16T12:43:39.305Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-select.png"
+    },
+    "component:tag": {
+      "hash": "3f6f691cba20aeea",
+      "generated": "2026-01-16T12:43:39.305Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-tag.png"
+    },
+    "component:checkbox": {
+      "hash": "1812a7a12c9715a3",
+      "generated": "2026-01-16T12:43:39.305Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-checkbox.png"
+    },
+    "component:sidebar": {
+      "hash": "9326fa718cc8c520",
+      "generated": "2026-01-11T15:58:15.764Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-sidebar.png"
+    },
+    "component:grid": {
+      "hash": "4bf5ba17efd5f46a",
+      "generated": "2026-01-11T17:24:35.902Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-grid.png"
+    },
+    "component:meta": {
+      "hash": "28b8212027c8310a",
+      "generated": "2026-01-16T12:43:39.535Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-meta.png"
+    },
+    "component:toggle": {
+      "hash": "b28a17d8b84f7192",
+      "generated": "2026-01-11T15:58:16.696Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-toggle.png"
+    },
+    "component:radio": {
+      "hash": "fe61aeebd3ca1ea7",
+      "generated": "2026-01-11T15:58:16.696Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-radio.png"
+    },
+    "component:form-field": {
+      "hash": "62202f12fb69b940",
+      "generated": "2026-01-16T12:43:40.266Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-form-field.png"
+    },
+    "component:icon": {
+      "hash": "c9a5b36698e60d7d",
+      "generated": "2026-01-11T15:58:17.624Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-icon.png"
+    },
+    "component:form-group": {
+      "hash": "60c1741be49e0dba",
+      "generated": "2026-01-16T12:43:40.235Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/component-form-group.png"
+    },
+    "block:auth-form": {
+      "hash": "735c6a6f9b85a2fe",
+      "generated": "2026-01-11T17:24:30.996Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/block-auth-form.png"
+    },
+    "block:search-bar": {
+      "hash": "48d3097522f3b8b0",
+      "generated": "2026-01-11T17:24:30.997Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/block-search-bar.png"
+    },
+    "page:dashboard": {
+      "hash": "f5537f0367d87c05",
+      "generated": "2026-01-11T17:24:31.997Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-dashboard.png"
+    },
+    "page:login": {
+      "hash": "2ff1f1a0127443f7",
+      "generated": "2026-01-11T17:24:31.996Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-login.png"
+    },
+    "fullpage:dashboard": {
+      "hash": "393da7d97b6a7d93",
+      "generated": "2026-01-16T12:51:55.108Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-dashboard.png"
+    },
+    "fullpage:login": {
+      "hash": "190416474c14eebc",
+      "generated": "2026-01-16T12:51:55.109Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-login.png"
+    },
+    "doc:changelog": {
+      "hash": "b4357384f8e2c7e2",
+      "generated": "2026-01-16T12:51:55.240Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-changelog.png"
+    },
+    "doc:blocks": {
+      "hash": "59482982077a187a",
+      "generated": "2026-01-16T12:51:55.241Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-blocks.png"
+    },
+    "doc:components": {
+      "hash": "6614ef72129420be",
+      "generated": "2026-01-16T12:51:56.228Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-components.png"
+    },
+    "doc:documentation-advanced-plugins": {
+      "hash": "5178f35a8906ab41",
+      "generated": "2026-01-16T12:51:56.382Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation-advanced-plugins.png"
+    },
+    "doc:documentation-advanced-customization": {
+      "hash": "f8c0069f621c6965",
+      "generated": "2026-01-16T12:51:56.382Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation-advanced-customization.png"
+    },
+    "doc:documentation-tutorials-quick-start": {
+      "hash": "555a3d6f9c56f12c",
+      "generated": "2026-01-16T12:51:58.508Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation-tutorials-quick-start.png"
+    },
+    "doc:pages": {
+      "hash": "5deb059a878bbe9c",
+      "generated": "2026-01-16T12:51:59.479Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-pages.png"
+    },
+    "doc:documentation-accessibility": {
+      "hash": "983dd7a5e5b4d828",
+      "generated": "2026-01-16T12:54:26.779Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation-accessibility.png"
+    },
+    "doc:documentation-annotations": {
+      "hash": "1a911fe307002d42",
+      "generated": "2026-01-16T12:54:26.780Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation-annotations.png"
+    },
+    "doc:documentation-css-architecture": {
+      "hash": "93ff3c7b27b22e0c",
+      "generated": "2026-01-16T12:54:26.780Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation-css-architecture.png"
+    },
+    "doc:documentation-getting-started": {
+      "hash": "0a43afdc364973ae",
+      "generated": "2026-01-16T12:54:26.780Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation-getting-started.png"
+    },
+    "doc:documentation-tokens-guide": {
+      "hash": "29d381097c46c728",
+      "generated": "2026-01-16T12:54:28.088Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation-tokens-guide.png"
+    },
+    "doc:documentation-guidelines": {
+      "hash": "f1091979ee123f66",
+      "generated": "2026-01-16T12:54:28.088Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation-guidelines.png"
+    },
+    "doc:documentation": {
+      "hash": "492ea53c1fda6367",
+      "generated": "2026-01-16T12:54:28.088Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation.png"
+    },
+    "doc:documentation-tokens": {
+      "hash": "ede25711a07970ee",
+      "generated": "2026-01-16T12:54:28.088Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation-tokens.png"
+    },
+    "doc:documentation-tutorials": {
+      "hash": "70f3557037dd8251",
+      "generated": "2026-01-16T12:54:29.475Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-documentation-tutorials.png"
+    },
+    "doc:index": {
+      "hash": "cb7c3f465cdc595b",
+      "generated": "2026-01-16T12:54:29.475Z",
+      "file": "/Users/senol/Projects/solutas/stylescribe/example/static/screenshots/page-index.png"
+    }
+  }
+}

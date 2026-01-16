@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "stylescribe": {
+      "command": "npx",
+      "args": [
+        "stylescribe",
+        "mcp",
+        "serve"
+      ],
+      "env": {
+        "STYLESCRIBE_PROJECT": "."
+      }
+    }
+  }
+}

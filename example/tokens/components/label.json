@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "label",
+    "description": "Design tokens for the Label component"
+  },
+  "label": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Label background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Label text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Label padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Label border radius"
+    }
+  }
+}

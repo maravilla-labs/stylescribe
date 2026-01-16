@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{title}}</title>
+        {{#if branding.favicon}}
+        <link rel="icon" href="/static/{{branding.favicon}}">
+        {{/if}}
+        <link rel="stylesheet" href="{{basePath}}css/stylescribe.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+
+        {{#each headIncludes}}
+        <link rel="stylesheet" href="/{{this}}">
+        {{/each}}
+
+        <script src="{{basePath}}js/theme-init.js"></script>
+    </head>
+    <body hx-boost="true"
+          hx-target="#stylescribe-wrapper"
+          hx-select="#stylescribe-wrapper"
+          hx-swap="outerHTML show:window:top"
+          class="min-h-screen bg-white dark:bg-slate-900"
+          data-basepath="{{basePath}}"
+          data-page-type="home">
+        <div id="stylescribe-wrapper">
+        <!-- Navigation -->
+        {{> navigation basePath=basePath branding=branding navigation=navigation groups=groups activeNav=activeNav}}
+        <!-- Hero Section -->
+        {{#unless (eq hero.enabled false)}}
+        <div class="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 dark:from-indigo-950 dark:via-purple-950 dark:to-pink-950 {{themeClass 'hero' 'background'}}">
+            <div class="max-w-7xl mx-auto px-4 py-20 md:py-28 relative z-10">
+                <div class="text-center text-white {{themeClass 'hero' 'text'}}">
+                    {{#if hero.icon}}
+                    <div class="mb-6">
+                        <img src="{{basePath}}static/{{hero.icon}}" alt="" class="h-16 w-16 mx-auto rounded-xl shadow-lg" />
+                    </div>
+                    {{/if}}
+                    <span class="inline-block px-4 py-1.5 rounded-full text-sm font-medium mb-6 bg-white/20 text-white {{themeClass 'hero' 'badge'}}">
+                        {{#if hero.badge}}{{hero.badge}}{{else}}CSS Documentation Made Beautiful{{/if}}
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-balance text-white {{themeClass 'hero' 'title'}}">
+                        {{#if branding.name}}{{branding.name}}{{else}}{{title}}{{/if}}
+                    </h1>
+                    <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed text-white/90 {{themeClass 'hero' 'subtitle'}}">
+                        {{#if hero.tagline}}{{hero.tagline}}{{else}}A modern CSS/SCSS documentation generator with W3C design tokens support{{/if}}
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        {{#if hero.cta}}
+                        {{#each hero.cta}}
+                        <a href="{{#if this.external}}{{this.href}}{{else}}{{../basePath}}{{this.href}}{{/if}}" class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-xl transition-all duration-200 {{#if @first}}{{themeClass 'button' 'primary'}}{{else}}{{themeClass 'button' 'outline'}}{{/if}}"{{#if this.external}} target="_blank" rel="noopener"{{/if}}>
+                            <span>{{this.text}}</span>
+                            {{#if @first}}
+                            <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                            {{/if}}
+                        </a>
+                        {{/each}}
+                        {{else}}
+                        <a href="{{basePath}}documentation/getting-started.html" class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-xl transition-all duration-200 bg-white text-indigo-600 hover:bg-gray-100 dark:bg-indigo-500 dark:text-white dark:hover:bg-indigo-400 {{themeClass 'button' 'primary'}}">
+                            <span>Get Started</span>
+                            <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                            </svg>
+                        </a>
+                        <a href="#components" class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-xl transition-all duration-200 border-2 border-white/30 text-white hover:bg-white/10 {{themeClass 'button' 'outline'}}">
+                            View Components
+                        </a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/unless}}
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 py-12">
+            {{#if content}}
+            <div class="prose prose-lg dark:prose-invert max-w-none mb-16">
+                {{{content}}}
+            </div>
+            {{/if}}
+
+            <!-- Component Library Section -->
+            {{#unless (eq listComponents false)}}
+            <section id="components">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Component Library</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">Browse all available components organized by category</p>
+                    </div>
+                    <span class="hidden sm:inline-flex items-center px-3 py-1 rounded-full bg-gray-100 dark:bg-slate-800 text-sm text-gray-600 dark:text-gray-400">
+                        {{sumLengths groups}} components
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {{#each groups as |components group|}}
+                    <div class="rounded-xl border border-gray-200 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 bg-white dark:bg-slate-900 {{themeClass 'card' 'container'}}">
+                        <div class="px-5 py-4 font-semibold bg-gray-50 dark:bg-gradient-to-r dark:from-slate-900/95 dark:via-indigo-950/80 dark:to-purple-950/70 text-gray-900 dark:text-white {{themeClass 'card' 'header'}}">
+                            <h5>{{group}}</h5>
+                        </div>
+                        <div class="divide-y divide-gray-100 dark:divide-slate-700/50 {{themeClass 'card' 'body'}}">
+                            {{#each (take components 4) as |component|}}
+                            <a class="stylescribe-list-item"
+                               href="{{@root.basePath}}components/{{component.name}}.html">
+                                <span class="font-medium">{{component.title}}</span>
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold {{themeClass 'badge' 'default'}}">{{component.variations.length}} variants</span>
+                            </a>
+                            {{/each}}
+                            {{#if (gt (length components) 4)}}
+                            <a class="stylescribe-list-item group"
+                               href="{{@root.basePath}}components/index.html#{{lowercase group}}">
+                                <span class="font-medium text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-300">View all {{length components}} components →</span>
+                            </a>
+                            {{/if}}
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </section>
+            {{/unless}}
+        </main>
+
+        <!-- Footer -->
+        <footer class="py-6 mt-12 border-t {{themeClass 'footer' 'background'}}">
+            <div class="max-w-7xl mx-auto px-4 text-center {{themeClass 'footer' 'text'}}">
+                <p>Built with <strong>StyleScribe</strong> — CSS/SCSS Documentation Generator</p>
+            </div>
+        </footer>
+        </div>
+
+        <!-- Alpine.js (with defer for proper initialization) -->
+        <script defer src="{{basePath}}js/alpine.min.js"></script>
+        <!-- htmx for SPA navigation -->
+        <script src="{{basePath}}js/htmx.min.js"></script>
+        <script src="{{basePath}}js/htmx-init.js"></script>
+        <!-- Alpine components -->
+        <script src="{{basePath}}js/alpine-components.js"></script>
+        <!-- Core functionality -->
+        <script src="{{basePath}}js/init-registry.js"></script>
+        <script src="{{basePath}}js/page-init.js"></script>
+        <script src="https://unpkg.com/lunr/lunr.js"></script>
+        <script src="{{basePath}}js/search.js"></script>
+        <script src="{{basePath}}js/navigation.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    </body>
+</html>

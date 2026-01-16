@@ -1,0 +1,68 @@
+/**
+ * @title Sidebar
+ * @description Two-column layout with a fixed sidebar and flexible main content.
+ *   Sidebar can be positioned on left or right.
+ * @group Layout
+ * @order 4
+ *
+ * @elements
+ * - ds-sidebar: Container for sidebar layout
+ * - ds-sidebar__aside: The sidebar column
+ * - ds-sidebar__main: The main content column
+ *
+ * @variations
+ * - ds-sidebar--right: Places sidebar on the right
+ * - ds-sidebar--narrow: Narrower sidebar (200px)
+ * - ds-sidebar--wide: Wider sidebar (320px)
+ *
+ * @examples
+ * - title: Basic Sidebar Layout
+ *   code: |
+ *     <div class="ds-sidebar">
+ *       <aside class="ds-sidebar__aside">
+ *         <nav>Sidebar navigation</nav>
+ *       </aside>
+ *       <main class="ds-sidebar__main">
+ *         <h1>Main Content</h1>
+ *         <p>The main content area.</p>
+ *       </main>
+ *     </div>
+ *
+ * - title: Right Sidebar
+ *   code: |
+ *     <div class="ds-sidebar ds-sidebar--right">
+ *       <main class="ds-sidebar__main">
+ *         <h1>Content</h1>
+ *       </main>
+ *       <aside class="ds-sidebar__aside">
+ *         <p>Right sidebar</p>
+ *       </aside>
+ *     </div>
+ */
+
+@layer components {
+  .ds-sidebar {
+    --sidebar-width: 256px;
+    --sidebar-gap: 0;
+
+    display: flex;
+    gap: var(--sidebar-gap);
+  }
+
+  .ds-sidebar__aside {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+  }
+
+  .ds-sidebar__main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ds-sidebar--right {
+    flex-direction: row-reverse;
+  }
+
+  .ds-sidebar--narrow { --sidebar-width: 200px; }
+  .ds-sidebar--wide { --sidebar-width: 320px; }
+}

@@ -1,0 +1,189 @@
+/**
+ * @title Chat Window
+ * @description Complete chat interface composing multiple components.
+ *   Demonstrates how to build complex UIs from simpler parts.
+ * @navtitle Chat Window
+ * @group AI Chat
+ * @order 3
+ * @verified true
+ * @dependencies chat-bubble, chat-input, avatar, badge
+ * @variations default, fullscreen, embedded
+ * @elements header, messages, input, typing
+ * @examples
+ * - title: Complete Chat Interface
+ *   description: Full chat window with all available elements
+ *   code: |
+ *     <div class="ds-chat-window">
+ *       <header class="ds-chat-window__header">
+ *         <div class="ds-avatar ds-avatar--sm ds-avatar--ai">
+ *           <span class="ds-avatar__initials">AI</span>
+ *           <span class="ds-avatar__status ds-avatar__status--online"></span>
+ *         </div>
+ *         <div class="ds-chat-window__header-info">
+ *           <h3 class="ds-chat-window__title">AI Assistant</h3>
+ *           <span class="ds-badge ds-badge--success ds-badge--dot">
+ *             <span class="ds-badge__dot"></span>
+ *             <span class="ds-badge__label">Online</span>
+ *           </span>
+ *         </div>
+ *       </header>
+ *       <div class="ds-chat-window__messages">
+ *         <div class="ds-chat-bubble ds-chat-bubble--assistant">
+ *           <div class="ds-avatar ds-avatar--xs ds-avatar--ai"><span class="ds-avatar__initials">AI</span></div>
+ *           <div class="ds-chat-bubble__content"><p>Hello! How can I help you today?</p></div>
+ *         </div>
+ *         <div class="ds-chat-bubble ds-chat-bubble--user">
+ *           <div class="ds-chat-bubble__content"><p>I need help with my design system.</p></div>
+ *         </div>
+ *       </div>
+ *       <div class="ds-chat-window__typing">
+ *         <span class="ds-chat-window__typing-dots"></span>
+ *         <span>AI is typing...</span>
+ *       </div>
+ *       <footer class="ds-chat-window__footer">
+ *         <div class="ds-chat-input">
+ *           <textarea class="ds-chat-input__input" placeholder="Message AI..." rows="1"></textarea>
+ *           <button class="ds-chat-input__send"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+ *         </div>
+ *       </footer>
+ *     </div>
+ * - title: With Typing Indicator
+ *   description: Shows AI is typing
+ *   code: |
+ *     <div class="ds-chat-window" style="height: 200px;">
+ *       <div class="ds-chat-window__messages">
+ *         <div class="ds-chat-bubble ds-chat-bubble--user">
+ *           <div class="ds-chat-bubble__content"><p>What are design tokens?</p></div>
+ *         </div>
+ *       </div>
+ *       <div class="ds-chat-window__typing">
+ *         <span class="ds-chat-window__typing-dots"></span>
+ *         <span>AI is typing...</span>
+ *       </div>
+ *     </div>
+ */
+
+@layer components {
+  .ds-chat-window {
+    /* Internal token defaults */
+    --window-bg: var(--color-surface);
+    --window-messages-bg: var(--color-neutral-50);
+    --window-height: 400px;
+    --window-border: var(--color-border);
+    --window-radius: var(--border-radius-xl);
+    --window-shadow: var(--shadow-lg);
+
+    display: flex;
+    flex-direction: column;
+    height: var(--window-height);
+    background-color: var(--window-bg);
+    border: var(--border-width-thin) solid var(--window-border);
+    border-radius: var(--window-radius);
+    box-shadow: var(--window-shadow);
+    overflow: hidden;
+
+    /* Elements */
+    &__header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      background-color: var(--window-bg);
+      border-bottom: var(--border-width-thin) solid var(--window-border);
+    }
+
+    &__header-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    &__title {
+      margin: 0;
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    &__messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--spacing-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      background-color: var(--window-messages-bg);
+    }
+
+    &__typing {
+      --typing-dot-size: 6px;
+
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      background-color: var(--window-bg);
+      border-top: var(--border-width-thin) solid var(--window-border);
+    }
+
+    &__typing-dots {
+      display: flex;
+      gap: 4px;
+
+      &,
+      &::before,
+      &::after {
+        content: '';
+        display: block;
+        width: var(--typing-dot-size);
+        height: var(--typing-dot-size);
+        background-color: var(--color-text-muted);
+        border-radius: 50%;
+        animation: typing-bounce 1.4s infinite ease-in-out both;
+      }
+
+      &::before {
+        animation-delay: -0.32s;
+      }
+
+      &::after {
+        animation-delay: -0.16s;
+      }
+    }
+
+    &__footer {
+      padding: var(--spacing-md);
+      background-color: var(--window-bg);
+      border-top: var(--border-width-thin) solid var(--window-border);
+    }
+  }
+
+  /* Variants only set tokens */
+
+  .ds-chat-window--fullscreen {
+    --window-height: 100vh;
+    --window-radius: 0;
+
+    position: fixed;
+    inset: 0;
+  }
+
+  .ds-chat-window--embedded {
+    --window-border: transparent;
+    --window-radius: 0;
+    --window-shadow: none;
+  }
+}
+
+@keyframes typing-bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

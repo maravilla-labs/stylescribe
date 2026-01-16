@@ -1,0 +1,17 @@
+<div class="token-grid">
+    {{#each tokens}}
+    <div class="token-card rounded-lg border border-gray-200 overflow-hidden bg-white hover:shadow-lg transition-shadow" data-token-name="{{this.name}}" data-token-type="color">
+        <div class="color-swatch" style="background-color: {{this.value}};">
+            {{this.value}}
+        </div>
+        <div class="token-info">
+            <div class="token-name">{{this.cssVar}}</div>
+            <div class="token-value">{{this.value}}</div>
+            {{#if this.description}}
+            <div class="token-description">{{this.description}}</div>
+            {{/if}}
+            <button class="copy-btn mt-2 px-2 py-1 text-xs border border-gray-300 rounded bg-white hover:bg-gray-100 cursor-pointer transition-colors" onclick="copyToken('{{this.cssVar}}')">Copy var</button>
+        </div>
+    </div>
+    {{/each}}
+</div>

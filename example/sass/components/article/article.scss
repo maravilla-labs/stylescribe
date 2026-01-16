@@ -1,0 +1,250 @@
+/**
+ * @title Article
+ * @description Article layout component for blog posts, documentation pages, or long-form content with hero image, metadata, and prose-optimized styling.
+ * @navtitle Article
+ * @group Layout
+ * @order 3
+ * @dependencies prose, meta, tag, avatar
+ * @variations default, wide, compact, featured
+ * @elements
+ * - name: hero
+ *   html: <div class="{{class}}"></div>
+ * - name: header
+ *   html: <header class="{{class}}"></header>
+ * - name: category
+ *   html: <span class="{{class}} ds-badge ds-badge--primary">Category</span>
+ * - name: title
+ *   html: <h1 class="{{class}}">Article Title</h1>
+ * - name: meta
+ *   html: <div class="{{class}}"></div>
+ * - name: lead
+ *   html: <p class="{{class}}">Lead paragraph text</p>
+ * - name: content
+ *   html: <div class="{{class}} ds-prose"></div>
+ * - name: footer
+ *   html: <footer class="{{class}}"></footer>
+ * - name: tags
+ *   html: <div class="{{class}}"></div>
+ * - name: share
+ *   html: <div class="{{class}}"></div>
+ * @examples
+ * - title: Default Article
+ *   description: Standard article layout with hero image and metadata
+ *   code: |
+ *     <article class="ds-article">
+ *       <div class="ds-article__hero" style="background-image: url('https://picsum.photos/800/400?random=1')"></div>
+ *       <header class="ds-article__header">
+ *         <span class="ds-badge ds-badge--primary">TECHNOLOGY</span>
+ *         <h1 class="ds-article__title">The AI Revolution Begins: How Machine Learning is Changing Everything</h1>
+ *         <p class="ds-article__lead">Part 1 of our comprehensive series on the AI transformation sweeping across industries.</p>
+ *       </header>
+ *       <div class="ds-article__content ds-prose">
+ *         <p>In 2023, artificial intelligence crossed a threshold that many thought was decades away...</p>
+ *       </div>
+ *     </article>
+ * - title: Article with Full Metadata
+ *   description: Complete article with author, date, and tags
+ *   code: |
+ *     <article class="ds-article">
+ *       <div class="ds-article__hero" style="background-image: url('https://picsum.photos/800/400?random=2')"></div>
+ *       <header class="ds-article__header">
+ *         <span class="ds-badge ds-badge--primary">TECHNOLOGY</span>
+ *         <h1 class="ds-article__title">The AI Revolution Begins</h1>
+ *         <div class="ds-article__meta">
+ *           <div class="ds-meta">
+ *             <div class="ds-meta__item ds-meta__author">
+ *               <div class="ds-avatar ds-avatar--xs"><span class="ds-avatar__initials">SC</span></div>
+ *               <span class="ds-meta__value">Sarah Chen</span>
+ *             </div>
+ *             <span class="ds-meta__separator"></span>
+ *             <div class="ds-meta__item">
+ *               <span class="ds-meta__value">October 1, 2025</span>
+ *             </div>
+ *           </div>
+ *         </div>
+ *         <p class="ds-article__lead">An introduction to the AI transformation.</p>
+ *       </header>
+ *       <div class="ds-article__content ds-prose">
+ *         <h2>The AI Revolution Begins</h2>
+ *         <p>In 2023, artificial intelligence crossed a threshold...</p>
+ *       </div>
+ *       <footer class="ds-article__footer">
+ *         <div class="ds-article__tags">
+ *           <span class="ds-tag"><span class="ds-tag__label">AI/ML</span></span>
+ *           <span class="ds-tag"><span class="ds-tag__label">Analysis</span></span>
+ *         </div>
+ *       </footer>
+ *     </article>
+ * - title: Wide Article
+ *   description: Full-width hero image variant
+ *   code: |
+ *     <article class="ds-article ds-article--wide">
+ *       <div class="ds-article__hero" style="background-image: url('https://picsum.photos/1200/500?random=3')"></div>
+ *       <header class="ds-article__header">
+ *         <h1 class="ds-article__title">Full Width Article Layout</h1>
+ *         <p class="ds-article__lead">This variant spans the full width of the container.</p>
+ *       </header>
+ *       <div class="ds-article__content ds-prose">
+ *         <p>Article content goes here...</p>
+ *       </div>
+ *     </article>
+ * - title: Compact Article
+ *   description: Condensed spacing for documentation
+ *   code: |
+ *     <article class="ds-article ds-article--compact">
+ *       <header class="ds-article__header">
+ *         <h1 class="ds-article__title">Documentation Article</h1>
+ *         <p class="ds-article__lead">Compact spacing for documentation pages.</p>
+ *       </header>
+ *       <div class="ds-article__content ds-prose">
+ *         <h2>Getting Started</h2>
+ *         <p>Follow these steps to begin...</p>
+ *       </div>
+ *     </article>
+ * - title: Featured Article
+ *   description: Highlighted style for promoted content
+ *   code: |
+ *     <article class="ds-article ds-article--featured">
+ *       <div class="ds-article__hero" style="background-image: url('https://picsum.photos/800/400?random=4')"></div>
+ *       <header class="ds-article__header">
+ *         <span class="ds-badge ds-badge--warning">FEATURED</span>
+ *         <h1 class="ds-article__title">Featured Article Title</h1>
+ *         <p class="ds-article__lead">This article is highlighted as featured content.</p>
+ *       </header>
+ *       <div class="ds-article__content ds-prose">
+ *         <p>Featured article content...</p>
+ *       </div>
+ *     </article>
+ */
+
+@layer components {
+  .ds-article {
+    /* ===== Component Tokens ===== */
+    --article-max-width: 720px;
+    --article-hero-height: 400px;
+    --article-hero-radius: var(--border-radius-xl);
+    --article-gap: var(--spacing-scale-xl);
+    --article-header-gap: var(--spacing-scale-md);
+    --article-title-size: var(--font-size-4xl);
+    --article-title-weight: var(--font-weight-bold);
+    --article-title-color: var(--color-semantic-text);
+    --article-lead-size: var(--font-size-lg);
+    --article-lead-color: var(--color-semantic-text-muted);
+    --article-content-size: var(--font-size-base);
+    --article-content-line-height: var(--font-lineHeight-relaxed);
+    --article-content-color: var(--color-semantic-text);
+    --article-bg: transparent;
+
+    /* ===== Base Styles ===== */
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-gap);
+    max-width: var(--article-max-width);
+    font-family: var(--font-family-base);
+    background: var(--article-bg);
+
+    /* ===== Elements ===== */
+    &__hero {
+      width: 100%;
+      height: var(--article-hero-height);
+      background-color: var(--color-neutral-200);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: var(--article-hero-radius);
+      overflow: hidden;
+    }
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--article-header-gap);
+    }
+
+    &__category {
+      display: inline-flex;
+      align-self: flex-start;
+    }
+
+    &__title {
+      font-family: var(--font-family-heading);
+      font-size: var(--article-title-size);
+      font-weight: var(--article-title-weight);
+      color: var(--article-title-color);
+      line-height: var(--font-lineHeight-tight);
+      margin: 0;
+    }
+
+    &__meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-scale-sm);
+    }
+
+    &__lead {
+      font-size: var(--article-lead-size);
+      color: var(--article-lead-color);
+      line-height: var(--font-lineHeight-normal);
+      margin: 0;
+    }
+
+    &__content {
+      /* Content container - use with ds-prose for typography styling */
+      font-size: var(--article-content-size);
+      color: var(--article-content-color);
+      line-height: var(--article-content-line-height);
+    }
+
+    &__footer {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-scale-md);
+      padding-top: var(--spacing-scale-lg);
+      border-top: 1px solid var(--color-semantic-border);
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-scale-sm);
+    }
+
+    &__share {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-scale-sm);
+    }
+  }
+
+  /* ===== Variations ===== */
+
+  .ds-article--wide {
+    --article-max-width: 100%;
+    --article-hero-height: 500px;
+    --article-hero-radius: 0;
+
+    .ds-article__header,
+    .ds-article__content,
+    .ds-article__footer {
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .ds-article--compact {
+    --article-gap: var(--spacing-scale-lg);
+    --article-header-gap: var(--spacing-scale-sm);
+    --article-title-size: var(--font-size-2xl);
+    --article-lead-size: var(--font-size-base);
+    --article-hero-height: 240px;
+  }
+
+  .ds-article--featured {
+    --article-bg: var(--color-neutral-50);
+    padding: var(--spacing-scale-lg);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-md);
+  }
+}

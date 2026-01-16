@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "tag",
+    "description": "Design tokens for the Tag component"
+  },
+  "tag": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Tag background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Tag text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Tag padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Tag border radius"
+    }
+  }
+}

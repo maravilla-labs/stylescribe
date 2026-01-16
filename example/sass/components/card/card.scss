@@ -1,0 +1,184 @@
+/**
+ * @title Card
+ * @description Flexible container for grouping related content with optional
+ *   header, body, and footer sections.
+ * @navtitle Card
+ * @group Layout
+ * @order 1
+ * @draft true
+ * @dependencies button
+ * @classname card
+ * @variations bordered, elevated, interactive
+ * @additional_variations compact
+ * @elements
+ * - name: header
+ *   html: <div class="{{class}}">Card Header</div>
+ * - name: media
+ *   html: <div class="{{class}}"></div>
+ * - name: body
+ *   html: <div class="{{class}}"></div>
+ * - name: title
+ *   html: <h3 class="{{class}}">Card Title</h3>
+ * - name: subtitle
+ *   html: <p class="{{class}}">Card subtitle</p>
+ * - name: footer
+ *   html: <div class="{{class}}"></div>
+ * - name: actions
+ *   html: <div class="{{class}}"></div>
+ * @examples
+ * - title: Basic Card
+ *   description: Simple card with body content
+ *   code: |
+ *     <div class="ds-card">
+ *       <div class="ds-card__body">
+ *         <h3 class="ds-card__title">Card Title</h3>
+ *         <p class="ds-card__subtitle">Card subtitle or description text</p>
+ *       </div>
+ *     </div>
+ * - title: Card with Media
+ *   description: Featured card with gradient media area
+ *   code: |
+ *     <div class="ds-card ds-card--elevated">
+ *       <div class="ds-card__media" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+ *       <div class="ds-card__body">
+ *         <h3 class="ds-card__title">Featured Content</h3>
+ *         <p class="ds-card__subtitle">With beautiful gradient media</p>
+ *       </div>
+ *     </div>
+ * - title: Interactive Card
+ *   description: Card with hover effect and actions
+ *   code: |
+ *     <div class="ds-card ds-card--interactive">
+ *       <div class="ds-card__body">
+ *         <h3 class="ds-card__title">Clickable Card</h3>
+ *         <p class="ds-card__subtitle">Hover to see the effect</p>
+ *       </div>
+ *       <div class="ds-card__actions">
+ *         <button class="ds-btn ds-btn--primary ds-btn--sm">Action</button>
+ *       </div>
+ *     </div>
+ */
+
+@layer components {
+  .ds-card {
+    /* Internal token defaults */
+    --card-bg: #ffffff;
+    --card-bg-hover: var(--card-bg);
+
+    --card-border-width: var(--border-width-thin);
+    --card-border-color: var(--color-semantic-border);
+    --card-border-color-hover: var(--card-border-color);
+
+    --card-shadow: none;
+    --card-shadow-hover: var(--card-shadow);
+
+    --card-translate-y: 0;
+    --card-translate-y-hover: var(--card-translate-y);
+
+    --card-media-height: 160px;
+    --card-padding: var(--spacing-scale-md);
+
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    font-family: var(--font-family-base);
+    border: var(--card-border-width) solid var(--card-border-color);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transform: translateY(var(--card-translate-y));
+
+    transition:
+      background-color var(--transition-duration-base),
+      border-color var(--transition-duration-base),
+      box-shadow var(--transition-duration-base),
+      transform var(--transition-duration-base);
+
+    &:hover {
+      background-color: var(--card-bg-hover);
+      border-color: var(--card-border-color-hover);
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(var(--card-translate-y-hover));
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+    }
+
+    /* Elements */
+    &__header {
+      padding: var(--card-padding);
+      border-bottom: var(--border-width-thin) solid var(--color-semantic-border);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    &__media {
+      width: 100%;
+      height: var(--card-media-height);
+      background-color: var(--color-neutral-100);
+      background-size: cover;
+      background-position: center;
+    }
+
+    &__body {
+      padding: var(--card-padding);
+      flex: 1;
+    }
+
+    &__title {
+      font-family: var(--font-family-heading);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      margin: 0 0 var(--spacing-scale-xs) 0;
+      color: var(--color-neutral-900);
+    }
+
+    &__subtitle {
+      color: var(--color-semantic-text-muted);
+      margin: 0;
+      line-height: var(--font-lineHeight-normal);
+    }
+
+    &__footer {
+      padding: var(--card-padding);
+      border-top: var(--border-width-thin) solid var(--color-semantic-border);
+      background-color: var(--color-neutral-100);
+    }
+
+    &__actions {
+      display: flex;
+      gap: var(--spacing-scale-sm);
+      padding: var(--card-padding);
+      padding-top: 0;
+    }
+  }
+
+  /* Variants only set tokens */
+
+  .ds-card--bordered {
+    --card-border-width: 2px;
+  }
+
+  .ds-card--elevated {
+    --card-border-width: 0;
+    --card-shadow: var(--shadow-md);
+    --card-shadow-hover: var(--shadow-lg);
+  }
+
+  .ds-card--interactive {
+    --card-shadow-hover: var(--shadow-lg);
+    --card-translate-y-hover: -4px;
+
+    cursor: pointer;
+
+    &:active {
+      --card-translate-y-hover: -2px;
+    }
+  }
+
+  .ds-card--compact {
+    --card-padding: var(--spacing-scale-sm);
+    --card-media-height: 100px;
+  }
+}

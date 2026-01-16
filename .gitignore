@@ -1,0 +1,10 @@
+node_modules
+website/site
+website/build
+website/dist
+example/site
+example/build
+example/dist
+.stylescribe_dev
+.DS_Store
+.claude

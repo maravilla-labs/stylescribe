@@ -1,0 +1,163 @@
+/**
+ * @title Text
+ * @description Utility component for text styling. Provides common text variations
+ *   for color, alignment, and size without needing inline styles.
+ * @navtitle Text
+ * @type utility
+ * @group Utilities
+ * @order 1
+ * @variations muted, center, left, right, xs, sm, lg, xl, 2xl, medium, semibold, bold, truncate, nowrap, break, primary, success, warning, danger
+ * @dependencies layout
+ * @examples
+ * - title: Muted Text
+ *   description: Secondary/helper text color
+ *   code: |
+ *     <p class="ds-text ds-text-muted">This is muted text for secondary information</p>
+ * - title: Centered Text
+ *   description: Center-aligned text
+ *   code: |
+ *     <p class="ds-text ds-text-center">This text is centered</p>
+ * - title: Text Sizes
+ *   description: Size variations for text
+ *   code: |
+ *     <p class="ds-text ds-text-sm">Small text for captions</p>
+ *     <p class="ds-text">Default text size</p>
+ *     <p class="ds-text ds-text-lg">Large text for emphasis</p>
+ *     <p class="ds-text ds-text-xl">Extra large text</p>
+ * - title: Combination
+ *   description: Multiple modifiers combined
+ *   code: |
+ *     <p class="ds-text ds-text-muted ds-text-center ds-text-sm">
+ *       Small, muted, centered text - perfect for footers
+ *     </p>
+ * - title: Truncated Text
+ *   description: Single line with ellipsis overflow
+ *   code: |
+ *     <p class="ds-text ds-text-truncate ds-layout ds-layout-xs">
+ *       This is a very long text that will be truncated with an ellipsis
+ *     </p>
+ * - title: Helper Text Pattern
+ *   description: Common pattern for form helper or footer text
+ *   code: |
+ *     <p class="ds-text ds-text-muted ds-text-center">
+ *       Don't have an account? <a class="ds-link" href="#">Sign up</a>
+ *     </p>
+ */
+
+@layer components {
+  .ds-text {
+    /* ===== Component Tokens ===== */
+    --text-color: var(--color-semantic-text);
+    --text-size: var(--font-size-base);
+    --text-align: inherit;
+    --text-weight: inherit;
+    --text-line-height: var(--font-lineHeight-normal);
+
+    /* ===== Base Styles ===== */
+    margin: 0;
+    font-family: var(--font-family-base);
+    font-size: var(--text-size);
+    font-weight: var(--text-weight);
+    color: var(--text-color);
+    text-align: var(--text-align);
+    line-height: var(--text-line-height);
+
+    /* Links inherit color but get proper link styling */
+    a {
+      color: var(--color-primary-500);
+
+      &:hover {
+        color: var(--color-primary-600);
+      }
+    }
+  }
+
+  /* ===== Color Variations ===== */
+
+  .ds-text-muted {
+    --text-color: var(--color-semantic-text-muted);
+  }
+
+  .ds-text-primary {
+    --text-color: var(--color-primary-500);
+  }
+
+  .ds-text-success {
+    --text-color: var(--color-success-base);
+  }
+
+  .ds-text-warning {
+    --text-color: var(--color-warning-base);
+  }
+
+  .ds-text-danger {
+    --text-color: var(--color-danger-base);
+  }
+
+  /* ===== Alignment Variations ===== */
+
+  .ds-text-center {
+    --text-align: center;
+  }
+
+  .ds-text-left {
+    --text-align: left;
+  }
+
+  .ds-text-right {
+    --text-align: right;
+  }
+
+  /* ===== Size Variations ===== */
+
+  .ds-text-xs {
+    --text-size: var(--font-size-xs);
+  }
+
+  .ds-text-sm {
+    --text-size: var(--font-size-sm);
+  }
+
+  .ds-text-lg {
+    --text-size: var(--font-size-lg);
+  }
+
+  .ds-text-xl {
+    --text-size: var(--font-size-xl);
+  }
+
+  .ds-text-2xl {
+    --text-size: var(--font-size-2xl);
+  }
+
+  /* ===== Weight Variations ===== */
+
+  .ds-text-medium {
+    --text-weight: var(--font-weight-medium);
+  }
+
+  .ds-text-semibold {
+    --text-weight: var(--font-weight-semibold);
+  }
+
+  .ds-text-bold {
+    --text-weight: var(--font-weight-bold);
+  }
+
+  /* ===== Utility Variations ===== */
+
+  .ds-text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ds-text-nowrap {
+    white-space: nowrap;
+  }
+
+  .ds-text-break {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}

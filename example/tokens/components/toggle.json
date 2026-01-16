@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "toggle",
+    "description": "Design tokens for the Toggle component"
+  },
+  "toggle": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Toggle background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Toggle text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Toggle padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Toggle border radius"
+    }
+  }
+}

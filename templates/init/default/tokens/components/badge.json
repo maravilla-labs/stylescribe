@@ -1,0 +1,200 @@
+{
+  "$meta": {
+    "name": "badge",
+    "description": "Design tokens for the Badge component"
+  },
+  "badge": {
+    "background": {
+      "default": {
+        "$value": "{color.neutral.200}",
+        "$type": "color",
+        "$description": "Default badge background color"
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "{color.text}",
+        "$type": "color",
+        "$description": "Default badge text color"
+      }
+    },
+    "border": {
+      "color": {
+        "$value": "transparent",
+        "$type": "color",
+        "$description": "Default badge border color"
+      },
+      "radius": {
+        "$value": "{border.radius.sm}",
+        "$type": "dimension",
+        "$description": "Badge corner radius"
+      }
+    },
+    "padding": {
+      "x": {
+        "$value": "0.6em",
+        "$type": "dimension",
+        "$description": "Horizontal padding"
+      },
+      "y": {
+        "$value": "0.25em",
+        "$type": "dimension",
+        "$description": "Vertical padding"
+      }
+    },
+    "primary": {
+      "$description": "Primary badge variant tokens",
+      "background": {
+        "$value": "{color.primary.500}",
+        "$type": "color",
+        "$description": "Primary badge background"
+      },
+      "text": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Primary badge text color"
+      }
+    },
+    "secondary": {
+      "$description": "Secondary badge variant tokens",
+      "background": {
+        "$value": "{color.neutral.500}",
+        "$type": "color",
+        "$description": "Secondary badge background"
+      },
+      "text": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Secondary badge text color"
+      }
+    },
+    "success": {
+      "$description": "Success badge variant tokens",
+      "background": {
+        "$value": "{color.success.base}",
+        "$type": "color",
+        "$description": "Success badge background"
+      },
+      "text": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Success badge text color"
+      }
+    },
+    "warning": {
+      "$description": "Warning badge variant tokens",
+      "background": {
+        "$value": "{color.warning.base}",
+        "$type": "color",
+        "$description": "Warning badge background"
+      },
+      "text": {
+        "$value": "{color.neutral.900}",
+        "$type": "color",
+        "$description": "Warning badge text color (dark for contrast)"
+      }
+    },
+    "error": {
+      "$description": "Error badge variant tokens",
+      "background": {
+        "$value": "{color.danger.base}",
+        "$type": "color",
+        "$description": "Error badge background"
+      },
+      "text": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Error badge text color"
+      }
+    },
+    "pill": {
+      "$description": "Pill badge variant tokens",
+      "border-radius": {
+        "$value": "9999px",
+        "$type": "dimension",
+        "$description": "Full rounded corners for pill badges"
+      },
+      "padding-x": {
+        "$value": "0.75em",
+        "$type": "dimension",
+        "$description": "Increased horizontal padding for pills"
+      }
+    },
+    "outline": {
+      "$description": "Outline badge variant tokens",
+      "background": {
+        "$value": "transparent",
+        "$type": "color",
+        "$description": "Transparent background for outline badges"
+      },
+      "border": {
+        "$value": "currentColor",
+        "$type": "color",
+        "$description": "Border matches text color"
+      },
+      "primary-text": {
+        "$value": "{color.primary.500}",
+        "$type": "color",
+        "$description": "Primary outline badge text"
+      },
+      "secondary-text": {
+        "$value": "{color.neutral.500}",
+        "$type": "color",
+        "$description": "Secondary outline badge text"
+      },
+      "success-text": {
+        "$value": "{color.success.base}",
+        "$type": "color",
+        "$description": "Success outline badge text"
+      },
+      "warning-text": {
+        "$value": "#d39e00",
+        "$type": "color",
+        "$description": "Warning outline badge text (darker for readability)"
+      },
+      "error-text": {
+        "$value": "{color.danger.base}",
+        "$type": "color",
+        "$description": "Error outline badge text"
+      }
+    },
+    "dot": {
+      "$description": "Dot indicator badge variant tokens",
+      "background": {
+        "$value": "transparent",
+        "$type": "color",
+        "$description": "Transparent background for dot badges"
+      },
+      "padding-x": {
+        "$value": "0",
+        "$type": "dimension",
+        "$description": "No horizontal padding for dot badges"
+      },
+      "padding-y": {
+        "$value": "0",
+        "$type": "dimension",
+        "$description": "No vertical padding for dot badges"
+      },
+      "primary-text": {
+        "$value": "{color.primary.500}",
+        "$type": "color",
+        "$description": "Primary dot badge text"
+      },
+      "success-text": {
+        "$value": "{color.success.base}",
+        "$type": "color",
+        "$description": "Success dot badge text"
+      },
+      "warning-text": {
+        "$value": "#d39e00",
+        "$type": "color",
+        "$description": "Warning dot badge text"
+      },
+      "error-text": {
+        "$value": "{color.danger.base}",
+        "$type": "color",
+        "$description": "Error dot badge text"
+      }
+    }
+  }
+}

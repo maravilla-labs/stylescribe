@@ -1,0 +1,114 @@
+{
+  "$meta": {
+    "name": "chat-input",
+    "description": "Design tokens for the Chat Input component"
+  },
+  "chat-input": {
+    "background": {
+      "default": {
+        "$value": "{color.surface}",
+        "$type": "color",
+        "$description": "Input container background"
+      }
+    },
+    "border": {
+      "color": {
+        "$value": "{color.border}",
+        "$type": "color",
+        "$description": "Input container border color"
+      },
+      "focus": {
+        "$value": "{color.primary.500}",
+        "$type": "color",
+        "$description": "Border color when focused"
+      }
+    },
+    "shadow": {
+      "focus": {
+        "$value": "alpha({color.primary.500}, 0.1)",
+        "$type": "color",
+        "$description": "Focus ring shadow color"
+      }
+    },
+    "input": {
+      "min-height": {
+        "$value": "24px",
+        "$type": "dimension",
+        "$description": "Minimum input height"
+      },
+      "min-height-expanded": {
+        "$value": "60px",
+        "$type": "dimension",
+        "$description": "Minimum height for expanded input"
+      }
+    },
+    "opacity": {
+      "default": {
+        "$value": "1",
+        "$type": "number",
+        "$description": "Default opacity"
+      },
+      "disabled": {
+        "$value": "0.7",
+        "$type": "number",
+        "$description": "Opacity when disabled"
+      }
+    },
+    "send": {
+      "$description": "Send button tokens",
+      "background": {
+        "$value": "linear-gradient(135deg, {color.primary.500} 0%, {color.primary.600} 100%)",
+        "$type": "color",
+        "$description": "Send button gradient background"
+      },
+      "text": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Send button icon color"
+      },
+      "scale": {
+        "$value": "1",
+        "$type": "number",
+        "$description": "Default send button scale"
+      },
+      "scale-hover": {
+        "$value": "1.05",
+        "$type": "number",
+        "$description": "Send button scale on hover"
+      },
+      "scale-active": {
+        "$value": "0.95",
+        "$type": "number",
+        "$description": "Send button scale when pressed"
+      },
+      "shadow-hover": {
+        "$value": "{shadow.md}",
+        "$type": "shadow",
+        "$description": "Send button shadow on hover"
+      }
+    },
+    "attach": {
+      "$description": "Attach button tokens",
+      "background": {
+        "$value": "transparent",
+        "$type": "color",
+        "$description": "Default attach button background"
+      },
+      "background-hover": {
+        "$value": "{color.neutral.100}",
+        "$type": "color",
+        "$description": "Attach button background on hover"
+      },
+      "text": {
+        "$value": "{color.text-muted}",
+        "$type": "color",
+        "$description": "Attach button icon color"
+      },
+      "text-hover": {
+        "$value": "{color.text}",
+        "$type": "color",
+        "$description": "Attach button icon color on hover"
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+/**
+ * @title Spinner
+ * @description Loading spinner indicator for async operations. Reusable across
+ *   buttons, search inputs, and other components with loading states.
+ * @navtitle Spinner
+ * @group Feedback
+ * @order 3
+ * @variations default, primary, secondary, light
+ * @additional_variations sm, md, lg, inline
+ * @examples
+ * - title: Default Spinner
+ *   description: Standard spinner with neutral color
+ *   code: |
+ *     <span class="ds-spinner"></span>
+ * - title: Primary Spinner
+ *   description: Brand-colored spinner
+ *   code: |
+ *     <span class="ds-spinner ds-spinner--primary"></span>
+ * - title: Size Variations
+ *   description: Small, medium, and large spinners
+ *   code: |
+ *     <span class="ds-spinner ds-spinner--sm"></span>
+ *     <span class="ds-spinner"></span>
+ *     <span class="ds-spinner ds-spinner--lg"></span>
+ * - title: Inline Spinner
+ *   description: Spinner sized to match text (1em)
+ *   code: |
+ *     <button class="ds-btn ds-btn--primary" disabled>
+ *       <span class="ds-spinner ds-spinner--inline ds-spinner--light"></span>
+ *       <span>Loading...</span>
+ *     </button>
+ * - title: Light Spinner
+ *   description: White spinner for dark backgrounds
+ *   code: |
+ *     <div style="background: var(--color-primary-500); padding: 1rem; display: inline-flex; gap: 0.5rem; align-items: center; border-radius: 0.5rem;">
+ *       <span class="ds-spinner ds-spinner--light"></span>
+ *       <span style="color: white;">Processing...</span>
+ *     </div>
+ * - title: Secondary Spinner
+ *   description: Muted spinner for secondary contexts
+ *   code: |
+ *     <span class="ds-spinner ds-spinner--secondary"></span>
+ */
+
+@layer components {
+  .ds-spinner {
+    /* ===== Component Tokens ===== */
+    --spinner-size: 20px;
+    --spinner-border-width: 2px;
+    --spinner-track-color: var(--color-neutral-300);
+    --spinner-indicator-color: var(--color-primary-500);
+    --spinner-speed: 0.75s;
+
+    /* ===== Base Styles ===== */
+    display: inline-block;
+    width: var(--spinner-size);
+    height: var(--spinner-size);
+    border: var(--spinner-border-width) solid var(--spinner-track-color);
+    border-top-color: var(--spinner-indicator-color);
+    border-radius: 50%;
+    animation: spinner-rotate var(--spinner-speed) linear infinite;
+    flex-shrink: 0;
+  }
+
+  /* ===== Size Variations ===== */
+
+  .ds-spinner--sm {
+    --spinner-size: 14px;
+    --spinner-border-width: 2px;
+  }
+
+  .ds-spinner--md {
+    --spinner-size: 20px;
+    --spinner-border-width: 2px;
+  }
+
+  .ds-spinner--lg {
+    --spinner-size: 32px;
+    --spinner-border-width: 3px;
+  }
+
+  .ds-spinner--inline {
+    --spinner-size: 1em;
+    --spinner-border-width: 0.125em;
+  }
+
+  /* ===== Color Variations ===== */
+
+  .ds-spinner--primary {
+    --spinner-track-color: var(--color-primary-200);
+    --spinner-indicator-color: var(--color-primary-600);
+  }
+
+  .ds-spinner--secondary {
+    --spinner-track-color: var(--color-neutral-200);
+    --spinner-indicator-color: var(--color-neutral-500);
+  }
+
+  .ds-spinner--light {
+    --spinner-track-color: rgba(255, 255, 255, 0.3);
+    --spinner-indicator-color: #ffffff;
+  }
+}
+
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

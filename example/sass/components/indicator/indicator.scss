@@ -1,0 +1,142 @@
+/**
+ * @title Indicator
+ * @description Circular status indicator dots for showing presence, state, or notifications.
+ *   Reusable across avatars, badges, and other components.
+ * @navtitle Indicator
+ * @group Feedback
+ * @order 4
+ * @variations success, warning, danger, info
+ * @additional_variations sm, md, lg, pulse, bordered
+ * @elements (base only - self-contained)
+ * @examples
+ * - title: Status Indicators
+ *   description: Semantic status colors
+ *   code: |
+ *     <span class="ds-indicator ds-indicator--success"></span>
+ *     <span class="ds-indicator ds-indicator--warning"></span>
+ *     <span class="ds-indicator ds-indicator--danger"></span>
+ *     <span class="ds-indicator ds-indicator--info"></span>
+ * - title: Presence States
+ *   description: User presence indicators
+ *   code: |
+ *     <span class="ds-indicator ds-indicator--online"></span> Online
+ *     <span class="ds-indicator ds-indicator--away"></span> Away
+ *     <span class="ds-indicator ds-indicator--busy"></span> Busy
+ *     <span class="ds-indicator ds-indicator--offline"></span> Offline
+ * - title: With Pulse Animation
+ *   description: Animated indicator for live/active states
+ *   code: |
+ *     <span class="ds-indicator ds-indicator--success ds-indicator--pulse"></span> Live
+ *     <span class="ds-indicator ds-indicator--danger ds-indicator--pulse"></span> Recording
+ * - title: Size Variations
+ *   description: Small, medium, and large indicators
+ *   code: |
+ *     <span class="ds-indicator ds-indicator--success ds-indicator--sm"></span>
+ *     <span class="ds-indicator ds-indicator--success"></span>
+ *     <span class="ds-indicator ds-indicator--success ds-indicator--lg"></span>
+ * - title: Bordered Indicator
+ *   description: With white border for avatar overlays
+ *   code: |
+ *     <div style="position: relative; display: inline-block;">
+ *       <div class="ds-avatar ds-avatar--md">
+ *         <span class="ds-avatar__initials">JD</span>
+ *       </div>
+ *       <span class="ds-indicator ds-indicator--online ds-indicator--bordered" style="position: absolute; bottom: 0; right: 0;"></span>
+ *     </div>
+ * - title: In Badge Context
+ *   description: Indicator used within a badge
+ *   code: |
+ *     <span class="ds-badge">
+ *       <span class="ds-indicator ds-indicator--success ds-indicator--sm ds-indicator--pulse"></span>
+ *       <span>Active</span>
+ *     </span>
+ */
+
+@layer components {
+  .ds-indicator {
+    /* ===== Component Tokens ===== */
+    --indicator-size: 8px;
+    --indicator-color: var(--color-neutral-400);
+    --indicator-border-width: 0;
+    --indicator-border-color: var(--color-semantic-surface);
+
+    /* ===== Base Styles ===== */
+    display: inline-block;
+    width: var(--indicator-size);
+    height: var(--indicator-size);
+    border-radius: 50%;
+    background-color: var(--indicator-color);
+    border: var(--indicator-border-width) solid var(--indicator-border-color);
+    flex-shrink: 0;
+  }
+
+  /* ===== Size Variations ===== */
+
+  .ds-indicator--sm {
+    --indicator-size: 6px;
+  }
+
+  .ds-indicator--md {
+    --indicator-size: 8px;
+  }
+
+  .ds-indicator--lg {
+    --indicator-size: 12px;
+  }
+
+  /* ===== Semantic Status Colors ===== */
+
+  .ds-indicator--success {
+    --indicator-color: var(--color-success-base);
+  }
+
+  .ds-indicator--warning {
+    --indicator-color: var(--color-warning-base);
+  }
+
+  .ds-indicator--danger {
+    --indicator-color: var(--color-danger-base);
+  }
+
+  .ds-indicator--info {
+    --indicator-color: var(--color-info-base);
+  }
+
+  /* ===== Presence States ===== */
+
+  .ds-indicator--online {
+    --indicator-color: var(--color-success-base);
+  }
+
+  .ds-indicator--away {
+    --indicator-color: var(--color-warning-base);
+  }
+
+  .ds-indicator--busy {
+    --indicator-color: var(--color-danger-base);
+  }
+
+  .ds-indicator--offline {
+    --indicator-color: var(--color-neutral-400);
+  }
+
+  /* ===== Modifiers ===== */
+
+  .ds-indicator--bordered {
+    --indicator-border-width: 2px;
+  }
+
+  .ds-indicator--pulse {
+    animation: indicator-pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes indicator-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

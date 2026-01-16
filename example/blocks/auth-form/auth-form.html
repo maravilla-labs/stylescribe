@@ -1,0 +1,68 @@
+<!--
+@title Authentication Form
+@description Login form combining input, button, and link components for user authentication
+@type block
+@group Authentication
+@dependencies stack, card, input, button, link, label, form-field, checkbox, section-header, text, icon, layout
+@variations
+- title: Default Login
+  description: Standard email/password login form
+- title: With Social Login
+  description: Includes social provider buttons below the form
+-->
+<div class="ds-card ds-layout ds-layout-center ds-layout-sm">
+  <div class="ds-card__body">
+    <div class="ds-stack">
+      <header class="ds-section-header">
+        <h2 class="ds-section-header__title">Sign In</h2>
+        <p class="ds-section-header__subtitle">Enter your credentials to access your account</p>
+      </header>
+
+      <form class="ds-stack">
+        <div class="ds-form-field">
+          <label class="ds-form-field__label ds-label">
+            <span class="ds-icon ds-icon--mail"></span>
+            <span class="ds-label__text">Email Address</span>
+          </label>
+          <div class="ds-form-field__control">
+            <div class="ds-input">
+              <input class="ds-input__field" type="email" placeholder="you@example.com">
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-form-field">
+          <label class="ds-form-field__label ds-label">
+            <span class="ds-icon ds-icon--lock"></span>
+            <span class="ds-label__text">Password</span>
+          </label>
+          <div class="ds-form-field__control">
+            <div class="ds-input">
+              <input class="ds-input__field" type="password" placeholder="Enter your password">
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-cluster ds-cluster--between">
+          <label class="ds-checkbox">
+            <input class="ds-checkbox__input" type="checkbox">
+            <span class="ds-checkbox__box">
+              <svg class="ds-checkbox__check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span class="ds-checkbox__label">Remember me</span>
+          </label>
+          <a class="ds-link" href="#">Forgot password?</a>
+        </div>
+
+        <button class="ds-btn ds-btn--primary ds-btn--full">
+          <span class="ds-icon ds-icon--log-in"></span>
+          <span class="ds-btn__label">Sign In</span>
+        </button>
+      </form>
+
+      <p class="ds-text ds-text-muted ds-text-center">
+        Don't have an account? <a class="ds-link" href="#">Sign up</a>
+      </p>
+    </div>
+  </div>
+</div>

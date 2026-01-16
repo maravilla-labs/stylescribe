@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "meta",
+    "description": "Design tokens for the Meta component"
+  },
+  "meta": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Meta background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Meta text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Meta padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Meta border radius"
+    }
+  }
+}

@@ -1,0 +1,156 @@
+/**
+ * @title Nav
+ * @description Navigation component for site/app navigation. Supports horizontal
+ *   and vertical layouts with optional icons in nav items.
+ * @navtitle Nav
+ * @group Navigation
+ * @order 1
+ * @variations vertical, horizontal, sm, lg
+ * @elements
+ * - name: item
+ *   html: <a class="{{class}}" href="#"></a>
+ * - name: icon
+ *   html: <span class="{{class}} ds-icon ds-icon--home"></span>
+ * - name: label
+ *   html: <span class="{{class}}">Nav Item</span>
+ * @dependencies icon
+ * @examples
+ * - title: Horizontal Nav
+ *   description: Default horizontal navigation
+ *   code: |
+ *     <nav class="ds-nav">
+ *       <a href="#" class="ds-nav__item ds-nav__item--active">Home</a>
+ *       <a href="#" class="ds-nav__item">Products</a>
+ *       <a href="#" class="ds-nav__item">About</a>
+ *       <a href="#" class="ds-nav__item">Contact</a>
+ *     </nav>
+ * - title: Vertical Nav
+ *   description: Sidebar-style vertical navigation
+ *   code: |
+ *     <nav class="ds-nav ds-nav--vertical">
+ *       <a href="#" class="ds-nav__item ds-nav__item--active">Dashboard</a>
+ *       <a href="#" class="ds-nav__item">Users</a>
+ *       <a href="#" class="ds-nav__item">Settings</a>
+ *     </nav>
+ * - title: Nav with Icons
+ *   description: Navigation items with leading icons
+ *   code: |
+ *     <nav class="ds-nav ds-nav--vertical">
+ *       <a href="#" class="ds-nav__item ds-nav__item--active">
+ *         <span class="ds-icon ds-icon--home"></span>
+ *         <span class="ds-nav__label">Dashboard</span>
+ *       </a>
+ *       <a href="#" class="ds-nav__item">
+ *         <span class="ds-icon ds-icon--users"></span>
+ *         <span class="ds-nav__label">Users</span>
+ *       </a>
+ *       <a href="#" class="ds-nav__item">
+ *         <span class="ds-icon ds-icon--settings"></span>
+ *         <span class="ds-nav__label">Settings</span>
+ *       </a>
+ *     </nav>
+ * - title: Compact Nav
+ *   description: Smaller navigation for tight spaces
+ *   code: |
+ *     <nav class="ds-nav ds-nav--vertical ds-nav--sm">
+ *       <a href="#" class="ds-nav__item ds-nav__item--active">
+ *         <span class="ds-icon ds-icon--home"></span>
+ *         <span class="ds-nav__label">Home</span>
+ *       </a>
+ *       <a href="#" class="ds-nav__item">
+ *         <span class="ds-icon ds-icon--mail"></span>
+ *         <span class="ds-nav__label">Messages</span>
+ *       </a>
+ *     </nav>
+ */
+
+@layer components {
+  .ds-nav {
+    /* ===== Component Tokens ===== */
+    --nav-gap: var(--spacing-scale-xs);
+    --nav-item-gap: var(--spacing-scale-sm);
+    --nav-item-padding-x: var(--spacing-scale-md);
+    --nav-item-padding-y: var(--spacing-scale-sm);
+    --nav-item-radius: var(--border-radius-md);
+    --nav-item-font-size: var(--font-size-base);
+    --nav-item-font-weight: var(--font-weight-medium);
+
+    --nav-item-color: var(--color-semantic-text-muted);
+    --nav-item-color-hover: var(--color-semantic-text);
+    --nav-item-bg: transparent;
+    --nav-item-bg-hover: var(--color-neutral-100);
+
+    --nav-item-active-color: white;
+    --nav-item-active-bg: var(--color-primary-500);
+
+    /* ===== Base Styles ===== */
+    display: flex;
+    flex-direction: row;
+    gap: var(--nav-gap);
+    font-family: var(--font-family-base);
+  }
+
+  /* ===== Variations ===== */
+
+  .ds-nav--vertical {
+    flex-direction: column;
+  }
+
+  .ds-nav--sm {
+    --nav-item-padding-x: var(--spacing-scale-sm);
+    --nav-item-padding-y: var(--spacing-scale-xs);
+    --nav-item-font-size: var(--font-size-sm);
+    --nav-item-gap: var(--spacing-scale-xs);
+  }
+
+  .ds-nav--lg {
+    --nav-item-padding-x: var(--spacing-scale-lg);
+    --nav-item-padding-y: var(--spacing-scale-md);
+    --nav-item-font-size: var(--font-size-lg);
+    --nav-item-gap: var(--spacing-scale-md);
+  }
+
+  /* ===== Elements ===== */
+
+  .ds-nav__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--nav-item-gap);
+    padding: var(--nav-item-padding-y) var(--nav-item-padding-x);
+    font-size: var(--nav-item-font-size);
+    font-weight: var(--nav-item-font-weight);
+    color: var(--nav-item-color);
+    background: var(--nav-item-bg);
+    border-radius: var(--nav-item-radius);
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      color var(--transition-duration-fast),
+      background var(--transition-duration-fast);
+
+    &:hover {
+      color: var(--nav-item-color-hover);
+      background: var(--nav-item-bg-hover);
+    }
+
+    /* Active state */
+    &--active {
+      color: var(--nav-item-active-color);
+      background: var(--nav-item-active-bg);
+
+      &:hover {
+        color: var(--nav-item-active-color);
+        background: var(--nav-item-active-bg);
+      }
+    }
+  }
+
+  .ds-nav__icon {
+    flex-shrink: 0;
+  }
+
+  .ds-nav__label {
+    flex: 1;
+    min-width: 0;
+  }
+}

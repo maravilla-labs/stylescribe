@@ -1,0 +1,200 @@
+/**
+ * @title Link
+ * @description Text link component with optional icons, underline styles, and semantic color variants.
+ * @navtitle Link
+ * @group Actions
+ * @order 2
+ * @dependencies icon
+ * @variations default, subtle, muted, nav
+ * @additional_variations external, underline-always, underline-hover, underline-none
+ * @elements
+ * - name: icon
+ *   html: <span class="{{class}} ds-icon ds-icon--arrow-left"></span>
+ * - name: text
+ *   html: <span class="{{class}}">Link Text</span>
+ * - name: external-icon
+ *   html: <span class="{{class}} ds-icon ds-icon--external"></span>
+ * @examples
+ * - title: Default Link
+ *   description: Standard text link with hover underline
+ *   code: |
+ *     <a class="ds-link" href="#">
+ *       <span class="ds-link__text">View documentation</span>
+ *     </a>
+ * - title: Link with Icon
+ *   description: Link with leading icon
+ *   code: |
+ *     <a class="ds-link" href="#">
+ *       <svg class="ds-link__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+ *       <span class="ds-link__text">Back to feed</span>
+ *     </a>
+ * - title: External Link
+ *   description: Link with external indicator icon
+ *   code: |
+ *     <a class="ds-link ds-link--external" href="#" target="_blank">
+ *       <span class="ds-link__text">Open in new tab</span>
+ *       <svg class="ds-link__external-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+ *     </a>
+ * - title: Subtle Link
+ *   description: Less prominent styling for secondary links
+ *   code: |
+ *     <a class="ds-link ds-link--subtle" href="#">
+ *       <span class="ds-link__text">Learn more about this</span>
+ *     </a>
+ * - title: Muted Link
+ *   description: Dimmed link for tertiary actions
+ *   code: |
+ *     <a class="ds-link ds-link--muted" href="#">
+ *       <span class="ds-link__text">Skip this step</span>
+ *     </a>
+ * - title: Navigation Link
+ *   description: No underline style for navigation contexts
+ *   code: |
+ *     <a class="ds-link ds-link--nav" href="#">
+ *       <span class="ds-link__text">Dashboard</span>
+ *     </a>
+ * - title: Always Underlined
+ *   description: Persistent underline regardless of state
+ *   code: |
+ *     <a class="ds-link ds-link--underline-always" href="#">
+ *       <span class="ds-link__text">Terms of Service</span>
+ *     </a>
+ * - title: Graph Connected Link
+ *   description: Link with icon from the screenshot
+ *   code: |
+ *     <a class="ds-link" href="#">
+ *       <svg class="ds-link__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+ *       <span class="ds-link__text">Graph Connected</span>
+ *     </a>
+ */
+
+@layer components {
+  .ds-link {
+    /* ===== Component Tokens ===== */
+    --link-color: var(--color-primary-500);
+    --link-color-hover: var(--color-primary-600);
+    --link-color-visited: var(--color-primary-700);
+    --link-color-active: var(--color-primary-700);
+    --link-underline-color: currentColor;
+    --link-underline-offset: 2px;
+    --link-underline-thickness: 1px;
+    --link-icon-gap: var(--spacing-scale-xs);
+    --link-font-weight: var(--font-weight-medium);
+
+    /* ===== Base Styles ===== */
+    display: inline-flex;
+    align-items: center;
+    gap: var(--link-icon-gap);
+    font-family: var(--font-family-base);
+    color: var(--link-color);
+    font-weight: var(--link-font-weight);
+    text-decoration: none;
+    text-underline-offset: var(--link-underline-offset);
+    text-decoration-thickness: var(--link-underline-thickness);
+    cursor: pointer;
+    transition:
+      color var(--transition-duration-fast),
+      text-decoration-color var(--transition-duration-fast);
+
+    &:hover {
+      color: var(--link-color-hover);
+      text-decoration: underline;
+      text-decoration-color: var(--link-underline-color);
+    }
+
+    &:visited {
+      color: var(--link-color-visited);
+    }
+
+    &:active {
+      color: var(--link-color-active);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* ===== Elements ===== */
+    &__icon {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+
+      svg {
+        display: block;
+      }
+    }
+
+    &__text {
+      display: inline;
+    }
+
+    &__external-icon {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      opacity: 0.7;
+
+      svg {
+        display: block;
+      }
+    }
+  }
+
+  /* ===== Variations (token overrides only) ===== */
+
+  .ds-link--subtle {
+    --link-color: var(--color-neutral-600);
+    --link-color-hover: var(--color-primary-500);
+    --link-font-weight: var(--font-weight-regular);
+  }
+
+  .ds-link--muted {
+    --link-color: var(--color-semantic-text-muted);
+    --link-color-hover: var(--color-semantic-text);
+    --link-font-weight: var(--font-weight-regular);
+  }
+
+  .ds-link--nav {
+    --link-color: var(--color-semantic-text);
+    --link-color-hover: var(--color-primary-500);
+    --link-font-weight: var(--font-weight-medium);
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  /* Modifier: External */
+  .ds-link--external {
+    .ds-link__external-icon {
+      opacity: 1;
+    }
+  }
+
+  /* Modifier: Underline Always */
+  .ds-link--underline-always {
+    text-decoration: underline;
+    text-decoration-color: var(--link-underline-color);
+  }
+
+  /* Modifier: Underline Hover (default behavior) */
+  .ds-link--underline-hover {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  /* Modifier: No Underline */
+  .ds-link--underline-none {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

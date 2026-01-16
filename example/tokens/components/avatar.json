@@ -1,0 +1,104 @@
+{
+  "$meta": {
+    "name": "avatar",
+    "description": "Design tokens for the Avatar component"
+  },
+  "avatar": {
+    "size": {
+      "default": {
+        "$value": "40px",
+        "$type": "dimension",
+        "$description": "Default avatar size"
+      },
+      "xs": {
+        "$value": "24px",
+        "$type": "dimension",
+        "$description": "Extra small avatar size"
+      },
+      "sm": {
+        "$value": "32px",
+        "$type": "dimension",
+        "$description": "Small avatar size"
+      },
+      "md": {
+        "$value": "40px",
+        "$type": "dimension",
+        "$description": "Medium avatar size"
+      },
+      "lg": {
+        "$value": "56px",
+        "$type": "dimension",
+        "$description": "Large avatar size"
+      },
+      "xl": {
+        "$value": "80px",
+        "$type": "dimension",
+        "$description": "Extra large avatar size"
+      }
+    },
+    "background": {
+      "default": {
+        "$value": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        "$type": "color",
+        "$description": "Default avatar gradient background"
+      },
+      "ai": {
+        "$value": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        "$type": "color",
+        "$description": "AI assistant avatar gradient"
+      }
+    },
+    "text": {
+      "default": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Avatar text/initials color"
+      }
+    },
+    "border-radius": {
+      "circle": {
+        "$value": "50%",
+        "$type": "dimension",
+        "$description": "Circular avatar radius"
+      },
+      "rounded": {
+        "$value": "{border.radius.lg}",
+        "$type": "dimension",
+        "$description": "Rounded square avatar radius"
+      }
+    },
+    "status": {
+      "$description": "Status indicator tokens",
+      "default": {
+        "$value": "{color.neutral.500}",
+        "$type": "color",
+        "$description": "Default status indicator color"
+      },
+      "online": {
+        "$value": "{color.success.base}",
+        "$type": "color",
+        "$description": "Online status color"
+      },
+      "offline": {
+        "$value": "{color.neutral.500}",
+        "$type": "color",
+        "$description": "Offline status color"
+      },
+      "busy": {
+        "$value": "{color.danger.base}",
+        "$type": "color",
+        "$description": "Busy/do not disturb status color"
+      },
+      "away": {
+        "$value": "{color.warning.base}",
+        "$type": "color",
+        "$description": "Away/idle status color"
+      },
+      "border": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Status indicator border color"
+      }
+    }
+  }
+}

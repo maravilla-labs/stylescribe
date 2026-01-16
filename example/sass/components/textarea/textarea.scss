@@ -1,0 +1,203 @@
+/**
+ * @title Textarea
+ * @description Multi-line text input with light tinted background, optional character counter and prepend/append slots.
+ * @group Forms
+ * @order 3
+ * @variations default, error, success, disabled, sm, lg, no-resize
+ * @elements
+ * - name: field
+ *   html: <textarea class="{{class}}" placeholder="Enter text..."></textarea>
+ * - name: counter
+ *   html: <span class="{{class}}">0/200</span>
+ * - name: prepend
+ *   html: <div class="{{class}}"></div>
+ * - name: append
+ *   html: <div class="{{class}}"></div>
+ * @examples
+ * - title: Default Textarea
+ *   description: Basic multi-line input
+ *   code: |
+ *     <div class="ds-textarea">
+ *       <textarea class="ds-textarea__field" placeholder="Enter your message..."></textarea>
+ *     </div>
+ * - title: Textarea with Value
+ *   description: Textarea with content
+ *   code: |
+ *     <div class="ds-textarea">
+ *       <textarea class="ds-textarea__field">This is some example text content that spans multiple lines to demonstrate the textarea component.</textarea>
+ *     </div>
+ * - title: Textarea with Character Counter
+ *   description: Shows remaining characters
+ *   code: |
+ *     <div class="ds-textarea">
+ *       <textarea class="ds-textarea__field" placeholder="Enter description..." maxlength="200">Short description text</textarea>
+ *       <span class="ds-textarea__counter">21/200</span>
+ *     </div>
+ * - title: Error State
+ *   description: Textarea with validation error
+ *   code: |
+ *     <div class="ds-textarea ds-textarea--error">
+ *       <textarea class="ds-textarea__field" aria-invalid="true">Invalid content</textarea>
+ *     </div>
+ * - title: Success State
+ *   description: Textarea with validation success
+ *   code: |
+ *     <div class="ds-textarea ds-textarea--success">
+ *       <textarea class="ds-textarea__field">Valid content that meets requirements</textarea>
+ *     </div>
+ * - title: Disabled Textarea
+ *   description: Non-interactive textarea
+ *   code: |
+ *     <div class="ds-textarea ds-textarea--disabled">
+ *       <textarea class="ds-textarea__field" disabled>Cannot edit this content</textarea>
+ *     </div>
+ * - title: Small Textarea
+ *   description: Compact size variant
+ *   code: |
+ *     <div class="ds-textarea ds-textarea--sm">
+ *       <textarea class="ds-textarea__field" placeholder="Short note..."></textarea>
+ *     </div>
+ * - title: Large Textarea
+ *   description: Taller size variant
+ *   code: |
+ *     <div class="ds-textarea ds-textarea--lg">
+ *       <textarea class="ds-textarea__field" placeholder="Write your article..."></textarea>
+ *     </div>
+ * - title: No Resize
+ *   description: Prevents user resizing
+ *   code: |
+ *     <div class="ds-textarea ds-textarea--no-resize">
+ *       <textarea class="ds-textarea__field" placeholder="Fixed size textarea..."></textarea>
+ *     </div>
+ */
+
+@layer components {
+  .ds-textarea {
+    /* ===== Component Tokens ===== */
+    --textarea-min-height: 120px;
+    --textarea-bg: var(--color-semantic-form-bg);
+    --textarea-bg-focus: var(--color-semantic-form-bg-focus);
+    --textarea-border: var(--color-semantic-form-border);
+    --textarea-border-focus: var(--color-semantic-form-border-focus);
+    --textarea-border-error: var(--color-danger-base);
+    --textarea-border-success: var(--color-success-base);
+    --textarea-text: var(--color-semantic-form-text);
+    --textarea-placeholder: var(--color-semantic-form-placeholder);
+    --textarea-radius: var(--border-radius-md);
+    --textarea-padding: var(--spacing-scale-md);
+    --textarea-font-size: var(--font-size-base);
+    --textarea-line-height: var(--font-lineHeight-normal);
+    --textarea-shadow-focus: 0 0 0 3px var(--color-overlay-brand);
+    --textarea-resize: vertical;
+
+    /* ===== Base Styles ===== */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: var(--textarea-bg);
+    border: 1px solid var(--textarea-border);
+    border-radius: var(--textarea-radius);
+    transition:
+      background var(--transition-duration-fast),
+      border-color var(--transition-duration-fast),
+      box-shadow var(--transition-duration-fast);
+
+    &:focus-within {
+      background: var(--textarea-bg-focus);
+      border-color: var(--textarea-border-focus);
+      box-shadow: var(--textarea-shadow-focus);
+    }
+
+    /* ===== Elements ===== */
+    &__field {
+      flex: 1;
+      min-height: var(--textarea-min-height);
+      padding: var(--textarea-padding);
+      font-family: var(--font-family-base);
+      font-size: var(--textarea-font-size);
+      line-height: var(--textarea-line-height);
+      color: var(--textarea-text);
+      background: transparent;
+      border: none;
+      border-radius: var(--textarea-radius);
+      outline: none;
+      resize: var(--textarea-resize);
+
+      &::placeholder {
+        color: var(--textarea-placeholder);
+      }
+    }
+
+    &__counter {
+      align-self: flex-end;
+      padding: var(--spacing-scale-xs) var(--textarea-padding);
+      font-size: var(--font-size-xs);
+      color: var(--color-semantic-text-muted);
+    }
+
+    &__prepend,
+    &__append {
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-scale-xs) var(--textarea-padding);
+      color: var(--color-semantic-text-muted);
+      border-top: 1px solid var(--color-neutral-200);
+    }
+
+    &__prepend {
+      border-top: none;
+      border-bottom: 1px solid var(--color-neutral-200);
+    }
+
+    /* ===== Variations (token overrides only) ===== */
+
+    /* Error state */
+    &--error {
+      --textarea-border: var(--textarea-border-error);
+      --textarea-shadow-focus: 0 0 0 3px var(--color-danger-light);
+
+      &:focus-within {
+        border-color: var(--textarea-border-error);
+      }
+    }
+
+    /* Success state */
+    &--success {
+      --textarea-border: var(--textarea-border-success);
+      --textarea-shadow-focus: 0 0 0 3px var(--color-success-light);
+
+      &:focus-within {
+        border-color: var(--textarea-border-success);
+      }
+    }
+
+    /* Disabled state */
+    &--disabled {
+      --textarea-bg: var(--color-semantic-form-bg-disabled);
+      --textarea-text: var(--color-semantic-text-muted);
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Size: Small */
+    &--sm {
+      --textarea-min-height: 80px;
+      --textarea-padding: var(--spacing-scale-sm);
+      --textarea-font-size: var(--font-size-sm);
+    }
+
+    /* Size: Large */
+    &--lg {
+      --textarea-min-height: 200px;
+      --textarea-padding: var(--spacing-scale-lg);
+      --textarea-font-size: var(--font-size-lg);
+    }
+
+    /* No resize */
+    &--no-resize {
+      --textarea-resize: none;
+    }
+  }
+}

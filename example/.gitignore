@@ -1,0 +1,15 @@
+# Build outputs
+build/
+site/
+.stylescribe_dev/
+
+# Generated token files
+tokens/extracted.json
+tokens/variables.css
+tokens/_tokens.scss
+
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store

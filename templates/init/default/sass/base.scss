@@ -1,0 +1,346 @@
+/**
+ * {{projectName}} - Modern Base Styles
+ *
+ * Featuring:
+ * - @layer for cascade management
+ * - Container queries for component-level responsiveness
+ * - :has() for parent selection
+ * - Native CSS nesting
+ * - CSS custom properties from design tokens
+ */
+
+/* Layer order defines cascade priority (later = higher priority) */
+@layer reset, tokens, base, components, utilities;
+
+/* ==========================================================================
+   Reset Layer - Modern CSS Reset
+   ========================================================================== */
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    /* Prevent font size inflation on mobile */
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+
+    /* Smooth scrolling for anchor links */
+    scroll-behavior: smooth;
+
+    /* Respect user's motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    min-height: 100dvh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  input, button, textarea, select {
+    font: inherit;
+    color: inherit;
+  }
+
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-skip-ink: auto;
+  }
+
+  /* Remove list styles for elements with role="list" */
+  ul[role="list"], ol[role="list"] {
+    list-style: none;
+  }
+}
+
+/* ==========================================================================
+   Tokens Layer - CSS Custom Properties from Design Tokens
+   Note: These will be overridden by Stylescribe's generated tokens
+   ========================================================================== */
+@layer tokens {
+  :root {
+    /* Colors - from tokens/design-tokens.json */
+    --color-brand: #6366f1;
+    --color-primary-50: #f5f5ff;
+    --color-primary-100: #e0e0ff;
+    --color-primary-500: #6366f1;
+    --color-primary-600: #4f46e5;
+    --color-primary-700: #4338ca;
+    --color-on-primary: #ffffff;
+    --color-accent: #d97706;
+
+    --color-neutral-50: #f9fafb;
+    --color-neutral-100: #f3f4f6;
+    --color-neutral-200: #e5e7eb;
+    --color-neutral-500: #6b7280;
+    --color-neutral-900: #111827;
+
+    --color-background: var(--color-neutral-50);
+    --color-surface: #ffffff;
+    --color-border: var(--color-neutral-200);
+    --color-text: var(--color-neutral-900);
+    --color-text-muted: var(--color-neutral-500);
+
+    --color-success-base: #22c55e;
+    --color-warning-base: #f59e0b;
+    --color-danger-base: #ef4444;
+
+    /* Spacing - computed via multiply() from base */
+    --spacing-base: 1rem;
+    --spacing-3xs: 0.125rem;
+    --spacing-2xs: 0.25rem;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+
+    /* Fluid spacing - using clamp() from fluidSpace() */
+    --spacing-fluid-sm: clamp(0.5rem, 0.8333vw + 0.3333rem, 1rem);
+    --spacing-fluid-md: clamp(1rem, 1.6667vw + 0.6667rem, 2rem);
+    --spacing-fluid-lg: clamp(2rem, 3.3333vw + 1.3333rem, 4rem);
+
+    /* Typography */
+    --font-family-base: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+    /* Fluid type - using clamp() from fluidType() */
+    --font-size-xs: clamp(0.75rem, 0.1vw + 0.73rem, 0.8125rem);
+    --font-size-sm: clamp(0.8125rem, 0.1vw + 0.79rem, 0.875rem);
+    --font-size-base: clamp(0.875rem, 0.2vw + 0.83rem, 1rem);
+    --font-size-lg: clamp(1rem, 0.2vw + 0.96rem, 1.125rem);
+    --font-size-xl: clamp(1.125rem, 0.2vw + 1.08rem, 1.25rem);
+    --font-size-2xl: clamp(1.25rem, 0.4vw + 1.17rem, 1.5rem);
+    --font-size-3xl: clamp(1.5rem, 0.8vw + 1.33rem, 2rem);
+    --font-size-4xl: clamp(2rem, 0.8vw + 1.83rem, 2.5rem);
+    --font-size-5xl: clamp(2.5rem, 1.6vw + 2.17rem, 3.5rem);
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+
+    /* Borders */
+    --border-width-thin: 1px;
+    --border-width-medium: 2px;
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.375rem;
+    --border-radius-lg: 0.5rem;
+    --border-radius-xl: 0.75rem;
+    --border-radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 200ms ease;
+    --transition-slow: 300ms ease;
+  }
+
+  /* Dark mode - activated via data-theme="dark" */
+  [data-theme="dark"] {
+    --color-background: #0f172a;
+    --color-surface: #1e293b;
+    --color-text: #f1f5f9;
+    --color-text-muted: #94a3b8;
+    --color-border: #334155;
+
+    /* Invert the primary scale for dark mode */
+    --color-primary-50: #312e81;
+    --color-primary-100: #3730a3;
+    --color-primary-500: #818cf8;
+    --color-primary-600: #a5b4fc;
+    --color-on-primary: #0f172a;
+  }
+}
+
+/* ==========================================================================
+   Base Layer - Core Styles with Modern CSS Features
+   ========================================================================== */
+@layer base {
+  html {
+    font-size: 100%;
+    color-scheme: light;
+  }
+
+  /* Dark mode color scheme - using :has() for auto-detection */
+  html:has([data-theme="dark"]) {
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    color: var(--color-text);
+    background-color: var(--color-background);
+  }
+
+  /* Prevent scroll when modal is open - using :has() */
+  body:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  /* Add padding when sticky header exists */
+  body:has(.sticky-header) {
+    padding-block-start: var(--header-height, 4rem);
+  }
+
+  /* Headings with fluid sizing */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: var(--line-height-tight);
+    font-weight: var(--font-weight-bold);
+    text-wrap: balance;
+  }
+
+  h1 { font-size: var(--font-size-5xl); }
+  h2 { font-size: var(--font-size-4xl); }
+  h3 { font-size: var(--font-size-3xl); }
+  h4 { font-size: var(--font-size-2xl); }
+  h5 { font-size: var(--font-size-xl); }
+  h6 { font-size: var(--font-size-lg); }
+
+  /* Links */
+  a {
+    color: var(--color-primary-500);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    transition: color var(--transition-fast);
+  }
+
+  a:hover {
+    color: var(--color-primary-600);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+    border-radius: var(--border-radius-sm);
+  }
+
+  /* Code and pre */
+  code, pre {
+    font-family: var(--font-family-mono);
+    font-size: 0.9em;
+  }
+
+  code {
+    background: var(--color-neutral-100);
+    padding: 0.125em 0.25em;
+    border-radius: var(--border-radius-sm);
+  }
+
+  [data-theme="dark"] code {
+    background: var(--color-surface);
+  }
+
+  pre {
+    background: var(--color-neutral-100);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    overflow-x: auto;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+  }
+
+  [data-theme="dark"] pre {
+    background: var(--color-surface);
+  }
+
+  /* Form elements */
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+/* ==========================================================================
+   Utilities Layer - Container Queries & Utility Classes
+   ========================================================================== */
+@layer utilities {
+  /* Container query wrapper - enables component-level responsive design */
+  .container-query {
+    container-type: inline-size;
+  }
+
+  /* Named container for specific query targets */
+  .card-container {
+    container-type: inline-size;
+    container-name: card;
+  }
+
+  /* Visually hidden but accessible to screen readers */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Focus visible only - for keyboard navigation */
+  .focus-visible-only:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Reduced motion - respects user preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .reduce-motion {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Container query breakpoints demo - use in components */
+  @container (min-width: 400px) {
+    .cq-md\:flex { display: flex; }
+    .cq-md\:gap-md { gap: var(--spacing-md); }
+  }
+
+  @container (min-width: 600px) {
+    .cq-lg\:grid { display: grid; }
+    .cq-lg\:gap-lg { gap: var(--spacing-lg); }
+  }
+}

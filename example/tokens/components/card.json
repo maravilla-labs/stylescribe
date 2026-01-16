@@ -1,0 +1,145 @@
+{
+  "$meta": {
+    "name": "card",
+    "description": "Design tokens for the Card component"
+  },
+  "card": {
+    "background": {
+      "default": {
+        "$value": "{color.surface}",
+        "$type": "color",
+        "$description": "Default card background color"
+      },
+      "footer": {
+        "$value": "{color.neutral.50}",
+        "$type": "color",
+        "$description": "Card footer background color"
+      }
+    },
+    "border": {
+      "color": {
+        "$value": "{color.border}",
+        "$type": "color",
+        "$description": "Card border color"
+      },
+      "width": {
+        "$value": "{border.width.thin}",
+        "$type": "dimension",
+        "$description": "Default card border width"
+      },
+      "radius": {
+        "$value": "{border.radius.lg}",
+        "$type": "dimension",
+        "$description": "Card corner radius"
+      }
+    },
+    "shadow": {
+      "default": {
+        "$value": "none",
+        "$type": "shadow",
+        "$description": "Default card shadow"
+      },
+      "hover": {
+        "$value": "{card.shadow.default}",
+        "$type": "shadow",
+        "$description": "Card shadow on hover"
+      }
+    },
+    "transform": {
+      "y": {
+        "$value": "0",
+        "$type": "dimension",
+        "$description": "Default vertical translation"
+      },
+      "hover-y": {
+        "$value": "{card.transform.y}",
+        "$type": "dimension",
+        "$description": "Vertical translation on hover"
+      }
+    },
+    "cursor": {
+      "$value": "default",
+      "$type": "string",
+      "$description": "Default cursor style"
+    },
+    "body": {
+      "padding": {
+        "$value": "{spacing.md}",
+        "$type": "dimension",
+        "$description": "Card body padding"
+      }
+    },
+    "media": {
+      "height": {
+        "$value": "160px",
+        "$type": "dimension",
+        "$description": "Card media area height"
+      }
+    },
+    "bordered": {
+      "$description": "Bordered card variant tokens",
+      "border-width": {
+        "$value": "{border.width.medium}",
+        "$type": "dimension",
+        "$description": "Thicker border for bordered variant"
+      }
+    },
+    "elevated": {
+      "$description": "Elevated card variant tokens",
+      "border": {
+        "$value": "transparent",
+        "$type": "color",
+        "$description": "Transparent border for elevated cards"
+      },
+      "shadow": {
+        "$value": "{shadow.md}",
+        "$type": "shadow",
+        "$description": "Elevated card shadow"
+      },
+      "shadow-hover": {
+        "$value": "{shadow.lg}",
+        "$type": "shadow",
+        "$description": "Elevated card shadow on hover"
+      }
+    },
+    "interactive": {
+      "$description": "Interactive card variant tokens",
+      "cursor": {
+        "$value": "pointer",
+        "$type": "string",
+        "$description": "Pointer cursor for interactive cards"
+      },
+      "transform-hover-y": {
+        "$value": "-4px",
+        "$type": "dimension",
+        "$description": "Lift effect on hover"
+      },
+      "shadow-hover": {
+        "$value": "{shadow.lg}",
+        "$type": "shadow",
+        "$description": "Enhanced shadow on hover"
+      }
+    },
+    "compact": {
+      "$description": "Compact card variant tokens",
+      "body-padding": {
+        "$value": "{spacing.sm}",
+        "$type": "dimension",
+        "$description": "Reduced padding for compact cards"
+      },
+      "media-height": {
+        "$value": "100px",
+        "$type": "dimension",
+        "$description": "Smaller media height for compact cards"
+      }
+    },
+    "fluid": {
+      "$description": "Fluid card variant tokens",
+      "body-padding": {
+        "$value": "{spacing.fluid.md}",
+        "$type": "dimension",
+        "$description": "Responsive padding that adapts to viewport"
+      }
+    }
+  }
+}

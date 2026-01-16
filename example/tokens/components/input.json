@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "input",
+    "description": "Design tokens for the Input component"
+  },
+  "input": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Input background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Input text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Input padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Input border radius"
+    }
+  }
+}

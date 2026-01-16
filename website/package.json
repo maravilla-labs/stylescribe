@@ -1,0 +1,16 @@
+{
+  "name": "stylescribe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A design system built with Stylescribe",
+  "scripts": {
+    "dev": "stylescribe dev --source ./sass --build-target ./build",
+    "build": "stylescribe build --source ./sass --output ./dist",
+    "docs": "stylescribe docs --source ./sass --build-target ./build --output ./site",
+    "tokens:validate": "stylescribe tokens validate -i ./tokens/design-tokens.json",
+    "tokens:export": "stylescribe tokens export -i ./tokens/design-tokens.json -f css -o ./tokens/variables.css"
+  },
+  "dependencies": {
+    "stylescribe": "^1.0.0"
+  }
+}

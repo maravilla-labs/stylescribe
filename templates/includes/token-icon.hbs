@@ -1,0 +1,81 @@
+<div class="token-grid icon-grid">
+    {{#each tokens}}
+    <div class="token-card icon-card rounded-lg border border-gray-200 dark:border-slate-600 overflow-hidden bg-white dark:bg-slate-700 hover:shadow-lg transition-shadow" data-token-name="{{this.name}}" data-token-type="icon">
+        <div class="icon-preview p-6 flex items-center justify-center bg-gray-50 dark:bg-slate-800 border-b border-gray-200 dark:border-slate-600">
+            <span class="icon-display" style="
+                display: inline-block;
+                width: 48px;
+                height: 48px;
+                background-color: currentColor;
+                mask-image: {{this.value}};
+                mask-size: contain;
+                mask-repeat: no-repeat;
+                mask-position: center;
+                -webkit-mask-image: {{this.value}};
+                -webkit-mask-size: contain;
+                -webkit-mask-repeat: no-repeat;
+                -webkit-mask-position: center;
+            "></span>
+        </div>
+        <div class="token-info p-4">
+            <div class="token-name font-mono text-sm font-semibold text-gray-900 dark:text-white break-all">{{this.name}}</div>
+            <div class="token-var font-mono text-xs text-gray-500 dark:text-gray-400 mt-1">{{this.cssVar}}</div>
+            {{#if this.description}}
+            <div class="token-description text-xs text-gray-500 dark:text-gray-400 mt-2">{{this.description}}</div>
+            {{/if}}
+            <div class="flex gap-2 mt-3">
+                <button class="copy-btn px-2 py-1 text-xs border border-gray-300 dark:border-slate-500 rounded bg-white dark:bg-slate-600 hover:bg-gray-100 dark:hover:bg-slate-500 cursor-pointer transition-colors text-gray-700 dark:text-gray-200" onclick="copyToken('{{this.cssVar}}')">Copy var</button>
+                <button class="copy-btn px-2 py-1 text-xs border border-gray-300 dark:border-slate-500 rounded bg-white dark:bg-slate-600 hover:bg-gray-100 dark:hover:bg-slate-500 cursor-pointer transition-colors text-gray-700 dark:text-gray-200" onclick="copyIconUsage('{{this.cssVar}}')">Copy CSS</button>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+<style>
+    .icon-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+
+    .icon-preview {
+        min-height: 100px;
+    }
+
+    .icon-display {
+        color: #374151;
+    }
+
+    [data-theme="dark"] .icon-display {
+        color: #e5e7eb;
+    }
+
+    .icon-card:hover .icon-display {
+        color: #4f46e5;
+    }
+</style>
+
+<script>
+    function copyIconUsage(cssVar) {
+        const css = `background-color: currentColor;
+mask-image: var(${cssVar});
+mask-size: contain;
+mask-repeat: no-repeat;
+-webkit-mask-image: var(${cssVar});
+-webkit-mask-size: contain;
+-webkit-mask-repeat: no-repeat;`;
+
+        navigator.clipboard.writeText(css).then(() => {
+            const btns = document.querySelectorAll('.copy-btn');
+            btns.forEach(btn => {
+                if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(cssVar) && btn.getAttribute('onclick').includes('copyIconUsage')) {
+                    btn.textContent = 'Copied!';
+                    btn.classList.add('bg-green-500', 'text-white', 'border-green-500');
+                    setTimeout(() => {
+                        btn.textContent = 'Copy CSS';
+                        btn.classList.remove('bg-green-500', 'text-white', 'border-green-500');
+                    }, 1500);
+                }
+            });
+        });
+    }
+</script>

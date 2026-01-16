@@ -1,0 +1,23 @@
+<!--
+@title Search Bar
+@description Combines search and button components for search functionality
+@type block
+@group Navigation
+@dependencies cluster, search, button, icon, layout
+@variations
+- title: Default
+  description: Standard search bar with button
+- title: Compact
+  description: Smaller version for tight spaces
+- title: With Filters
+  description: Includes filter dropdown alongside search
+-->
+<div class="ds-cluster ds-layout ds-layout-md">
+  <div class="ds-search">
+    <span class="ds-icon ds-icon--search"></span>
+    <input class="ds-search__input" type="search" placeholder="Search...">
+  </div>
+  <button class="ds-btn ds-btn--primary">
+    <span class="ds-btn__label">Search</span>
+  </button>
+</div>

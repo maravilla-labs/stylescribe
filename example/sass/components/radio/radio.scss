@@ -1,0 +1,206 @@
+/**
+ * @title Radio
+ * @description Custom styled radio button with label. Uses hidden native input for accessibility.
+ * @group Forms
+ * @order 6
+ * @variations default, error, disabled, sm, lg
+ * @elements
+ * - name: input
+ *   html: <input class="{{class}}" type="radio">
+ * - name: circle
+ *   html: <span class="{{class}}"></span>
+ * - name: dot
+ *   html: <span class="{{class}}"></span>
+ * - name: label
+ *   html: <span class="{{class}}">Radio label</span>
+ * @dependencies stack
+ * @examples
+ * - title: Radio Group
+ *   description: Group of radio buttons
+ *   code: |
+ *     <div class="ds-stack ds-stack--sm">
+ *       <label class="ds-radio">
+ *         <input class="ds-radio__input" type="radio" name="plan" value="free" checked>
+ *         <span class="ds-radio__circle">
+ *           <span class="ds-radio__dot"></span>
+ *         </span>
+ *         <span class="ds-radio__label">Free plan</span>
+ *       </label>
+ *       <label class="ds-radio">
+ *         <input class="ds-radio__input" type="radio" name="plan" value="pro">
+ *         <span class="ds-radio__circle">
+ *           <span class="ds-radio__dot"></span>
+ *         </span>
+ *         <span class="ds-radio__label">Pro plan</span>
+ *       </label>
+ *       <label class="ds-radio">
+ *         <input class="ds-radio__input" type="radio" name="plan" value="enterprise">
+ *         <span class="ds-radio__circle">
+ *           <span class="ds-radio__dot"></span>
+ *         </span>
+ *         <span class="ds-radio__label">Enterprise plan</span>
+ *       </label>
+ *     </div>
+ * - title: Selected Radio
+ *   description: Radio in selected state
+ *   code: |
+ *     <label class="ds-radio">
+ *       <input class="ds-radio__input" type="radio" name="single" checked>
+ *       <span class="ds-radio__circle">
+ *         <span class="ds-radio__dot"></span>
+ *       </span>
+ *       <span class="ds-radio__label">Selected option</span>
+ *     </label>
+ * - title: Error State
+ *   description: Radio with validation error
+ *   code: |
+ *     <label class="ds-radio ds-radio--error">
+ *       <input class="ds-radio__input" type="radio" name="error" aria-invalid="true">
+ *       <span class="ds-radio__circle">
+ *         <span class="ds-radio__dot"></span>
+ *       </span>
+ *       <span class="ds-radio__label">Please select an option</span>
+ *     </label>
+ * - title: Disabled Radio
+ *   description: Non-interactive radio
+ *   code: |
+ *     <label class="ds-radio ds-radio--disabled">
+ *       <input class="ds-radio__input" type="radio" name="disabled" disabled>
+ *       <span class="ds-radio__circle">
+ *         <span class="ds-radio__dot"></span>
+ *       </span>
+ *       <span class="ds-radio__label">Unavailable option</span>
+ *     </label>
+ * - title: Small Radio
+ *   description: Compact size variant
+ *   code: |
+ *     <label class="ds-radio ds-radio--sm">
+ *       <input class="ds-radio__input" type="radio" name="small">
+ *       <span class="ds-radio__circle">
+ *         <span class="ds-radio__dot"></span>
+ *       </span>
+ *       <span class="ds-radio__label">Small option</span>
+ *     </label>
+ * - title: Large Radio
+ *   description: Larger size variant
+ *   code: |
+ *     <label class="ds-radio ds-radio--lg">
+ *       <input class="ds-radio__input" type="radio" name="large">
+ *       <span class="ds-radio__circle">
+ *         <span class="ds-radio__dot"></span>
+ *       </span>
+ *       <span class="ds-radio__label">Large option with more prominence</span>
+ *     </label>
+ */
+
+@layer components {
+  .ds-radio {
+    /* ===== Component Tokens ===== */
+    --radio-size: 18px;
+    --radio-dot-size: 8px;
+    --radio-bg: var(--color-semantic-surface);
+    --radio-border: var(--color-semantic-border);
+    --radio-border-checked: var(--color-primary-500);
+    --radio-dot-color: var(--color-primary-500);
+    --radio-gap: var(--spacing-scale-sm);
+    --radio-font-size: var(--font-size-base);
+    --radio-label-color: var(--color-semantic-text);
+
+    /* ===== Base Styles ===== */
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--radio-gap);
+    font-family: var(--font-family-base);
+    font-size: var(--radio-font-size);
+    color: var(--radio-label-color);
+    cursor: pointer;
+    user-select: none;
+
+    /* ===== Elements ===== */
+    &__input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+
+      /* Focus state on circle */
+      &:focus-visible ~ .ds-radio__circle {
+        outline: 2px solid var(--color-primary-500);
+        outline-offset: 2px;
+      }
+
+      /* Checked state */
+      &:checked ~ .ds-radio__circle {
+        border-color: var(--radio-border-checked);
+
+        .ds-radio__dot {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+
+    &__circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: var(--radio-size);
+      height: var(--radio-size);
+      background: var(--radio-bg);
+      border: 2px solid var(--radio-border);
+      border-radius: 50%;
+      transition: border-color var(--transition-duration-fast);
+    }
+
+    &__dot {
+      width: var(--radio-dot-size);
+      height: var(--radio-dot-size);
+      background: var(--radio-dot-color);
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(0);
+      transition:
+        opacity var(--transition-duration-fast),
+        transform var(--transition-duration-fast);
+    }
+
+    &__label {
+      padding-top: 1px;
+      line-height: var(--radio-size);
+    }
+
+    /* ===== Variations (token overrides only) ===== */
+
+    /* Error state */
+    &--error {
+      --radio-border: var(--color-danger-base);
+      --radio-border-checked: var(--color-danger-base);
+      --radio-dot-color: var(--color-danger-base);
+    }
+
+    /* Disabled state */
+    &--disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Size: Small */
+    &--sm {
+      --radio-size: 14px;
+      --radio-dot-size: 6px;
+      --radio-gap: var(--spacing-scale-xs);
+      --radio-font-size: var(--font-size-sm);
+    }
+
+    /* Size: Large */
+    &--lg {
+      --radio-size: 22px;
+      --radio-dot-size: 10px;
+      --radio-gap: var(--spacing-scale-md);
+      --radio-font-size: var(--font-size-lg);
+    }
+  }
+}

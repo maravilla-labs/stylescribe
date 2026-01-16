@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    {{#if externalCssIncludes}}
+    <style>
+        {{#each externalCssIncludes}}
+        @import url('{{{this}}}');
+        {{/each}}
+    </style>
+    {{/if}}
+    {{#each headIncludes}}
+    <link rel="stylesheet" href="{{this}}">
+    {{/each}}
+    <!-- Load design tokens (always needed for components) -->
+    <link rel="stylesheet" href="{{basePath}}css/themes.css">
+    <!-- Base/app styles for body background etc -->
+    <link rel="stylesheet" href="{{basePath}}base.css">
+    <link rel="stylesheet" href="{{basePath}}css/components/app.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        html { -webkit-font-smoothing: antialiased; }
+        body { margin: 0; padding: 16px; width: 100%; }
+        #preview-content { display: inline-block; max-width: 100%; }
+    </style>
+</head>
+<body>
+    <div id="preview-content">{{{content}}}</div>
+    <script>
+        // Apply theme from localStorage on initial load
+        (function() {
+            try {
+                var mode = localStorage.getItem('themeMode') || localStorage.getItem('theme') || 'light';
+                var variant = localStorage.getItem('themeVariant') || 'default';
+                var variantClass = localStorage.getItem('themeVariantClass') || '';
+
+                // Handle system preference
+                if (mode === 'system') {
+                    mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+
+                // Set dark/light mode
+                document.documentElement.setAttribute('data-theme', mode);
+
+                // Set theme variant class
+                if (variant && variant !== 'default' && variantClass) {
+                    document.documentElement.classList.add(variantClass);
+                }
+            } catch (e) {
+                // localStorage may not be available in some contexts
+            }
+        })();
+
+        // Extract skeleton ID from URL for message identification
+        // URL pattern: component-{skeletonId}.preview.html
+        var skeletonId = (function() {
+            var match = window.location.pathname.match(/([^/]+)\.preview\.html$/);
+            if (match) {
+                // Extract part after the component name: dropdown-example-0 → example-0
+                var parts = match[1].split('-');
+                if (parts.length >= 2) {
+                    // Handle both "component-example-N" and "component-variation-name" patterns
+                    var idx = parts.indexOf('example');
+                    if (idx !== -1) return parts.slice(idx).join('-');
+                    idx = parts.indexOf('variation');
+                    if (idx !== -1) return parts.slice(idx).join('-');
+                }
+            }
+            return null;
+        })();
+
+        // Report height to parent for auto-resize
+        // Use content wrapper height to avoid feedback loop with body expansion
+        var contentEl = document.getElementById('preview-content');
+        var lastHeight = 0;
+        var maxHeight = 600; // Clamp max height for viewport-based components
+        function reportHeight() {
+            // Calculate actual content height including absolutely positioned elements
+            var contentRect = contentEl.getBoundingClientRect();
+            var maxBottom = contentRect.bottom;
+
+            // Check all descendant elements for those that extend beyond container
+            // This catches absolutely positioned elements like dropdown menus
+            var allElements = contentEl.querySelectorAll('*');
+            allElements.forEach(function(el) {
+                var style = window.getComputedStyle(el);
+                // Only check visible elements (opacity > 0.1 to account for near-visible elements)
+                var isVisible = style.display !== 'none' &&
+                                style.visibility !== 'hidden' &&
+                                parseFloat(style.opacity) > 0.1;
+                if (isVisible) {
+                    var rect = el.getBoundingClientRect();
+                    if (rect.bottom > maxBottom) {
+                        maxBottom = rect.bottom;
+                    }
+                }
+            });
+
+            // Calculate height from top of content to max bottom, plus padding
+            var height = Math.ceil(maxBottom - contentRect.top) + 16; // Account for body padding
+
+            // Clamp to reasonable max for viewport-based components (100vh, 100dvh, etc.)
+            if (height > maxHeight) {
+                height = maxHeight;
+            }
+
+            // Only report if height actually changed to prevent loops
+            if (height !== lastHeight) {
+                lastHeight = height;
+                window.parent.postMessage({ type: 'previewHeight', height: height, skeletonId: skeletonId }, '*');
+            }
+        }
+        window.addEventListener('load', function() {
+            reportHeight();
+            window.parent.postMessage({ type: 'previewReady', skeletonId: skeletonId }, '*');
+        });
+        new ResizeObserver(reportHeight).observe(contentEl);
+
+        // MutationObserver for dynamic content changes (dropdowns, accordions, etc.)
+        var mutationTimeout;
+        var mutationObserver = new MutationObserver(function(mutations) {
+            // Debounce to avoid excessive height reports
+            clearTimeout(mutationTimeout);
+            mutationTimeout = setTimeout(function() {
+                reportHeight();
+            }, 50);
+        });
+        mutationObserver.observe(contentEl, {
+            childList: true,       // Detect added/removed elements
+            subtree: true,         // Watch all descendants
+            attributes: true,      // Watch attribute changes (class, style, etc.)
+            attributeFilter: ['class', 'style', 'hidden', 'open', 'aria-expanded', 'aria-hidden']
+        });
+
+        // Focus events for CSS :focus-within state changes (dropdowns, etc.)
+        // These CSS states don't trigger MutationObserver, so we need separate listeners
+        var focusTimeout;
+        contentEl.addEventListener('focusin', function() {
+            // Delay to allow CSS transitions to complete
+            clearTimeout(focusTimeout);
+            focusTimeout = setTimeout(reportHeight, 100);
+        });
+        contentEl.addEventListener('focusout', function() {
+            // Delay to allow CSS transitions to complete
+            clearTimeout(focusTimeout);
+            focusTimeout = setTimeout(reportHeight, 100);
+        });
+
+        // Also listen for checkbox changes (used by some interactive components)
+        contentEl.addEventListener('change', function(e) {
+            if (e.target.type === 'checkbox' || e.target.type === 'radio') {
+                clearTimeout(focusTimeout);
+                focusTimeout = setTimeout(reportHeight, 100);
+            }
+        });
+
+        // Listen for theme changes from parent
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'setTheme') {
+                // Set dark/light mode
+                document.documentElement.setAttribute('data-theme', event.data.mode || 'light');
+
+                // Set theme variant class
+                document.documentElement.className = document.documentElement.className.replace(/theme-\S+/g, '').trim();
+                if (event.data.variant && event.data.variant !== 'default' && event.data.variantClass) {
+                    document.documentElement.classList.add(event.data.variantClass);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

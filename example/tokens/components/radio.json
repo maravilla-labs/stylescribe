@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "radio",
+    "description": "Design tokens for the Radio component"
+  },
+  "radio": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Radio background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Radio text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Radio padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Radio border radius"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{{#each tokens}}
+{{#if (eq this.type "fontFamily")}}
+<div class="typography-demo" data-token-name="{{this.name}}" data-token-type="fontFamily">
+    <div class="font-sample" style="font-family: {{this.value}}; font-size: 24px;">
+        The quick brown fox jumps over the lazy dog
+    </div>
+    <div class="flex justify-between items-center">
+        <div>
+            <code class="bg-gray-200 px-2 py-1 rounded text-xs">{{this.cssVar}}</code>
+            <span class="text-gray-500 ml-2 text-sm">{{this.value}}</span>
+        </div>
+        <button class="copy-btn px-2 py-1 text-xs border border-gray-300 rounded bg-white hover:bg-gray-100 cursor-pointer transition-colors" onclick="copyToken('{{this.cssVar}}')">Copy</button>
+    </div>
+</div>
+{{/if}}
+{{#if (eq this.type "fontWeight")}}
+<div class="typography-demo" data-token-name="{{this.name}}" data-token-type="fontWeight">
+    <div class="font-sample" style="font-weight: {{this.value}}; font-size: 20px;">
+        Font Weight: {{this.value}}
+    </div>
+    <div class="flex justify-between items-center">
+        <code class="bg-gray-200 px-2 py-1 rounded text-xs">{{this.cssVar}}</code>
+        <button class="copy-btn px-2 py-1 text-xs border border-gray-300 rounded bg-white hover:bg-gray-100 cursor-pointer transition-colors" onclick="copyToken('{{this.cssVar}}')">Copy</button>
+    </div>
+</div>
+{{/if}}
+{{#if (eq this.type "dimension")}}
+<div class="typography-demo" data-token-name="{{this.name}}" data-token-type="dimension">
+    <div class="font-sample" style="font-size: {{this.value}};">
+        Font Size: {{this.value}}
+    </div>
+    <div class="flex justify-between items-center">
+        <div>
+            <code class="bg-gray-200 px-2 py-1 rounded text-xs">{{this.cssVar}}</code>
+            {{#if this.description}}<span class="text-gray-500 ml-2 text-sm">{{this.description}}</span>{{/if}}
+        </div>
+        <button class="copy-btn px-2 py-1 text-xs border border-gray-300 rounded bg-white hover:bg-gray-100 cursor-pointer transition-colors" onclick="copyToken('{{this.cssVar}}')">Copy</button>
+    </div>
+</div>
+{{/if}}
+{{/each}}

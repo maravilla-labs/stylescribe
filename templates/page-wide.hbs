@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{title}}</title>
+        {{#if branding.favicon}}
+        <link rel="icon" href="/static/{{branding.favicon}}">
+        {{/if}}
+        <link rel="stylesheet" href="{{basePath}}css/stylescribe.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+
+        {{#each headIncludes}}
+        <link rel="stylesheet" href="/{{this}}">
+        {{/each}}
+
+        <script src="{{basePath}}js/theme-init.js"></script>
+    </head>
+    <body hx-boost="true"
+          hx-target="#stylescribe-wrapper"
+          hx-select="#stylescribe-wrapper"
+          hx-swap="outerHTML show:window:top"
+          class="min-h-screen bg-gray-50 dark:bg-slate-900"
+          data-basepath="{{basePath}}"
+          data-page-type="page-wide">
+        <div id="stylescribe-wrapper">
+        {{> navigation basePath=basePath branding=branding navigation=navigation groups=groups activeNav=activeNav}}
+
+        <div class="main-content flex">
+            <!-- Main Content (no left sidebar) -->
+            <main class="flex-1 min-w-0 flex justify-center py-8 px-4 md:px-8">
+                <div class="w-full max-w-3xl">
+                    <!-- Breadcrumb -->
+                    <nav class="breadcrumb mb-6" aria-label="Breadcrumb">
+                        {{#each breadcrumb}}
+                        {{#if this.href}}
+                        <a href="{{this.href}}" class="breadcrumb-link">{{this.label}}</a>
+                        <span class="breadcrumb-separator">/</span>
+                        {{else}}
+                        <span class="text-gray-900 dark:text-white font-medium">{{this.label}}</span>
+                        {{/if}}
+                        {{/each}}
+                    </nav>
+
+                    <article class="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-6 md:p-8 lg:p-10 shadow-sm">
+                        <header class="mb-8 pb-6 border-b border-gray-200 dark:border-slate-700">
+                            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">{{title}}</h1>
+                            {{#if description}}
+                            <p class="mt-3 text-lg text-gray-600 dark:text-gray-300">{{description}}</p>
+                            {{/if}}
+                        </header>
+
+                        <div class="prose prose-lg dark:prose-invert max-w-none">
+                            {{{content}}}
+                        </div>
+                    </article>
+                </div>
+            </main>
+
+            <!-- Table of Contents -->
+            {{#if headings.length}}
+            <aside class="hidden xl:block w-56 shrink-0 border-l border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+                <nav class="toc-nav sticky top-16 max-h-[calc(100vh-64px)] overflow-y-auto p-4">
+                    <h4 class="toc-title">On this page</h4>
+                    <ul class="toc-list">
+                        {{#each headings}}
+                        <li class="toc-item toc-item--h{{this.level}}">
+                            <a href="#{{this.slug}}" class="toc-link">{{this.text}}</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </nav>
+            </aside>
+            {{/if}}
+        </div>
+        </div>
+
+        <!-- Alpine.js (with defer for proper initialization) -->
+        <script defer src="{{basePath}}js/alpine.min.js"></script>
+        <!-- htmx for SPA navigation -->
+        <script src="{{basePath}}js/htmx.min.js"></script>
+        <script src="{{basePath}}js/htmx-init.js"></script>
+        <!-- Alpine components -->
+        <script src="{{basePath}}js/alpine-components.js"></script>
+        <!-- Core functionality -->
+        <script src="{{basePath}}js/init-registry.js"></script>
+        <script src="{{basePath}}js/page-init.js"></script>
+        <script src="https://unpkg.com/lunr/lunr.js"></script>
+        <script src="{{basePath}}js/search.js"></script>
+        <script src="{{basePath}}js/navigation.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    </body>
+</html>

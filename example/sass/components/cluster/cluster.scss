@@ -1,0 +1,86 @@
+/**
+ * @title Cluster
+ * @description Horizontal layout component for grouping inline elements with
+ *   consistent spacing. Wraps naturally and supports alignment options.
+ * @group Layout
+ * @order 2
+ *
+ * @elements
+ * - name: grow
+ *   html: <div class="{{class}}">Content</div>
+ *
+ * @variations xs, sm, md, lg, center, end, between, nowrap
+ *
+ * @dependencies avatar, badge, button, text, stack
+ * @examples
+ * - title: Basic Cluster
+ *   code: |
+ *     <div class="ds-cluster">
+ *       <span class="ds-badge">Tag 1</span>
+ *       <span class="ds-badge">Tag 2</span>
+ *       <span class="ds-badge">Tag 3</span>
+ *     </div>
+ *
+ * - title: Button Group
+ *   code: |
+ *     <div class="ds-cluster ds-cluster--end">
+ *       <button class="ds-btn">Cancel</button>
+ *       <button class="ds-btn ds-btn--primary">Save</button>
+ *     </div>
+ *
+ * - title: Activity Row
+ *   description: Common pattern with avatar, content, and meta
+ *   code: |
+ *     <div class="ds-cluster">
+ *       <div class="ds-avatar ds-avatar--sm">AB</div>
+ *       <div class="ds-cluster__grow">
+ *         <span class="ds-text ds-text-medium">Alice Brown</span>
+ *         <span class="ds-text ds-text-muted ds-text-sm">Created a new project</span>
+ *       </div>
+ *       <span class="ds-text ds-text-muted ds-text-xs">2 min ago</span>
+ *     </div>
+ *
+ * - title: List Item Pattern
+ *   description: Icon, label, and action
+ *   code: |
+ *     <div class="ds-cluster ds-cluster--nowrap">
+ *       <span class="ds-icon ds-icon--document"></span>
+ *       <span class="ds-cluster__grow ds-text ds-text-truncate">Very long filename that should truncate nicely.pdf</span>
+ *       <button class="ds-btn ds-btn--ghost ds-btn--sm">Download</button>
+ *     </div>
+ */
+
+@layer components {
+  .ds-cluster {
+    --cluster-gap: var(--spacing-md);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cluster-gap);
+    align-items: center;
+  }
+
+  /* ===== Gap Variations ===== */
+  .ds-cluster--xs { --cluster-gap: var(--spacing-xs); }
+  .ds-cluster--sm { --cluster-gap: var(--spacing-sm); }
+  .ds-cluster--md { --cluster-gap: var(--spacing-md); }
+  .ds-cluster--lg { --cluster-gap: var(--spacing-lg); }
+
+  /* ===== Alignment Variations ===== */
+  .ds-cluster--center { justify-content: center; }
+  .ds-cluster--end { justify-content: flex-end; }
+  .ds-cluster--between { justify-content: space-between; }
+
+  /* ===== Behavior Variations ===== */
+  .ds-cluster--nowrap {
+    flex-wrap: nowrap;
+  }
+
+  /* ===== Elements ===== */
+
+  /* Grow element takes remaining space */
+  .ds-cluster__grow {
+    flex: 1;
+    min-width: 0;
+  }
+}

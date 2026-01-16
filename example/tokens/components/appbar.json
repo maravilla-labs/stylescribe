@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "appbar",
+    "description": "Design tokens for the Appbar component"
+  },
+  "appbar": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Appbar background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Appbar text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Appbar padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Appbar border radius"
+    }
+  }
+}

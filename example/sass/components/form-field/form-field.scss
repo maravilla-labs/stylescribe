@@ -1,0 +1,212 @@
+/**
+ * @title Form Field
+ * @description Wrapper combining label, form control, helper text and error message.
+ * @group Forms
+ * @order 8
+ * @dependencies label, input, textarea, select, checkbox, radio, toggle
+ * @variations default, horizontal, error, required, inline
+ * @elements
+ * - name: label
+ *   html: <label class="{{class}} ds-label"><span class="ds-label__text">Label</span></label>
+ * - name: control
+ *   html: <div class="{{class}}"></div>
+ * - name: helper
+ *   html: <span class="{{class}}">Helper text</span>
+ * - name: error-text
+ *   html: <span class="{{class}}">Error message</span>
+ * @examples
+ * - title: Form Field with Input
+ *   description: Basic form field with label and input
+ *   code: |
+ *     <div class="ds-form-field">
+ *       <label class="ds-form-field__label ds-label">
+ *         <span class="ds-label__text">Email Address</span>
+ *       </label>
+ *       <div class="ds-form-field__control">
+ *         <div class="ds-input">
+ *           <input class="ds-input__field" type="email" placeholder="you@example.com">
+ *         </div>
+ *       </div>
+ *     </div>
+ * - title: Form Field with Helper Text
+ *   description: Additional guidance below the input
+ *   code: |
+ *     <div class="ds-form-field">
+ *       <label class="ds-form-field__label ds-label">
+ *         <span class="ds-label__text">Password</span>
+ *       </label>
+ *       <div class="ds-form-field__control">
+ *         <div class="ds-input">
+ *           <input class="ds-input__field" type="password" placeholder="Enter password">
+ *         </div>
+ *       </div>
+ *       <span class="ds-form-field__helper">Must be at least 8 characters</span>
+ *     </div>
+ * - title: Required Form Field
+ *   description: Field with required indicator
+ *   code: |
+ *     <div class="ds-form-field ds-form-field--required">
+ *       <label class="ds-form-field__label ds-label ds-label--required">
+ *         <span class="ds-label__text">Full Name</span>
+ *         <span class="ds-label__required">*</span>
+ *       </label>
+ *       <div class="ds-form-field__control">
+ *         <div class="ds-input">
+ *           <input class="ds-input__field" type="text" required>
+ *         </div>
+ *       </div>
+ *     </div>
+ * - title: Form Field with Error
+ *   description: Field showing validation error
+ *   code: |
+ *     <div class="ds-form-field ds-form-field--error">
+ *       <label class="ds-form-field__label ds-label">
+ *         <span class="ds-label__text">Email</span>
+ *       </label>
+ *       <div class="ds-form-field__control">
+ *         <div class="ds-input ds-input--error">
+ *           <input class="ds-input__field" type="email" value="invalid" aria-invalid="true">
+ *         </div>
+ *       </div>
+ *       <span class="ds-form-field__error-text">Please enter a valid email address</span>
+ *     </div>
+ * - title: Form Field with Textarea
+ *   description: Multi-line text input field
+ *   code: |
+ *     <div class="ds-form-field">
+ *       <label class="ds-form-field__label ds-label">
+ *         <span class="ds-label__text">Description</span>
+ *       </label>
+ *       <div class="ds-form-field__control">
+ *         <div class="ds-textarea">
+ *           <textarea class="ds-textarea__field" placeholder="Enter description..."></textarea>
+ *         </div>
+ *       </div>
+ *       <span class="ds-form-field__helper">Maximum 500 characters</span>
+ *     </div>
+ * - title: Form Field with Select
+ *   description: Dropdown selection field
+ *   code: |
+ *     <div class="ds-form-field">
+ *       <label class="ds-form-field__label ds-label">
+ *         <span class="ds-label__text">Country</span>
+ *       </label>
+ *       <div class="ds-form-field__control">
+ *         <div class="ds-select">
+ *           <select class="ds-select__field">
+ *             <option value="">Select country...</option>
+ *             <option value="us">United States</option>
+ *             <option value="uk">United Kingdom</option>
+ *           </select>
+ *           <svg class="ds-select__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+ *         </div>
+ *       </div>
+ *     </div>
+ * - title: Horizontal Form Field
+ *   description: Label beside control for wide layouts
+ *   code: |
+ *     <div class="ds-form-field ds-form-field--horizontal">
+ *       <label class="ds-form-field__label ds-label">
+ *         <span class="ds-label__text">Username</span>
+ *       </label>
+ *       <div class="ds-form-field__control">
+ *         <div class="ds-input">
+ *           <input class="ds-input__field" type="text" placeholder="Enter username">
+ *         </div>
+ *         <span class="ds-form-field__helper">Choose a unique username</span>
+ *       </div>
+ *     </div>
+ * - title: Inline Form Field
+ *   description: For checkbox/radio inline with label
+ *   code: |
+ *     <div class="ds-form-field ds-form-field--inline">
+ *       <div class="ds-form-field__control">
+ *         <label class="ds-checkbox">
+ *           <input class="ds-checkbox__input" type="checkbox">
+ *           <span class="ds-checkbox__box">
+ *             <svg class="ds-checkbox__check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+ *           </span>
+ *           <span class="ds-checkbox__label">I agree to the terms and conditions</span>
+ *         </label>
+ *       </div>
+ *     </div>
+ */
+
+@layer components {
+  .ds-form-field {
+    /* ===== Component Tokens ===== */
+    --form-field-gap: var(--spacing-scale-xs);
+    --form-field-helper-color: var(--color-semantic-text-muted);
+    --form-field-helper-size: var(--font-size-xs);
+    --form-field-error-color: var(--color-danger-base);
+    --form-field-label-width: 140px;
+
+    /* ===== Base Styles ===== */
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-field-gap);
+    width: 100%;
+    font-family: var(--font-family-base);
+
+    /* ===== Elements ===== */
+    &__label {
+      flex-shrink: 0;
+    }
+
+    &__control {
+      display: flex;
+      flex-direction: column;
+      gap: var(--form-field-gap);
+      width: 100%;
+    }
+
+    &__helper {
+      font-size: var(--form-field-helper-size);
+      color: var(--form-field-helper-color);
+      line-height: 1.4;
+    }
+
+    &__error-text {
+      font-size: var(--form-field-helper-size);
+      color: var(--form-field-error-color);
+      line-height: 1.4;
+    }
+
+    /* ===== Variations ===== */
+
+    /* Horizontal layout */
+    &--horizontal {
+      flex-direction: row;
+      align-items: flex-start;
+
+      .ds-form-field__label {
+        width: var(--form-field-label-width);
+        padding-top: var(--spacing-scale-sm);
+      }
+
+      .ds-form-field__control {
+        flex: 1;
+      }
+    }
+
+    /* Error state */
+    &--error {
+      .ds-form-field__label {
+        --label-color: var(--form-field-error-color);
+      }
+    }
+
+    /* Required indicator styling handled by label component */
+    &--required {
+      /* Semantic class only */
+    }
+
+    /* Inline layout for checkboxes/radios */
+    &--inline {
+      .ds-form-field__control {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+  }
+}

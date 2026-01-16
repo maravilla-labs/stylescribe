@@ -1,0 +1,66 @@
+{
+  "$meta": {
+    "name": "progress",
+    "description": "Design tokens for the Progress Bar component"
+  },
+  "progress": {
+    "track": {
+      "background": {
+        "$value": "{color.light}",
+        "$type": "color",
+        "$description": "Progress track background color"
+      },
+      "height": {
+        "$value": "{spacing.sm}",
+        "$type": "dimension",
+        "$description": "Progress bar height"
+      },
+      "border-radius": {
+        "$value": "{border.radius.full}",
+        "$type": "dimension",
+        "$description": "Progress bar rounded corners"
+      }
+    },
+    "fill": {
+      "default": {
+        "$value": "{color.primary}",
+        "$type": "color",
+        "$description": "Default progress fill color"
+      },
+      "success": {
+        "$value": "{color.success}",
+        "$type": "color",
+        "$description": "Success state fill color"
+      },
+      "warning": {
+        "$value": "{color.warning}",
+        "$type": "color",
+        "$description": "Warning state fill color"
+      },
+      "danger": {
+        "$value": "{color.danger}",
+        "$type": "color",
+        "$description": "Danger state fill color"
+      }
+    },
+    "label": {
+      "color": {
+        "$value": "{color.text}",
+        "$type": "color",
+        "$description": "Progress label text color"
+      },
+      "font-size": {
+        "$value": "{font.size.sm}",
+        "$type": "dimension",
+        "$description": "Progress label font size"
+      }
+    },
+    "animation": {
+      "duration": {
+        "$value": "{transition.slow}",
+        "$type": "duration",
+        "$description": "Progress fill animation duration"
+      }
+    }
+  }
+}

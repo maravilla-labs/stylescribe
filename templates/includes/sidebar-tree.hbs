@@ -1,0 +1,67 @@
+{{!--
+  Recursive sidebar tree partial for nested navigation
+  Renders folders and pages in a collapsible tree structure
+
+  Usage: {{> sidebar-tree items=sidebarTree.children hrefPrefix=sidebarTree.hrefPrefix}}
+
+  Expected data structure:
+  items: [{
+    type: 'folder' | 'page',
+    label: 'Display Name',
+    href: 'page.html' or null (for label-only folders),
+    path: 'folder/subfolder' (for localStorage key),
+    isActive: boolean,
+    isExpanded: boolean,
+    children: [] (for folders)
+  }]
+  hrefPrefix: '../' or '' (prefix to add to all hrefs based on current page depth)
+--}}
+{{#each items}}
+  {{#if (eq this.type 'folder')}}
+    <div class="sidebar-folder" data-path="{{this.path}}">
+      <div class="sidebar-folder-header">
+        {{#if this.href}}
+          {{!-- Clickable folder with index.md --}}
+          <a href="{{../hrefPrefix}}{{this.href}}"
+             class="sidebar-folder-link {{#if this.isActive}}active{{/if}}">
+            {{this.label}}
+          </a>
+          <button type="button"
+                  class="sidebar-folder-toggle"
+                  data-folder="{{this.path}}"
+                  aria-expanded="{{this.isExpanded}}"
+                  aria-label="Toggle {{this.label}}">
+            <svg class="sidebar-chevron {{#if this.isExpanded}}expanded{{/if}}"
+                 width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        {{else}}
+          {{!-- Label-only folder (no index.md) - entire header is toggle --}}
+          <button type="button"
+                  class="sidebar-folder-toggle sidebar-folder-label"
+                  data-folder="{{this.path}}"
+                  aria-expanded="{{this.isExpanded}}"
+                  aria-label="Toggle {{this.label}}">
+            <span>{{this.label}}</span>
+            <svg class="sidebar-chevron {{#if this.isExpanded}}expanded{{/if}}"
+                 width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        {{/if}}
+      </div>
+      {{#if this.children.length}}
+        <div class="sidebar-folder-content {{#unless this.isExpanded}}collapsed{{/unless}}">
+          {{> sidebar-tree items=this.children hrefPrefix=../hrefPrefix}}
+        </div>
+      {{/if}}
+    </div>
+  {{else}}
+    {{!-- Page link --}}
+    <a href="{{../hrefPrefix}}{{this.href}}"
+       class="sidebar-link {{#if this.isActive}}active{{/if}}">
+      {{this.label}}
+    </a>
+  {{/if}}
+{{/each}}

@@ -1,0 +1,334 @@
+/**
+ * @title Timeline
+ * @description Vertical timeline for displaying chronological events, activity logs, or process steps.
+ * @navtitle Timeline
+ * @group Data Display
+ * @order 3
+ * @dependencies badge, icon
+ * @variations default, compact
+ * @additional_variations connected
+ * @elements
+ * - name: item
+ *   html: <div class="{{class}}"></div>
+ * - name: marker
+ *   html: <div class="{{class}}"></div>
+ * - name: line
+ *   html: <div class="{{class}}"></div>
+ * - name: content
+ *   html: <div class="{{class}}"></div>
+ * - name: time
+ *   html: <span class="{{class}}">10:30 AM</span>
+ * - name: title
+ *   html: <h4 class="{{class}}">Timeline Event</h4>
+ * - name: description
+ *   html: <p class="{{class}}">Event description</p>
+ * - name: icon
+ *   html: <span class="{{class}} ds-icon ds-icon--check"></span>
+ * - name: badge
+ *   html: <span class="{{class}} ds-badge ds-badge--primary ds-badge--sm">Current</span>
+ * @examples
+ * - title: Default Timeline
+ *   description: Basic vertical timeline with items
+ *   code: |
+ *     <div class="ds-timeline">
+ *       <div class="ds-timeline__item ds-timeline__item--active">
+ *         <div class="ds-timeline__marker"></div>
+ *         <div class="ds-timeline__content">
+ *           <span class="ds-badge ds-badge--primary ds-badge--sm">Current</span>
+ *           <h4 class="ds-timeline__title">The AI Revolution Begins</h4>
+ *           <p class="ds-timeline__description">How Machine Learning is Changing Everything</p>
+ *         </div>
+ *       </div>
+ *       <div class="ds-timeline__item">
+ *         <div class="ds-timeline__marker"></div>
+ *         <div class="ds-timeline__content">
+ *           <span class="ds-timeline__time">PART 2</span>
+ *           <h4 class="ds-timeline__title">AI Revolution Part 2: How Enterprises Are Adapting</h4>
+ *           <span class="ds-timeline__time">12/17/2025</span>
+ *         </div>
+ *       </div>
+ *     </div>
+ * - title: Story Timeline
+ *   description: Article series timeline from the screenshot
+ *   code: |
+ *     <div class="ds-timeline ds-timeline--connected">
+ *       <div class="ds-timeline__header">
+ *         <svg class="ds-timeline__header-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+ *         <span class="ds-timeline__header-title">Story Timeline</span>
+ *       </div>
+ *       <div class="ds-timeline__item ds-timeline__item--active">
+ *         <div class="ds-timeline__marker"></div>
+ *         <div class="ds-timeline__content">
+ *           <span class="ds-badge ds-badge--primary ds-badge--sm">Current</span>
+ *           <h4 class="ds-timeline__title">The AI Revolution Begins: How Machine Learning is Changing Everything</h4>
+ *         </div>
+ *       </div>
+ *       <div class="ds-timeline__item">
+ *         <div class="ds-timeline__marker"></div>
+ *         <div class="ds-timeline__content">
+ *           <span class="ds-timeline__time">PART 2</span>
+ *           <a href="#" class="ds-timeline__title ds-timeline__title--link">AI Revolution Part 2: How Enterprises Are Adapting</a>
+ *           <span class="ds-timeline__time">12/17/2025</span>
+ *         </div>
+ *       </div>
+ *     </div>
+ * - title: Timeline with Icons
+ *   description: Custom icons in markers
+ *   code: |
+ *     <div class="ds-timeline">
+ *       <div class="ds-timeline__item ds-timeline__item--completed">
+ *         <div class="ds-timeline__marker">
+ *           <svg class="ds-timeline__icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+ *         </div>
+ *         <div class="ds-timeline__content">
+ *           <h4 class="ds-timeline__title">Step 1: Research</h4>
+ *           <p class="ds-timeline__description">Completed on Jan 5</p>
+ *         </div>
+ *       </div>
+ *       <div class="ds-timeline__item ds-timeline__item--active">
+ *         <div class="ds-timeline__marker"></div>
+ *         <div class="ds-timeline__content">
+ *           <h4 class="ds-timeline__title">Step 2: Development</h4>
+ *           <p class="ds-timeline__description">In progress</p>
+ *         </div>
+ *       </div>
+ *       <div class="ds-timeline__item">
+ *         <div class="ds-timeline__marker"></div>
+ *         <div class="ds-timeline__content">
+ *           <h4 class="ds-timeline__title">Step 3: Launch</h4>
+ *           <p class="ds-timeline__description">Upcoming</p>
+ *         </div>
+ *       </div>
+ *     </div>
+ * - title: Compact Timeline
+ *   description: Condensed spacing for dense content
+ *   code: |
+ *     <div class="ds-timeline ds-timeline--compact">
+ *       <div class="ds-timeline__item">
+ *         <div class="ds-timeline__marker"></div>
+ *         <div class="ds-timeline__content">
+ *           <span class="ds-timeline__time">10:30 AM</span>
+ *           <span class="ds-timeline__title">User logged in</span>
+ *         </div>
+ *       </div>
+ *       <div class="ds-timeline__item">
+ *         <div class="ds-timeline__marker"></div>
+ *         <div class="ds-timeline__content">
+ *           <span class="ds-timeline__time">10:45 AM</span>
+ *           <span class="ds-timeline__title">Created new document</span>
+ *         </div>
+ *       </div>
+ *       <div class="ds-timeline__item">
+ *         <div class="ds-timeline__marker"></div>
+ *         <div class="ds-timeline__content">
+ *           <span class="ds-timeline__time">11:00 AM</span>
+ *           <span class="ds-timeline__title">Shared with team</span>
+ *         </div>
+ *       </div>
+ *     </div>
+ */
+
+@layer components {
+  .ds-timeline {
+    /* ===== Component Tokens ===== */
+    --timeline-bg: var(--color-info-light);
+    --timeline-radius: var(--border-radius-lg);
+    --timeline-padding: var(--spacing-scale-md);
+    --timeline-line-color: var(--color-semantic-border);
+    --timeline-line-width: 2px;
+    --timeline-gap: var(--spacing-scale-md);
+    --timeline-marker-size: 10px;
+    --timeline-marker-bg: var(--color-semantic-surface);
+    --timeline-marker-border: var(--color-semantic-border);
+    --timeline-marker-active-bg: var(--color-primary-500);
+    --timeline-marker-active-border: var(--color-primary-500);
+    --timeline-marker-completed-bg: var(--color-success-base);
+    --timeline-content-gap: var(--spacing-scale-xs);
+    --timeline-time-color: var(--color-semantic-text-muted);
+    --timeline-title-color: var(--color-semantic-text);
+    --timeline-title-link-color: var(--color-primary-500);
+    --timeline-desc-color: var(--color-semantic-text-muted);
+
+    /* ===== Base Styles ===== */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: var(--timeline-padding);
+    background: var(--timeline-bg);
+    border-radius: var(--timeline-radius);
+    font-family: var(--font-family-base);
+
+    /* ===== Elements ===== */
+    &__header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-scale-sm);
+      margin-bottom: var(--spacing-scale-md);
+      padding-bottom: var(--spacing-scale-sm);
+      border-bottom: 1px solid var(--timeline-line-color);
+    }
+
+    &__header-icon {
+      color: var(--color-semantic-text-muted);
+
+      svg {
+        display: block;
+      }
+    }
+
+    &__header-title {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      color: var(--timeline-title-color);
+    }
+
+    &__item {
+      display: flex;
+      gap: var(--spacing-scale-md);
+      padding: var(--timeline-gap) 0;
+      position: relative;
+
+      /* Vertical line */
+      &::before {
+        content: '';
+        position: absolute;
+        left: calc(var(--timeline-marker-size) / 2 - var(--timeline-line-width) / 2);
+        top: 0;
+        bottom: 0;
+        width: var(--timeline-line-width);
+        background: var(--timeline-line-color);
+      }
+
+      &:first-of-type::before {
+        top: 50%;
+      }
+
+      &:last-of-type::before {
+        bottom: 50%;
+      }
+
+      &:only-of-type::before {
+        display: none;
+      }
+
+      &--active {
+        .ds-timeline__marker {
+          background: var(--timeline-marker-active-bg);
+          border-color: var(--timeline-marker-active-border);
+        }
+
+        .ds-timeline__content {
+          background: var(--color-semantic-surface);
+          padding: var(--spacing-scale-sm);
+          border-radius: var(--border-radius-md);
+        }
+      }
+
+      &--completed {
+        .ds-timeline__marker {
+          background: var(--timeline-marker-completed-bg);
+          border-color: var(--timeline-marker-completed-bg);
+          color: #ffffff;
+        }
+      }
+    }
+
+    &__marker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: var(--timeline-marker-size);
+      height: var(--timeline-marker-size);
+      background: var(--timeline-marker-bg);
+      border: var(--timeline-line-width) solid var(--timeline-marker-border);
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+      margin-top: 6px;
+    }
+
+    &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        display: block;
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--timeline-content-gap);
+      flex: 1;
+      min-width: 0;
+    }
+
+    &__time {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--timeline-time-color);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    &__title {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--timeline-title-color);
+      line-height: var(--font-lineHeight-tight);
+      margin: 0;
+
+      &--link {
+        color: var(--timeline-title-link-color);
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &__description {
+      font-size: var(--font-size-sm);
+      color: var(--timeline-desc-color);
+      line-height: var(--font-lineHeight-normal);
+      margin: 0;
+    }
+  }
+
+  /* ===== Variations ===== */
+
+  .ds-timeline--compact {
+    --timeline-gap: var(--spacing-scale-xs);
+    --timeline-marker-size: 8px;
+    --timeline-content-gap: 2px;
+    --timeline-padding: var(--spacing-scale-sm);
+
+    .ds-timeline__title {
+      font-size: var(--font-size-sm);
+    }
+
+    .ds-timeline__time {
+      font-size: var(--font-size-xs);
+    }
+  }
+
+  .ds-timeline--connected {
+    .ds-timeline__item::before {
+      background: var(--color-primary-200);
+    }
+
+    .ds-timeline__item--active::before {
+      background: linear-gradient(
+        to bottom,
+        var(--color-primary-500) 0%,
+        var(--color-primary-500) 50%,
+        var(--color-primary-200) 50%,
+        var(--color-primary-200) 100%
+      );
+    }
+  }
+}

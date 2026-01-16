@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{title}} - Full Page Examples</title>
+        {{#if branding.favicon}}
+        <link rel="icon" href="/static/{{branding.favicon}}">
+        {{/if}}
+        <link rel="stylesheet" href="{{basePath}}css/stylescribe.css">
+        {{#if themeOptions}}
+        <link rel="stylesheet" href="{{basePath}}css/themes.css">
+        {{/if}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+
+        {{#each headIncludes}}
+        <link rel="stylesheet" href="/{{this}}">
+        {{/each}}
+
+        <script src="{{basePath}}js/theme-init.js"></script>
+    </head>
+    <body hx-boost="true"
+          hx-target="#stylescribe-wrapper"
+          hx-select="#stylescribe-wrapper"
+          hx-swap="outerHTML show:window:top"
+          class="min-h-screen bg-gray-50 dark:bg-slate-900"
+          data-basepath="{{basePath}}"
+          data-page-type="pages-index">
+        <div id="stylescribe-wrapper">
+        {{> navigation basePath=basePath branding=branding navigation=navigation groups=groups activeNav=activeNav}}
+
+        <div class="main-content flex">
+            <!-- Sidebar -->
+            <aside class="hidden lg:block w-60 shrink-0 border-r border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+                <nav class="sidebar-nav max-h-[calc(100vh-64px)] overflow-y-auto">
+                    {{#each pageGroups as |groupPages groupName|}}
+                    <div class="sidebar-group">
+                        <button class="sidebar-group-toggle" data-group="{{groupName}}">
+                            <span>{{groupName}}</span>
+                            <svg class="sidebar-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <ul class="sidebar-group-content">
+                            {{#each groupPages}}
+                            <li>
+                                <a href="./{{this.name}}.html" class="sidebar-link">
+                                    {{#if this.navtitle}}{{this.navtitle}}{{else}}{{this.title}}{{/if}}
+                                </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{/each}}
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 min-w-0 py-8 px-4 md:px-8">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Header -->
+                    <div class="mb-8">
+                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Full Page Examples</h1>
+                        <p class="text-gray-600 dark:text-gray-300 text-lg">Complete page layouts showcasing real-world implementations of the design system.</p>
+                    </div>
+
+                    <!-- Search and Filters -->
+                    <div class="index-search">
+                        <input type="text"
+                               class="index-search__input"
+                               id="pageSearch"
+                               placeholder="Search pages...">
+                    </div>
+
+                    <div class="index-filters">
+                        <button class="index-filter-btn active" data-filter="all">All</button>
+                        {{#each groupNames}}
+                        <button class="index-filter-btn" data-filter="{{this}}">{{this}}</button>
+                        {{/each}}
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="index-stats">
+                        <span id="visibleCount">{{totalCount}}</span> of {{totalCount}} page examples
+                    </div>
+
+                    <!-- Pages Grid -->
+                    <div class="index-grid" id="pageGrid">
+                        {{#each allPages}}
+                        <a href="./{{this.name}}.html" class="index-card" data-group="{{this.group}}" data-name="{{lowercase this.title}}">
+                            <div class="index-card__preview">
+                                {{#if this.hasScreenshot}}
+                                <img src="../static/screenshots/page-{{this.name}}.png" alt="{{this.title}} preview" loading="lazy">
+                                {{else}}
+                                <div class="index-card__placeholder">
+                                    <span class="index-card__placeholder-icon">
+                                        📄
+                                    </span>
+                                    <span class="index-card__placeholder-text">Full page layout</span>
+                                </div>
+                                {{/if}}
+                                <span class="index-card__view-btn">View Page</span>
+                            </div>
+                            <div class="index-card__content">
+                                <h3 class="index-card__title">{{this.title}}</h3>
+                                {{#if this.description}}
+                                <p class="index-card__description">{{truncate this.description 120}}</p>
+                                {{/if}}
+                                <div class="index-card__meta">
+                                    <span class="index-card__badge">{{this.group}}</span>
+                                    {{#if this.dependencies}}
+                                    <span class="index-card__dep-count">{{length this.dependencies}} components</span>
+                                    {{/if}}
+                                </div>
+                                {{#if this.variations}}
+                                <div class="index-card__variations">
+                                    {{#each (take this.variations 3)}}
+                                    <span class="index-card__variation">{{itemName this}}</span>
+                                    {{/each}}
+                                    {{#if (gt (length this.variations) 3)}}
+                                    <span class="index-card__variation">+{{subtract (length this.variations) 3}} more</span>
+                                    {{/if}}
+                                </div>
+                                {{/if}}
+                            </div>
+                        </a>
+                        {{/each}}
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="index-empty" id="emptyState" style="display: none;">
+                        <div class="index-empty__icon">🔍</div>
+                        <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">No page examples found</h3>
+                        <p>Try adjusting your search or filter criteria.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+        </div>
+
+        <!-- Alpine.js (with defer for proper initialization) -->
+        <script defer src="{{basePath}}js/alpine.min.js"></script>
+        <!-- htmx for SPA navigation -->
+        <script src="{{basePath}}js/htmx.min.js"></script>
+        <script src="{{basePath}}js/htmx-init.js"></script>
+        <!-- Alpine components -->
+        <script src="{{basePath}}js/alpine-components.js"></script>
+        <!-- Core functionality -->
+        <script src="{{basePath}}js/init-registry.js"></script>
+        <script src="{{basePath}}js/page-init.js"></script>
+        <script src="https://unpkg.com/lunr/lunr.js"></script>
+        <script src="{{basePath}}js/search.js"></script>
+        <script src="{{basePath}}js/navigation.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+        <script>
+            // Initialize pages index page on first load
+            if (window.stylescribePageInit) {
+                window.stylescribePageInit.pagesIndex();
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,342 @@
+/**
+ * @title Icon
+ * @description Stylable SVG icons using CSS mask-image. Icons inherit color from parent or can be styled directly.
+ * @group Primitives
+ * @variations delete, edit, add, save, cancel, search, settings, more, home, back, forward, up, down, menu, external, success, warning, error, info, loading, image, document, folder, download, upload, user, users, mail, chat, share, lock, unlock, key, eye, eye-off, shield, shield-check, fingerprint, log-in, log-out, sm, lg, xl
+ * @elements (none)
+ * @examples
+ * - title: Action Icons
+ *   code: |
+ *     <span class="ds-icon ds-icon--delete"></span>
+ *     <span class="ds-icon ds-icon--edit"></span>
+ *     <span class="ds-icon ds-icon--add"></span>
+ *     <span class="ds-icon ds-icon--save"></span>
+ *     <span class="ds-icon ds-icon--cancel"></span>
+ *     <span class="ds-icon ds-icon--search"></span>
+ *     <span class="ds-icon ds-icon--settings"></span>
+ *     <span class="ds-icon ds-icon--more"></span>
+ * - title: Navigation Icons
+ *   code: |
+ *     <span class="ds-icon ds-icon--home"></span>
+ *     <span class="ds-icon ds-icon--back"></span>
+ *     <span class="ds-icon ds-icon--forward"></span>
+ *     <span class="ds-icon ds-icon--up"></span>
+ *     <span class="ds-icon ds-icon--down"></span>
+ *     <span class="ds-icon ds-icon--menu"></span>
+ *     <span class="ds-icon ds-icon--external"></span>
+ * - title: Status Icons
+ *   code: |
+ *     <span class="ds-icon ds-icon--success" style="color: green;"></span>
+ *     <span class="ds-icon ds-icon--warning" style="color: orange;"></span>
+ *     <span class="ds-icon ds-icon--error" style="color: red;"></span>
+ *     <span class="ds-icon ds-icon--info" style="color: blue;"></span>
+ *     <span class="ds-icon ds-icon--loading"></span>
+ * - title: Media Icons
+ *   code: |
+ *     <span class="ds-icon ds-icon--image"></span>
+ *     <span class="ds-icon ds-icon--document"></span>
+ *     <span class="ds-icon ds-icon--folder"></span>
+ *     <span class="ds-icon ds-icon--download"></span>
+ *     <span class="ds-icon ds-icon--upload"></span>
+ * - title: Social Icons
+ *   code: |
+ *     <span class="ds-icon ds-icon--user"></span>
+ *     <span class="ds-icon ds-icon--users"></span>
+ *     <span class="ds-icon ds-icon--mail"></span>
+ *     <span class="ds-icon ds-icon--chat"></span>
+ *     <span class="ds-icon ds-icon--share"></span>
+ * - title: Auth Icons
+ *   code: |
+ *     <span class="ds-icon ds-icon--lock"></span>
+ *     <span class="ds-icon ds-icon--unlock"></span>
+ *     <span class="ds-icon ds-icon--key"></span>
+ *     <span class="ds-icon ds-icon--eye"></span>
+ *     <span class="ds-icon ds-icon--eye-off"></span>
+ *     <span class="ds-icon ds-icon--shield"></span>
+ *     <span class="ds-icon ds-icon--shield-check"></span>
+ *     <span class="ds-icon ds-icon--fingerprint"></span>
+ *     <span class="ds-icon ds-icon--log-in"></span>
+ *     <span class="ds-icon ds-icon--log-out"></span>
+ * - title: Colored Icons
+ *   code: |
+ *     <span class="ds-icon ds-icon--delete" style="color: var(--color-danger-base);"></span>
+ *     <span class="ds-icon ds-icon--edit" style="color: var(--color-primary-500);"></span>
+ *     <span class="ds-icon ds-icon--save" style="color: var(--color-success-base);"></span>
+ * - title: Icon Sizes
+ *   code: |
+ *     <span class="ds-icon ds-icon--home ds-icon--sm"></span>
+ *     <span class="ds-icon ds-icon--home"></span>
+ *     <span class="ds-icon ds-icon--home ds-icon--lg"></span>
+ *     <span class="ds-icon ds-icon--home ds-icon--xl"></span>
+ * - title: Icons in Buttons
+ *   code: |
+ *     <button class="ds-button ds-button--danger">
+ *       <span class="ds-icon ds-icon--delete"></span>
+ *       Delete
+ *     </button>
+ *     <button class="ds-button ds-button--primary">
+ *       <span class="ds-icon ds-icon--add"></span>
+ *       Add Item
+ *     </button>
+ * @dependencies button
+ */
+
+@layer components {
+  .ds-icon {
+    /* ===== Component Tokens ===== */
+    --icon-size: 1em;
+    --icon-color: currentColor;
+
+    /* ===== Base Styles ===== */
+    display: inline-block;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    vertical-align: middle;
+    flex-shrink: 0;
+
+    /* Icon inherits color from parent or set directly */
+    background-color: var(--icon-color);
+
+    /* Common mask properties for all icons */
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+
+    /* ===== Action Icons (assets.icons.actions.*) ===== */
+    &--delete {
+      mask-image: var(--assets-icons-actions-delete);
+      -webkit-mask-image: var(--assets-icons-actions-delete);
+    }
+
+    &--edit {
+      mask-image: var(--assets-icons-actions-edit);
+      -webkit-mask-image: var(--assets-icons-actions-edit);
+    }
+
+    &--add {
+      mask-image: var(--assets-icons-actions-add);
+      -webkit-mask-image: var(--assets-icons-actions-add);
+    }
+
+    &--save {
+      mask-image: var(--assets-icons-actions-save);
+      -webkit-mask-image: var(--assets-icons-actions-save);
+    }
+
+    &--cancel {
+      mask-image: var(--assets-icons-actions-cancel);
+      -webkit-mask-image: var(--assets-icons-actions-cancel);
+    }
+
+    &--search {
+      mask-image: var(--assets-icons-actions-search);
+      -webkit-mask-image: var(--assets-icons-actions-search);
+    }
+
+    &--settings {
+      mask-image: var(--assets-icons-actions-settings);
+      -webkit-mask-image: var(--assets-icons-actions-settings);
+    }
+
+    &--more {
+      mask-image: var(--assets-icons-actions-more);
+      -webkit-mask-image: var(--assets-icons-actions-more);
+    }
+
+    /* ===== Navigation Icons (assets.icons.navigation.*) ===== */
+    &--home {
+      mask-image: var(--assets-icons-navigation-home);
+      -webkit-mask-image: var(--assets-icons-navigation-home);
+    }
+
+    &--back {
+      mask-image: var(--assets-icons-navigation-back);
+      -webkit-mask-image: var(--assets-icons-navigation-back);
+    }
+
+    &--forward {
+      mask-image: var(--assets-icons-navigation-forward);
+      -webkit-mask-image: var(--assets-icons-navigation-forward);
+    }
+
+    &--up {
+      mask-image: var(--assets-icons-navigation-up);
+      -webkit-mask-image: var(--assets-icons-navigation-up);
+    }
+
+    &--down {
+      mask-image: var(--assets-icons-navigation-down);
+      -webkit-mask-image: var(--assets-icons-navigation-down);
+    }
+
+    &--menu {
+      mask-image: var(--assets-icons-navigation-menu);
+      -webkit-mask-image: var(--assets-icons-navigation-menu);
+    }
+
+    &--external {
+      mask-image: var(--assets-icons-navigation-external);
+      -webkit-mask-image: var(--assets-icons-navigation-external);
+    }
+
+    /* ===== Status Icons (assets.icons.status.*) ===== */
+    &--success {
+      mask-image: var(--assets-icons-status-success);
+      -webkit-mask-image: var(--assets-icons-status-success);
+    }
+
+    &--warning {
+      mask-image: var(--assets-icons-status-warning);
+      -webkit-mask-image: var(--assets-icons-status-warning);
+    }
+
+    &--error {
+      mask-image: var(--assets-icons-status-error);
+      -webkit-mask-image: var(--assets-icons-status-error);
+    }
+
+    &--info {
+      mask-image: var(--assets-icons-status-info);
+      -webkit-mask-image: var(--assets-icons-status-info);
+    }
+
+    &--loading {
+      mask-image: var(--assets-icons-status-loading);
+      -webkit-mask-image: var(--assets-icons-status-loading);
+      animation: ds-icon-spin 1s linear infinite;
+    }
+
+    /* ===== Media Icons (assets.icons.media.*) ===== */
+    &--image {
+      mask-image: var(--assets-icons-media-image);
+      -webkit-mask-image: var(--assets-icons-media-image);
+    }
+
+    &--document {
+      mask-image: var(--assets-icons-media-document);
+      -webkit-mask-image: var(--assets-icons-media-document);
+    }
+
+    &--folder {
+      mask-image: var(--assets-icons-media-folder);
+      -webkit-mask-image: var(--assets-icons-media-folder);
+    }
+
+    &--download {
+      mask-image: var(--assets-icons-media-download);
+      -webkit-mask-image: var(--assets-icons-media-download);
+    }
+
+    &--upload {
+      mask-image: var(--assets-icons-media-upload);
+      -webkit-mask-image: var(--assets-icons-media-upload);
+    }
+
+    /* ===== Social Icons (assets.icons.social.*) ===== */
+    &--user {
+      mask-image: var(--assets-icons-social-user);
+      -webkit-mask-image: var(--assets-icons-social-user);
+    }
+
+    &--users {
+      mask-image: var(--assets-icons-social-users);
+      -webkit-mask-image: var(--assets-icons-social-users);
+    }
+
+    &--mail {
+      mask-image: var(--assets-icons-social-mail);
+      -webkit-mask-image: var(--assets-icons-social-mail);
+    }
+
+    &--chat {
+      mask-image: var(--assets-icons-social-chat);
+      -webkit-mask-image: var(--assets-icons-social-chat);
+    }
+
+    &--share {
+      mask-image: var(--assets-icons-social-share);
+      -webkit-mask-image: var(--assets-icons-social-share);
+    }
+
+    /* ===== Auth Icons (assets.icons.auth.*) ===== */
+    &--lock {
+      mask-image: var(--assets-icons-auth-lock);
+      -webkit-mask-image: var(--assets-icons-auth-lock);
+    }
+
+    &--unlock {
+      mask-image: var(--assets-icons-auth-unlock);
+      -webkit-mask-image: var(--assets-icons-auth-unlock);
+    }
+
+    &--key {
+      mask-image: var(--assets-icons-auth-key);
+      -webkit-mask-image: var(--assets-icons-auth-key);
+    }
+
+    &--eye {
+      mask-image: var(--assets-icons-auth-eye);
+      -webkit-mask-image: var(--assets-icons-auth-eye);
+    }
+
+    &--eye-off {
+      mask-image: var(--assets-icons-auth-eye-off);
+      -webkit-mask-image: var(--assets-icons-auth-eye-off);
+    }
+
+    &--shield {
+      mask-image: var(--assets-icons-auth-shield);
+      -webkit-mask-image: var(--assets-icons-auth-shield);
+    }
+
+    &--shield-check {
+      mask-image: var(--assets-icons-auth-shield-check);
+      -webkit-mask-image: var(--assets-icons-auth-shield-check);
+    }
+
+    &--fingerprint {
+      mask-image: var(--assets-icons-auth-fingerprint);
+      -webkit-mask-image: var(--assets-icons-auth-fingerprint);
+    }
+
+    &--log-in {
+      mask-image: var(--assets-icons-auth-log-in);
+      -webkit-mask-image: var(--assets-icons-auth-log-in);
+    }
+
+    &--log-out {
+      mask-image: var(--assets-icons-auth-log-out);
+      -webkit-mask-image: var(--assets-icons-auth-log-out);
+    }
+
+    /* ===== Size Modifiers ===== */
+    &--sm {
+      --icon-size: 0.75em;
+    }
+
+    &--lg {
+      --icon-size: 1.5em;
+    }
+
+    &--xl {
+      --icon-size: 2em;
+    }
+
+    &--2xl {
+      --icon-size: 3em;
+    }
+  }
+
+  /* ===== Icon Animation ===== */
+  @keyframes ds-icon-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

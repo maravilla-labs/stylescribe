@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page.title}} Preview</title>
+    {{#if externalCssIncludes}}
+    <style>
+        {{#each externalCssIncludes}}
+        @import url('{{{this}}}');
+        {{/each}}
+    </style>
+    {{/if}}
+    {{#each headIncludes}}
+    <link rel="stylesheet" href="{{@root.basePath}}{{this}}">
+    {{/each}}
+    <!-- Load design tokens (always needed for components) -->
+    <link rel="stylesheet" href="{{basePath}}css/themes.css">
+    <!-- Base/app styles for body background etc -->
+    <link rel="stylesheet" href="{{basePath}}base.css">
+    <link rel="stylesheet" href="{{basePath}}css/components/app.css">
+    <style>
+        /* Reset and base styles for clean component display */
+        *, *::before, *::after { box-sizing: border-box; }
+        html { -webkit-font-smoothing: antialiased; }
+        body { margin: 0; padding: 16px; width: 100%; }
+        #preview-root { display: block; width: 100%; }
+
+        /* Transparency checkered background for showing transparent components */
+        body.show-transparency {
+            background-image:
+                linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+                linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+                linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+            background-size: 16px 16px;
+            background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+            background-color: #f5f5f5;
+        }
+        [data-theme="dark"] body.show-transparency {
+            background-image:
+                linear-gradient(45deg, #333 25%, transparent 25%),
+                linear-gradient(-45deg, #333 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #333 75%),
+                linear-gradient(-45deg, transparent 75%, #333 75%);
+            background-color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div id="preview-root">
+        <!-- Component preview will be injected here via postMessage -->
+    </div>
+    <script>
+        // Listen for preview updates from parent window
+        var previewRoot = document.getElementById('preview-root');
+        var lastHeight = 0;
+        var maxHeight = 600; // Clamp max height for viewport-based components
+
+        // This is the playground iframe - skeleton ID is always "playground"
+        var skeletonId = 'playground';
+
+        function reportHeight() {
+            // Calculate actual content height including absolutely positioned elements
+            var contentRect = previewRoot.getBoundingClientRect();
+            var maxBottom = contentRect.bottom;
+
+            // Check all descendant elements for those that extend beyond container
+            // This catches absolutely positioned elements like dropdown menus
+            var allElements = previewRoot.querySelectorAll('*');
+            allElements.forEach(function(el) {
+                var style = window.getComputedStyle(el);
+                // Only check visible elements (opacity > 0.1 to account for near-visible elements)
+                var isVisible = style.display !== 'none' &&
+                                style.visibility !== 'hidden' &&
+                                parseFloat(style.opacity) > 0.1;
+                if (isVisible) {
+                    var rect = el.getBoundingClientRect();
+                    if (rect.bottom > maxBottom) {
+                        maxBottom = rect.bottom;
+                    }
+                }
+            });
+
+            // Calculate height from top of content to max bottom, plus padding
+            var height = Math.ceil(maxBottom - contentRect.top) + 16; // Account for body padding
+
+            // Clamp to reasonable max for viewport-based components (100vh, 100dvh, etc.)
+            if (height > maxHeight) {
+                height = maxHeight;
+            }
+
+            if (height !== lastHeight) {
+                lastHeight = height;
+                window.parent.postMessage({ type: 'previewHeight', height: height, skeletonId: skeletonId }, '*');
+            }
+        }
+
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'updatePreview') {
+                previewRoot.innerHTML = event.data.html;
+                // Auto-resize iframe to fit content after DOM settles
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(reportHeight);
+                });
+            }
+            if (event.data.type === 'setBackground') {
+                if (event.data.transparent) {
+                    document.body.classList.add('show-transparency');
+                } else {
+                    document.body.classList.remove('show-transparency');
+                }
+            }
+            if (event.data.type === 'setTheme') {
+                // Set dark/light mode
+                document.documentElement.setAttribute('data-theme', event.data.mode || 'light');
+
+                // Set theme variant class
+                // Remove existing theme-* classes
+                document.documentElement.className = document.documentElement.className.replace(/theme-\S+/g, '').trim();
+                if (event.data.variant && event.data.variant !== 'default' && event.data.variantClass) {
+                    document.documentElement.classList.add(event.data.variantClass);
+                }
+            }
+        });
+
+        // Apply theme from localStorage on initial load
+        function applyInitialTheme() {
+            try {
+                var mode = localStorage.getItem('themeMode') || localStorage.getItem('theme') || 'light';
+                var variant = localStorage.getItem('themeVariant') || 'default';
+                var variantClass = localStorage.getItem('themeVariantClass') || '';
+
+                // Handle system preference
+                if (mode === 'system') {
+                    mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+
+                // Set dark/light mode
+                document.documentElement.setAttribute('data-theme', mode);
+
+                // Set theme variant class
+                if (variant && variant !== 'default' && variantClass) {
+                    document.documentElement.classList.add(variantClass);
+                }
+            } catch (e) {
+                // localStorage may not be available in some contexts
+            }
+        }
+
+        // Apply theme immediately
+        applyInitialTheme();
+
+        // Notify parent when ready and send initial height
+        window.addEventListener('load', function() {
+            window.parent.postMessage({ type: 'previewReady', skeletonId: skeletonId }, '*');
+            reportHeight();
+        });
+
+        // Observe content changes and report height
+        var resizeObserver = new ResizeObserver(reportHeight);
+        resizeObserver.observe(previewRoot);
+
+        // MutationObserver for dynamic content changes (dropdowns, accordions, etc.)
+        var mutationTimeout;
+        var mutationObserver = new MutationObserver(function(mutations) {
+            // Debounce to avoid excessive height reports
+            clearTimeout(mutationTimeout);
+            mutationTimeout = setTimeout(function() {
+                reportHeight();
+            }, 50);
+        });
+        mutationObserver.observe(previewRoot, {
+            childList: true,       // Detect added/removed elements
+            subtree: true,         // Watch all descendants
+            attributes: true,      // Watch attribute changes (class, style, etc.)
+            attributeFilter: ['class', 'style', 'hidden', 'open', 'aria-expanded', 'aria-hidden']
+        });
+
+        // Focus events for CSS :focus-within state changes (dropdowns, etc.)
+        // These CSS states don't trigger MutationObserver, so we need separate listeners
+        var focusTimeout;
+        previewRoot.addEventListener('focusin', function() {
+            // Delay to allow CSS transitions to complete
+            clearTimeout(focusTimeout);
+            focusTimeout = setTimeout(reportHeight, 100);
+        });
+        previewRoot.addEventListener('focusout', function() {
+            // Delay to allow CSS transitions to complete
+            clearTimeout(focusTimeout);
+            focusTimeout = setTimeout(reportHeight, 100);
+        });
+
+        // Also listen for checkbox changes (used by some interactive components)
+        previewRoot.addEventListener('change', function(e) {
+            if (e.target.type === 'checkbox' || e.target.type === 'radio') {
+                clearTimeout(focusTimeout);
+                focusTimeout = setTimeout(reportHeight, 100);
+            }
+        });
+    </script>
+</body>
+</html>

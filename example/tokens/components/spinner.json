@@ -1,0 +1,28 @@
+{
+  "$meta": {
+    "name": "spinner",
+    "description": "Design tokens for the Spinner component"
+  },
+  "spinner": {
+    "background": {
+      "$value": "{color.surface}",
+      "$type": "color",
+      "$description": "Spinner background color"
+    },
+    "text": {
+      "$value": "{color.text}",
+      "$type": "color",
+      "$description": "Spinner text color"
+    },
+    "padding": {
+      "$value": "{spacing.md}",
+      "$type": "dimension",
+      "$description": "Spinner padding"
+    },
+    "border-radius": {
+      "$value": "{border.radius.md}",
+      "$type": "dimension",
+      "$description": "Spinner border radius"
+    }
+  }
+}

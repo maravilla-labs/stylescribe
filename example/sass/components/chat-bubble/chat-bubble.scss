@@ -1,0 +1,156 @@
+/**
+ * @title Chat Bubble
+ * @description Message bubble for displaying chat messages. Supports
+ *   user and assistant message styles with timestamps.
+ * @navtitle Chat Bubble
+ * @group Messaging
+ * @order 1
+ * @verified true
+ * @dependencies avatar
+ * @variations user, assistant
+ * @additional_variations compact
+ * @elements
+ * - name: avatar
+ *   html: <div class="{{class}} ds-avatar ds-avatar--sm"><span class="ds-avatar__initials">AI</span></div>
+ * - name: content
+ *   html: <div class="{{class}}"><p>Message content</p></div>
+ * - name: timestamp
+ *   html: <span class="{{class}}">2:34 PM</span>
+ * - name: actions
+ *   html: <div class="{{class}}"></div>
+ * @examples
+ * - title: User Message
+ *   description: Message sent by the user (right-aligned)
+ *   code: |
+ *     <div class="ds-chat-bubble ds-chat-bubble--user">
+ *       <div class="ds-chat-bubble__content">
+ *         <p>How can I create a design system with Stylescribe?</p>
+ *       </div>
+ *       <span class="ds-chat-bubble__timestamp">2:34 PM</span>
+ *     </div>
+ * - title: Assistant Message
+ *   description: Message from AI assistant with avatar
+ *   code: |
+ *     <div class="ds-chat-bubble ds-chat-bubble--assistant">
+ *       <div class="ds-avatar ds-avatar--sm ds-avatar--ai">
+ *         <span class="ds-avatar__initials">AI</span>
+ *       </div>
+ *       <div class="ds-chat-bubble__content">
+ *         <p>I'd be happy to help you create a design system! Stylescribe makes it easy to document your components with annotations.</p>
+ *       </div>
+ *     </div>
+ * - title: Compact Messages
+ *   description: Consecutive messages without repeated avatars
+ *   code: |
+ *     <div class="ds-chat-bubble ds-chat-bubble--assistant ds-chat-bubble--compact">
+ *       <div class="ds-chat-bubble__content">
+ *         <p>First, create your SCSS components with annotations...</p>
+ *       </div>
+ *     </div>
+ */
+
+@layer components {
+  .ds-chat-bubble {
+    /* Internal token defaults */
+    --bubble-bg: var(--color-neutral-100);
+    --bubble-text: var(--color-semantic-text);
+    --bubble-radius: var(--border-radius-lg);
+    --bubble-radius-tail: var(--border-radius-sm);
+    --bubble-direction: row;
+    --bubble-align: flex-start;
+    --bubble-text-align: left;
+    --bubble-margin: 0 auto 0 0;
+    --bubble-spacing: var(--spacing-scale-sm);
+
+    display: flex;
+    flex-direction: var(--bubble-direction);
+    gap: var(--spacing-scale-sm);
+    max-width: 85%;
+    margin-bottom: var(--bubble-spacing);
+    margin-left: 0;
+    margin-right: auto;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+
+    /* Elements */
+    &__content {
+      padding: var(--spacing-scale-sm) var(--spacing-scale-md);
+      border-radius: var(--bubble-radius);
+      line-height: var(--font-lineHeight-normal);
+      background: var(--bubble-bg);
+      color: var(--bubble-text);
+
+      p {
+        margin: 0;
+
+        & + p {
+          margin-top: var(--spacing-scale-sm);
+        }
+      }
+
+      code {
+        font-family: var(--font-family-mono);
+        font-size: 0.9em;
+        padding: 0.1em 0.3em;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: var(--border-radius-sm);
+      }
+    }
+
+    &__timestamp {
+      display: block;
+      font-size: var(--font-size-xs);
+      color: var(--color-semantic-text-muted);
+      margin-top: var(--spacing-scale-xs);
+      text-align: var(--bubble-text-align);
+    }
+
+    &__actions {
+      --actions-opacity: 0;
+
+      display: flex;
+      gap: var(--spacing-scale-xs);
+      margin-top: var(--spacing-scale-xs);
+      opacity: var(--actions-opacity);
+
+      transition: opacity var(--transition-duration-fast);
+    }
+
+    &:hover &__actions {
+      --actions-opacity: 1;
+    }
+  }
+
+  /* Variants only set tokens */
+
+  .ds-chat-bubble--user {
+    --bubble-bg: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
+    --bubble-text: #ffffff;
+    --bubble-direction: row-reverse;
+    --bubble-text-align: right;
+
+    margin-left: auto;
+    margin-right: 0;
+
+    .ds-chat-bubble__content {
+      border-bottom-right-radius: var(--bubble-radius-tail);
+    }
+  }
+
+  .ds-chat-bubble--assistant {
+    --bubble-bg: var(--color-neutral-100);
+    --bubble-text: var(--color-semantic-text);
+
+    .ds-chat-bubble__content {
+      border-bottom-left-radius: var(--bubble-radius-tail);
+    }
+  }
+
+  .ds-chat-bubble--compact {
+    --bubble-spacing: 2px;
+
+    .ds-avatar {
+      visibility: hidden;
+    }
+  }
+}

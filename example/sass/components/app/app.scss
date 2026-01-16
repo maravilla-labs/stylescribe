@@ -1,0 +1,56 @@
+/**
+ * @title App
+ * @description Application canvas wrapper for full-page layouts. Provides viewport
+ *   sizing and background. Use as the root wrapper in pages for proper height handling.
+ * @group Foundation
+ * @order 1
+ *
+ * @elements
+ * - ds-app: Root wrapper for viewport sizing
+ *
+ * @variations
+ * - ds-app--centered: Centers content both horizontally and vertically
+ * - ds-app--fixed: Uses fixed height with hidden overflow (for dashboards)
+ *
+ * @examples
+ * - title: Basic App Shell
+ *   code: |
+ *     <div class="ds-app">
+ *       <div class="ds-prose">
+ *         <h1>Welcome</h1>
+ *         <p>Full viewport height container.</p>
+ *       </div>
+ *     </div>
+ *
+ * - title: Centered Content
+ *   code: |
+ *     <div class="ds-app ds-app--centered">
+ *       <div class="ds-card" style="padding: var(--spacing-lg);">
+ *         <h2>Centered Card</h2>
+ *       </div>
+ *     </div>
+ */
+
+@layer components {
+  .ds-app {
+    /* Viewport sizing */
+    min-height: 100vh;
+    width: 100%;
+
+    /* Background from tokens */
+    background-color: var(--color-semantic-background);
+  }
+
+  /* Centered variant */
+  .ds-app--centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Fixed height variant - for dashboards */
+  .ds-app--fixed {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
