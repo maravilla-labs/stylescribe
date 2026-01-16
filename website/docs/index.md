@@ -15,6 +15,10 @@ hero:
       href: guides/index.html
 ---
 
+```bash
+npm install -g @maravilla-labs/stylescribe
+```
+
 **StyleScribe** is a CLI tool that generates beautiful, interactive documentation from your CSS/SCSS files and design tokens.
 
 ## Quick Links
@@ -82,7 +86,7 @@ Built-in Model Context Protocol server for AI assistants like Claude Code. Get i
 ## Installation
 
 ```bash
-npm install -g stylescribe
+npm install -g @maravilla-labs/stylescribe
 stylescribe init my-docs
 cd my-docs
 npm run dev
