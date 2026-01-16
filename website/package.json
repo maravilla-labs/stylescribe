@@ -1,5 +1,5 @@
 {
-  "name": "stylescribe",
+  "name": "@maravilla-labs/stylescribe",
   "version": "1.0.0",
   "private": true,
   "description": "A design system built with Stylescribe",
