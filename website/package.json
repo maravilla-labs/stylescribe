@@ -11,6 +11,6 @@
     "tokens:export": "stylescribe tokens export -i ./tokens/design-tokens.json -f css -o ./tokens/variables.css"
   },
   "dependencies": {
-    "stylescribe": "^1.0.0"
+    "stylescribe": "^0.3.2"
   }
 }
