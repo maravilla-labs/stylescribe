@@ -10,9 +10,9 @@ hero:
   icon: stylescribe-logo.png
   cta:
     - text: Get Started
-      href: getting-started.html
+      href: documentation/getting-started.html
     - text: View Guides
-      href: guides/index.html
+      href: documentation/guides/index.html
 ---
 
 ```bash
